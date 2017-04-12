@@ -1,0 +1,41 @@
+<div id="wrapper">
+  <form class="login-form" method="post">
+    <div class="center">
+      <h1 class="spacing log-header">Login</h1>
+      <div class="left">
+        <div class="form-item">
+          <input
+            class="input"
+            onblur="this.placeholder = 'Username'"
+            type="text" name="username"id="username"
+            placeholder="Username"
+            [(ngModel)]="username"
+            required="Username required"
+            onfocus="this.placeholder = ''">
+        </div>
+        <div class="form-item">
+          <input
+           class="input"
+            onblur="this.placeholder = 'Password'"
+             onfocus="this.placeholder = ''" type="password"
+              name="password" id="password"
+              required="Password required"
+              [(ngModel)]="password"
+               placeholder="Password">
+        </div>
+      </div>
+
+    <div class="buttons">
+          <input (click)="login(username,password)" class="btn-yes btn" type="submit" value="Submit">
+          <p>
+            {{data.userId}}
+          </p>
+    </div>
+
+
+    </div>
+  </form>
+<!--  <a class="buttons" [routerLink]="['/authorize']">after </a> -->
+
+
+</div>

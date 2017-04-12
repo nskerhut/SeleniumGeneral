@@ -1,0 +1,35 @@
+.nav-bar{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+ul.nav-bar{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+a.nav-name{
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+li.nav-item {
+    float: left;
+}
+
+li.nav-item a.nav-item{
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.nav-item a.nav-item:hover {
+    background-color: #111;
+}
+
+li.item-right{
+  float: right;
+}
