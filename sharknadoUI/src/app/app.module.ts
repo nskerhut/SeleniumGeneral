@@ -8,9 +8,7 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {NgUploaderModule} from 'ngx-uploader';
-
 import { FlashMessagesModule } from 'angular2-flash-messages';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/login/login.component';
@@ -25,10 +23,10 @@ import { CanActivateAuthGuard } from './components/auth/can-activate.authguard';
 import { PasswordComponent } from './components/password/password.component';
 import { EmployeeService } from './service/employeeservice.service';
 import { EmployeeComponent } from './components/employee/employee.component';
-
+import {Ng2DragDropModule} from "ng2-drag-drop";
 import { Component, NgZone, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
-
+import { ProjectsComponent } from './components/projects/projects.component';
 
 
 const appRoutes: Routes = [
@@ -52,6 +50,10 @@ const appRoutes: Routes = [
   {
     path:'employee',
     component:EmployeeComponent
+  },
+  {
+    path:'projects',
+    component:ProjectsComponent
   },
   {
     path: 'users/:id',
@@ -94,10 +96,12 @@ const appRoutes: Routes = [
     PasswordComponent,
     AboutComponent,
     EmployeeComponent,
+    ProjectsComponent,
   ],
   imports: [
     FlashMessagesModule,
     NgUploaderModule,
+    Ng2DragDropModule,
     BrowserModule,
     FormsModule,
     HttpModule,

@@ -14,6 +14,7 @@
         <li><a class="active" [routerLink]="['']">Home</a></li>
 
         <li *ngIf="(!adminBool)" ><a [routerLink]="['/register']">Register</a></li>
+        <li><a [routerLink]="['/projects']">Projects</a></li>
         <li *ngIf="(!adminBool || !managerBool)" ><a [routerLink]="['/employee']">Employee</a></li>
         <li *ngIf="!loginBool" ><a [routerLink]="['/user']">Project</a></li>
         <li *ngIf="!loginBool" ><a [routerLink]="['/user']">Teams</a></li>

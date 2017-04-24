@@ -1,0 +1,45 @@
+<h3>Projects</h3>
+
+<div class="row">
+   <div class="col-xs-3">
+      <div class="panel panel-primary" droppable [dropScope]="['employee']"[dragOverClass]="'drag-target-border'">
+
+         <div class="panel-heading">Drag Items from here</div>
+         <div class="panel-body scroll-list">
+            <ul class="list-group-item" 
+            (onDrop)="on($event)">
+               <li draggable *ngFor="let item of Employee" 
+               [dragOverClass]="'drag-over-border'"
+               [dragData]="item" class="list-group-item"
+              
+               [dragScope]="item.type">
+               {{item.name}}
+               </li>
+            </ul>
+            
+         </div>
+      </div>
+   </div>
+  
+
+<div class="col-xs-3">
+   <div class="panel panel-info" droppable [dragOverClass]="'drag-target-border'" [dropScope]="['employee']"
+   (onDrop)="onAnyDrop($event)">
+   <div class="panel-heading">Drop Anything here</div>
+   <div class="panel-body scroll-list">
+     
+      <li draggable *ngFor="let item of droppedEmployee" class="list-group-item" [dragOverClass]="'drag-over-border'"
+               [dragData]="item" class="list-group-item"
+              
+               [dragScope]="item.type">{{item.name}}
+        
+      </li>
+      
+   </div>
+</div>
+</div>
+
+
+
+
+
