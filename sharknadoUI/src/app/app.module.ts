@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
-import { UsersComponent } from './components/users/users.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { NopageComponent } from './components/nopage/nopage.component';
@@ -57,10 +56,6 @@ const appRoutes: Routes = [
     component:ProjectsComponent
   },
   {
-    path: 'users/:id',
-    component:UsersComponent, canActivate: [CanActivateAuthGuard]
-  },
-  {
     path: '404',
     component:NopageComponent
   },
@@ -88,7 +83,6 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     UserComponent,
-    UsersComponent,
     UserComponent,
     NavComponent,
     AuthComponent,
