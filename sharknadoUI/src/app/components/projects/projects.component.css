@@ -3,26 +3,33 @@ element {
 .panel-success {
     border-color: #3c9a5f;
 }
+.panel-info{
+    padding: 10px;
+    border-width:0px;  
+    border-style:outset;
+    border-color: lightskyblue;
+}
+.panel-heading{
+    padding: 10px;
+    border-width:5px;  
+    border-style:outset;
+}
 #Emppanel {
     height:100vh;
     overflow: scroll;
-    margin-bottom: 21px;
     background-color: #ffffff;
-    border: 2px solid darkgray;
     border-radius: 0;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    border: 1px solid #3c9a5f;
 }
 #Projpanel {
     height:25vh;
     overflow: scroll;
-    margin-bottom: 21px;
     background-color: #ffffff;
-    border: 2px solid darkgrey;
     border-radius: 0;
-    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
-    box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+    border: 1px solid lightskyblue;
+    
 }
+    
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
