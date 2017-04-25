@@ -69,7 +69,7 @@
  <div class="col-sm-3">
         <div class="panel-info">
           <div class="panel-heading">
-            Project Devs
+            Project PirahnaConda
           </div>
           <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamFive">
             <ul class="list-group">
@@ -98,7 +98,7 @@
        <div class="col-sm-3">
         <div class="panel-info">
           <div class="panel-heading">
-            Project TeamName
+            Project MechaShark
           </div>
           <div id="Projpanel" class="panel-body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamSeven">
             <ul class="list-group">
@@ -107,5 +107,42 @@
           </div>
         </div>
       </div>
+
+ <div class="col-sm-3">
+        <div class="panel-info">
+          <div class="panel-heading">
+            Project CrocoSaurus
+          </div>
+          <div id="Projpanel" class="panel-body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamEight">
+            <ul class="list-group">
+              <li *ngFor="let item of listTeamEight; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+
+       <div class="col-sm-3">
+        <div class="panel-info">
+          <div class="panel-heading">
+            Project AvalancheShark
+          </div>
+          <div id="Projpanel" class="panel-body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamNine">
+            <ul class="list-group">
+              <li *ngFor="let item of listTeamNine; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
     </div>
 </div>
