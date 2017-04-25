@@ -2,7 +2,7 @@
 
 <div class="row">
    <div class="col-xs-3">
-      <div class="panel panel-primary" droppable [dropScope]="['employee']"[dragOverClass]="'drag-target-border'">
+      <div class="panel panel-primary" droppable [dropScope]="['employee']"[dragOverClass]="'drag-target-border'" (onDrop)="on($event)">
 
          <div class="panel-heading">Drag Items from here</div>
          <div class="panel-body scroll-list">
@@ -38,8 +38,3 @@
    </div>
 </div>
 </div>
-
-
-
-
-
