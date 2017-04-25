@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './../../service/employeeservice.service';
 import {EventEmitter, Input, Output} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {Ng2DragDropModule} from "ng2-drag-drop";
+import {DndModule} from 'ng2-dnd';
 
 
 @Component({
@@ -13,58 +13,25 @@ import {Ng2DragDropModule} from "ng2-drag-drop";
 export class ProjectsComponent implements OnInit {
 
 
-Employee = [
-        {name: "Garrett Micheau", type: "employee"},
-        {name: "Jeremy Birdsong", type: "employee"},
-        {name: "Mitch Owens", type: "employee"},
-        {name: "Sandy Sanderson", type: "employee"},
-        {name: "Bob Boberson", type: "employee"},
-        {name: "Test Testname", type: "employee"},
-        {name: "Jonathen Perot", type: "employee"},
-        {name: "Jonathen Alexander", type: "employee"}];
-        
+    listEmployees:Array<string> = ['Garrett Micheau','Alec Turner','Mitch Owens','Jeremy Birdsong','Test Testname','Jonathen One','Jonathen Two','Mark Summers','Mike Tyson','Oscar De La Hoya'];
+    listTeamOne:Array<string> = [];
+    listTeamTwo:Array<string> = [];
+    listTeamThree:Array<string> = [];
+    listTeamFour:Array<string> = [];
+    listTeamFive:Array<string> = [];
+    listTeamSix:Array<string> = [];
+    listTeamSeven:Array<string> = [];
+    listTeamEight:Array<string> = [];
+    listTeamNine:Array<string> = [];
+    listTeamTen:Array<string> = [];
+    listTeamEleven:Array<string> = [];
+    listTeamTwelve:Array<string> = [];
+            
+            
 
-
-  
-  droppedEmployee = [];
-
-
-
-  onAnyDrop(e: any) {
-      this.droppedEmployee.push(e.dragData);
-
-      if(e.dragData.type === 'employee')
-          this.removeEmployee(e.dragData, this.Employee);
-      else
-          this.removeEmployee(e.dragData, this.Employee);
-  }
-
-on(e: any) {
-  console.log("ss");
-      this.Employee.push(e.dragData);
-
-      if(e.dragData.type === 'employee')
-          this.removeEmployee(e.dragData, this.droppedEmployee);
-      else
-          this.removeEmployee(e.dragData, this.droppedEmployee);
-
-}
-
-
-  
-
-  removeEmployee(item: any, list: Array<any>) {
-      let index = list.map((e) => {
-          return e.name
-      }).indexOf(item.name);
-      list.splice(index, 1);
-  }
-
-
-
-  constructor() { }
-
-  ngOnInit() {
+constructor() {}
+    
+    ngOnInit() {
   }
 
 }
