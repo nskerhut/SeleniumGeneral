@@ -27,6 +27,7 @@ import {Ng2DragDropModule} from "ng2-drag-drop";
 import { Component, NgZone, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 import { ProjectsComponent } from './components/projects/projects.component';
+import {DndModule} from 'ng2-dnd';
 
 
 const appRoutes: Routes = [
@@ -103,6 +104,7 @@ const appRoutes: Routes = [
     NgUploaderModule,
     Ng2DragDropModule,
     BrowserModule,
+    DndModule.forRoot(),
     FormsModule,
     HttpModule,
     
