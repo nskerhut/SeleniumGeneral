@@ -8,7 +8,7 @@ import {DndModule} from 'ng2-dnd';
 
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-projects, demo-modal-static',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
