@@ -2,6 +2,18 @@
 /*DnDCSS*/
 element {
 }
+#AddProj{
+    padding: 10px;
+    border-width:5px;  
+    border-style:outset;
+    background-color: darkgrey;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
 .panel-success {
     border-color: #3c9a5f;
 }
@@ -63,7 +75,7 @@ element {
 {
     margin-left: -65%;
     width: 227%;
-    background-color: #c6e1ec;
+    background-color: white;
 }
 
 hr{
@@ -106,18 +118,6 @@ padding: 8px 12px !important;
     -webkit-box-shadow: 0 1px #fff inset, 0 1px #ddd;
     box-shadow: 0 1px #fff inset, 0 1px #ddd;
     background: #f5f5f5;
-}
-.main-center{
- 	margin-left: 8%;
- 	max-width: 400px;
-    padding: 10px 40px;
-	background:#009edf;
-	    color: #FFF;
-    text-shadow: none;
-	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
--moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
-
 }
 
 

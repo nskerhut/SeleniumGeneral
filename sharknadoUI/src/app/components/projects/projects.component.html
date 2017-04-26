@@ -1,7 +1,7 @@
 
 <div>
 
- <h4>Projects</h4>
+ <h4>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h4>
     <div class="row">
       <div class="col-sm-3">
         <div class="panel-success">
@@ -148,7 +148,7 @@
 
 
 
-       <button type="button" class="btn btn-primary" (click)="staticModal.show()">Add New Project</button>
+      
  
 <div class="modal fade bs-example-modal-lg" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -161,10 +161,7 @@
         </button>
       </div>
       <div class="modal-body">
-
-<div class="container">
-			<div class="row main">
-				<div class="main-login main-center">
+			
 				<h5>Create a new project form.</h5>
 					<form class="" method="post" action="#">
 						
@@ -214,12 +211,7 @@
 						</div>
 						
 					</form>
-				</div>
-			</div>
 		</div>
-        
-        
-      </div>
     </div>
   </div>
 </div>
