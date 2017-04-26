@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './../../service/employeeservice.service';
+import { ProjectService } from './../../service/projectservice.service';
 import { Employee } from '../../model/employee';
 import {EventEmitter, Input, Output} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
@@ -12,6 +13,7 @@ import {DndModule} from 'ng2-dnd';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
+
 
     employeeList: Array<Employee> = [];
 
@@ -39,7 +41,7 @@ public getAllEmployees() {
     
     
     return; */
-    return this.employeeService.getAllEmployee().subscribe(ress => {
+    return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
         this.employeeList = ress;
         console.log("employees ",this.employeeList);
         
@@ -50,9 +52,11 @@ public getAllEmployees() {
         });
 }
 constructor(private employeeService: EmployeeService,
+        private projectService: ProjectService,
         private router : Router,
         private route:ActivatedRoute) {
     this.employeeService = employeeService;
+    this.projectService = projectService;
 }
     
     ngOnInit() {
