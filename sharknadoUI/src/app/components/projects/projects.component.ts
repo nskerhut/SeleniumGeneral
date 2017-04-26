@@ -5,6 +5,8 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DndModule} from 'ng2-dnd';
 
 
+
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -30,7 +32,7 @@ export class ProjectsComponent implements OnInit {
             
 
 constructor() {}
-    
+
     ngOnInit() {
   }
 
