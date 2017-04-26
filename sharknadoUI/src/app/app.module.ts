@@ -26,6 +26,7 @@ import {Ng2DragDropModule} from "ng2-drag-drop";
 import { Component, NgZone, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { Employee } from './model/employee'
 import {DndModule} from 'ng2-dnd';
 
 
@@ -54,6 +55,9 @@ const appRoutes: Routes = [
   {
     path:'projects',
     component:ProjectsComponent
+  },
+  { path:'employee',
+    component:Employee
   },
   {
     path: '404',

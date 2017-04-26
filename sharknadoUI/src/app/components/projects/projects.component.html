@@ -8,7 +8,7 @@
           </div>
           <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees">
             <ul class="list-group" >
-              <li *ngFor="let item of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+              <li *ngFor="let employee of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee}}</li>
             </ul>
           </div>
         </div>

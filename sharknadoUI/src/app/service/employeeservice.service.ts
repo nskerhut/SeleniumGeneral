@@ -2,7 +2,7 @@ import {OnInit,Component, Input, Output } from '@angular/core';
 import { Injectable, EventEmitter }  from '@angular/core';
 import {Http, Response, Headers,ResponseOptions, RequestOptions, RequestOptionsArgs, Request, RequestMethod } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-
+import { Employee } from '../model/employee';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -70,9 +70,12 @@ export class EmployeeService{
          options).map((ress: Response) => <Employee>ress.json())
          .catch(this.handleError);
     }
-
-    public getAllEmployee (): Observable<Employee[]> {
-        return this.http.post(this.baseURL+'/get_all_employees',null,null).map((ress: Response) => <Employee[]>ress.json());
+    
+    public getAllEmployee (): Observable<Array<Employee>> {
+         console.log("Retrieving all employees.")
+        return this.http.get(this.baseURL+'get_all_employees')
+        .map((ress: Response) => <Array<Employee>> ress.json())
+        .catch(this.handleError);
     }
     
     public setEmployee(
@@ -129,7 +132,7 @@ export class EmployeeService{
 
 }
 
-interface Employee{
+/*interface Employee{
   First_Name: string,
   Last_Name : string,
   Date_of_Birth: string,
@@ -144,7 +147,7 @@ interface Employee{
   Mobile_Phone_Number: string,
   Company_Email: string,
   Personal_Email: string,
-}
+}*/
 
 // interface loginCredential{
 //      success: string,
