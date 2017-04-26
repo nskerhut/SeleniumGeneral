@@ -1,7 +1,9 @@
+
 <div>
- <h4>Projects</h4>
+
+ <h4>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h4>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <div class="panel-success">
           <div class="panel-heading">
             Available Employees
@@ -13,7 +15,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project Sharknado
@@ -25,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project BeeTsunami
@@ -39,7 +41,7 @@
       </div>
 
 
- <div class="col-sm-3">
+ <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project FAA
@@ -53,7 +55,7 @@
       </div>
 
 
- <div class="col-sm-3">
+ <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
            Project Testers
@@ -66,7 +68,7 @@
         </div>
       </div>
 
- <div class="col-sm-3">
+ <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project PirahnaConda
@@ -80,7 +82,7 @@
       </div>
 
 
- <div class="col-sm-3">
+ <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project DuckExplosion
@@ -95,7 +97,7 @@
 
 
 
-       <div class="col-sm-3">
+       <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project MechaShark
@@ -108,7 +110,8 @@
         </div>
       </div>
 
- <div class="col-sm-3">
+
+ <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project CrocoSaurus
@@ -124,7 +127,7 @@
 
 
 
-       <div class="col-sm-3">
+       <div class="col-sm-2">
         <div class="panel-info">
           <div class="panel-heading">
             Project AvalancheShark
@@ -144,5 +147,135 @@
 
 
 
+
+      
+ 
+<div class="modal fade bs-example-modal-lg" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Add New Project</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	
+				<h5>Create a new project form.</h5>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Project Charge Code:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargecode" id="chargecode"  placeholder="Enter the Charge Code"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="manager" class="cols-sm-2 control-label">Project Manager:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="manager" id="manager"  placeholder="Enter the Manager for this Project"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="email" class="form-control" name="email" id="email"  placeholder="Enter Project POC Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>
+						
+					</form>
+				</div>
+		</div>
+  </div>
+</div>
     </div>
 </div>
+
+
+ 
+	<!--<body>
+		<div class="container">
+			<div class="row main">
+				<div class="main-login main-center">
+				<h5>Create a new project form.</h5>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Project Charge Code:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargecode" id="chargecode"  placeholder="Enter the Charge Code"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="manager" class="cols-sm-2 control-label">Project Manager:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="manager" id="manager"  placeholder="Enter the Manager for this Project"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="email" id="email"  placeholder="Enter Project POC Email"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+
+		 
+	</body>-->

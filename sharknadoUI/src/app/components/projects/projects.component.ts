@@ -7,7 +7,7 @@ import {DndModule} from 'ng2-dnd';
 
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-projects, demo-modal-static',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
@@ -36,14 +36,17 @@ public getAllEmployees() {
                          new Employee(1, "Mark", "Summers"),
                          new Employee(1, "Alec", "Turner")
                          ];
-    this.employeeList.forEach(employee => {
-        this.listEmployees.push(employee.First_Name + ' ' + employee.Last_Name);
-    });
+    
     
     return; */
     return this.employeeService.getAllEmployee().subscribe(ress => {
         this.employeeList = ress;
         console.log("employees ",this.employeeList);
+        
+        this.employeeList.forEach(employee => {
+            this.listEmployees.push(employee.First_Name + ' ' + employee.Last_Name);
+        });
+        
         });
 }
 constructor(private employeeService: EmployeeService,
