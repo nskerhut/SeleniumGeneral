@@ -21,6 +21,7 @@ import { AboutComponent } from './components/about/about.component';
 import { CanActivateAuthGuard } from './components/auth/can-activate.authguard';
 import { PasswordComponent } from './components/password/password.component';
 import { EmployeeService } from './service/employeeservice.service';
+import { ProjectService } from './service/projectservice.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import {Ng2DragDropModule} from "ng2-drag-drop";
 import { Component, NgZone, Inject } from '@angular/core';
@@ -110,7 +111,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
     
   ],
-  providers: [UserService, EmployeeService,  CanActivateAuthGuard],
+  providers: [UserService, EmployeeService,  CanActivateAuthGuard, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
