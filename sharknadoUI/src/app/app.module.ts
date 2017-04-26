@@ -27,6 +27,7 @@ import { Component, NgZone, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 import { ProjectsComponent } from './components/projects/projects.component';
 import {DndModule} from 'ng2-dnd';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 
 const appRoutes: Routes = [
@@ -101,7 +102,7 @@ const appRoutes: Routes = [
     DndModule.forRoot(),
     FormsModule,
     HttpModule,
-    
+    ModalModule.forRoot(),
     RouterModule.forRoot(appRoutes)
     
   ],
