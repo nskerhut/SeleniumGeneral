@@ -3,6 +3,7 @@ import { Injectable, EventEmitter }  from '@angular/core';
 import {Http, Response, Headers,ResponseOptions, RequestOptions, RequestOptionsArgs, Request, RequestMethod } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import { Employee } from '../model/employee';
+import { Project } from '../model/project';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -35,6 +36,13 @@ export class ProjectService{
         console.log("Retrieving all unsigned employees.")
        return this.http.get(this.baseURL+'employee/unassigned/get')
        .map((ress: Response) => <Array<Employee>> ress.json())
+       .catch(this.handleError);
+   }
+
+   public getAllProjects (): Observable<Array<Project>> {
+       console.log("Retrieving list of all projects.")
+       return this.http.get(this.baseURL+'projects/get')
+       .map((ress: Response) => <Array<Project>> ress.json())
        .catch(this.handleError);
    }
     
