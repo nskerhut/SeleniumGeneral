@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from './../../service/employeeservice.service';
 import { ProjectService } from './../../service/projectservice.service';
 import { Employee } from '../../model/employee';
 import {EventEmitter, Input, Output} from '@angular/core';
@@ -51,11 +50,10 @@ public getAllEmployees() {
         
         });
 }
-constructor(private employeeService: EmployeeService,
+constructor(
         private projectService: ProjectService,
         private router : Router,
         private route:ActivatedRoute) {
-    this.employeeService = employeeService;
     this.projectService = projectService;
 }
     

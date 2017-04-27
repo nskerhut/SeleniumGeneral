@@ -2,7 +2,7 @@ import {OnInit,Component, Input, Output } from '@angular/core';
 import { Injectable, EventEmitter }  from '@angular/core';
 import {Http, Response, Headers,ResponseOptions, RequestOptions, RequestOptionsArgs, Request, RequestMethod } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
-
+import { Employee } from '../model/employee';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
