@@ -16,7 +16,6 @@ export class ProjectsComponent implements OnInit {
 
     employeeList: Array<Employee> = [];
 
-    listEmployees:Array<string> = [];
     listTeamOne:Array<string> = [];
     listTeamTwo:Array<string> = [];
     listTeamThree:Array<string> = [];
@@ -44,9 +43,9 @@ public getAllEmployees() {
         this.employeeList = ress;
         console.log("employees ",this.employeeList);
         
-        this.employeeList.forEach(employee => {
+        /*this.employeeList.forEach(employee => {
             this.listEmployees.push(employee.First_Name + ' ' + employee.Last_Name);
-        });
+        });*/
         
         });
 }

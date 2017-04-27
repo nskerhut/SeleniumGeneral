@@ -10,7 +10,9 @@
           </div>
           <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees">
             <ul class="list-group" >
-              <li *ngFor="let employee of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee}}</li>
+              <li *ngFor="let employee of employeeList; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee.First_Name}} {{employee.Last_Name}}  
+              	<span class="glyphicon glyphicon-edit edit-employee">{{employee.Employee_Id}}</span>
+              </li>
             </ul>
           </div>
         </div>
