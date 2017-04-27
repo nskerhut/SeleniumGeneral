@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component'
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
-import { UsersComponent } from './components/users/users.component';
 import { NavComponent } from './components/nav/nav.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { NopageComponent } from './components/nopage/nopage.component';
@@ -22,11 +21,15 @@ import { AboutComponent } from './components/about/about.component';
 import { CanActivateAuthGuard } from './components/auth/can-activate.authguard';
 import { PasswordComponent } from './components/password/password.component';
 import { EmployeeService } from './service/employeeservice.service';
+import { ProjectService } from './service/projectservice.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import {Ng2DragDropModule} from "ng2-drag-drop";
 import { Component, NgZone, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 import { ProjectsComponent } from './components/projects/projects.component';
+import { Employee } from './model/employee'
+import {DndModule} from 'ng2-dnd';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 
 const appRoutes: Routes = [
@@ -55,9 +58,8 @@ const appRoutes: Routes = [
     path:'projects',
     component:ProjectsComponent
   },
-  {
-    path: 'users/:id',
-    component:UsersComponent, canActivate: [CanActivateAuthGuard]
+  { path:'employee',
+    component:Employee
   },
   {
     path: '404',
@@ -87,7 +89,6 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     UserComponent,
-    UsersComponent,
     UserComponent,
     NavComponent,
     AuthComponent,
@@ -103,13 +104,14 @@ const appRoutes: Routes = [
     NgUploaderModule,
     Ng2DragDropModule,
     BrowserModule,
+    DndModule.forRoot(),
     FormsModule,
     HttpModule,
-    
+    ModalModule.forRoot(),
     RouterModule.forRoot(appRoutes)
     
   ],
-  providers: [UserService, EmployeeService,  CanActivateAuthGuard],
+  providers: [UserService, EmployeeService,  CanActivateAuthGuard, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

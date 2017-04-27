@@ -18,11 +18,14 @@ export class EmployeeComponent implements OnInit {
   toggleBool: boolean = false;
   profileBool: boolean = true;
   result: Object;
+  
+
   constructor(
     private employeeService: EmployeeService,
     private router : Router,
     private route:ActivatedRoute
   ) {
+    
     this.employee = <Employee>{};
     this.result=<Result>{};
     this.employeeService = employeeService;
@@ -44,6 +47,7 @@ export class EmployeeComponent implements OnInit {
                                   console.log("employee ", this.employee);
   });
 }
+  
   public updateEmployee(
     Date_of_Birth: any,
     Seat_Location: any,

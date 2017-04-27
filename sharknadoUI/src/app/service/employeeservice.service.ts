@@ -71,12 +71,6 @@ export class EmployeeService{
          .catch(this.handleError);
     }
 
-    public getAllEmployee (): Observable<Employee[]> {
-     
-        return this.http.post(this.baseURL+'/get_all_employees',null,null).map((ress: Response) => <Employee[]>ress.json());
-        
-        
-    }
     public setEmployee(
       employId: number,
       dateOfBirth: any,

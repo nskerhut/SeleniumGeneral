@@ -1,70 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './../../service/employeeservice.service';
+import { ProjectService } from './../../service/projectservice.service';
+import { Employee } from '../../model/employee';
 import {EventEmitter, Input, Output} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {Ng2DragDropModule} from "ng2-drag-drop";
+import {DndModule} from 'ng2-dnd';
 
 
 @Component({
-  selector: 'app-projects',
+  selector: 'app-projects, demo-modal-static',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
 
 
-Employee = [
-        {name: "Garrett Micheau", type: "employee"},
-        {name: "Jeremy Birdsong", type: "employee"},
-        {name: "Mitch Owens", type: "employee"},
-        {name: "Sandy Sanderson", type: "employee"},
-        {name: "Bob Boberson", type: "employee"},
-        {name: "Test Testname", type: "employee"},
-        {name: "Jonathen Perot", type: "employee"},
-        {name: "Jonathen Alexander", type: "employee"}];
+    employeeList: Array<Employee> = [];
+
+    listEmployees:Array<string> = [];
+    listTeamOne:Array<string> = [];
+    listTeamTwo:Array<string> = [];
+    listTeamThree:Array<string> = [];
+    listTeamFour:Array<string> = [];
+    listTeamFive:Array<string> = [];
+    listTeamSix:Array<string> = [];
+    listTeamSeven:Array<string> = [];
+    listTeamEight:Array<string> = [];
+    listTeamNine:Array<string> = [];
+    listTeamTen:Array<string> = [];
+    listTeamEleven:Array<string> = [];
+    listTeamTwelve:Array<string> = [];
+            
+            
+public getAllEmployees() {
+    console.log("getting all employees.")
+    /*this.employeeList = [
+                         new Employee(1, "Mark", "Summers"),
+                         new Employee(1, "Alec", "Turner")
+                         ];
+    
+    
+    return; */
+    return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
+        this.employeeList = ress;
+        console.log("employees ",this.employeeList);
         
-
-
-  
-  droppedEmployee = [];
-
-
-
-  onAnyDrop(e: any) {
-      this.droppedEmployee.push(e.dragData);
-
-      if(e.dragData.type === 'employee')
-          this.removeEmployee(e.dragData, this.Employee);
-      else
-          this.removeEmployee(e.dragData, this.Employee);
-  }
-
-on(e: any) {
-  console.log("ss");
-      this.Employee.push(e.dragData);
-
-      if(e.dragData.type === 'employee')
-          this.removeEmployee(e.dragData, this.droppedEmployee);
-      else
-          this.removeEmployee(e.dragData, this.droppedEmployee);
-
+        this.employeeList.forEach(employee => {
+            this.listEmployees.push(employee.First_Name + ' ' + employee.Last_Name);
+        });
+        
+        });
 }
-
-
-  
-
-  removeEmployee(item: any, list: Array<any>) {
-      let index = list.map((e) => {
-          return e.name
-      }).indexOf(item.name);
-      list.splice(index, 1);
-  }
-
-
-
-  constructor() { }
-
-  ngOnInit() {
+constructor(private employeeService: EmployeeService,
+        private projectService: ProjectService,
+        private router : Router,
+        private route:ActivatedRoute) {
+    this.employeeService = employeeService;
+    this.projectService = projectService;
+}
+    
+    ngOnInit() {
+       this.getAllEmployees();
   }
 
 }
