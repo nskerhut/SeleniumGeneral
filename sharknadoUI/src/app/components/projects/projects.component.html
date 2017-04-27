@@ -8,10 +8,10 @@
           <div class="panel-heading">
             Available Employees
           </div>
-          <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees">
+          <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="employeeList" dnd-draggable>
             <ul class="list-group" >
               <li *ngFor="let employee of employeeList; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee.First_Name}} {{employee.Last_Name}}  
-              	<span class="glyphicon glyphicon-edit edit-employee">{{employee.Employee_Id}}</span>
+              	<!--<span class="glyphicon glyphicon-edit edit-employee">{{employee.Employee_Id}}</span>-->
               </li>
             </ul>
           </div>
@@ -22,7 +22,7 @@
           <div class="panel-heading">
             Project Sharknado
           </div>
-          <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamOne">
+          <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamOne" (onDropSuccess)="transferDataSuccess($event)">
             <ul class="list-group" >
               <li *ngFor="let item of listTeamOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
             </ul>

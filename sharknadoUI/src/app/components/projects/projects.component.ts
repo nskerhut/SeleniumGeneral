@@ -16,6 +16,9 @@ export class ProjectsComponent implements OnInit {
 
     employeeList: Array<Employee> = [];
 
+    transferData: Employee [];
+    receivedData: Array<any> [];
+
     listTeamOne:Array<string> = [];
     listTeamTwo:Array<string> = [];
     listTeamThree:Array<string> = [];
@@ -29,7 +32,10 @@ export class ProjectsComponent implements OnInit {
     listTeamEleven:Array<string> = [];
     listTeamTwelve:Array<string> = [];
             
-            
+transferDataSuccess($event: any){
+    this.receivedData.push($event);
+}            
+
 public getAllEmployees() {
     console.log("getting all employees.")
     /*this.employeeList = [
