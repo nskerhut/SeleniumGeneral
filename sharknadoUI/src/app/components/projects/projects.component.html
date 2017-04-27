@@ -8,7 +8,7 @@
           <div class="panel-heading">
             Available Employees
           </div>
-          <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees">
+          <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees" jqyoui-draggable>
             <ul class="list-group" >
               <li *ngFor="let employee of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee}}<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span></li>
             </ul>
