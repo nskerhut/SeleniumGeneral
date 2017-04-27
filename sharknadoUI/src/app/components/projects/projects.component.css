@@ -55,7 +55,18 @@ element {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-
+.glyphicon {
+    position: relative;
+    float:right;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
 
 
