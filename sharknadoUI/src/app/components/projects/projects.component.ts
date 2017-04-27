@@ -37,13 +37,7 @@ export class ProjectsComponent implements OnInit {
             
 public getAllEmployees() {
     console.log("getting all employees.")
-    /*this.employeeList = [
-                         new Employee(1, "Mark", "Summers"),
-                         new Employee(1, "Alec", "Turner")
-                         ];
-    
-    
-    return; */
+
     return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
         this.employeeList = ress;
         console.log("employees ",this.employeeList);

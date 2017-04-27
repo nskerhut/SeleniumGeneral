@@ -1,7 +1,7 @@
 
 <div>
 
- <h4>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h4>
+ <h2>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h2>
     <div class="row">
       <div class="col-sm-2">
         <div class="panel-success">
@@ -10,7 +10,7 @@
           </div>
           <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees">
             <ul class="list-group" >
-              <li *ngFor="let employee of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee}}</li>
+              <li *ngFor="let employee of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee}}<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span></li>
             </ul>
           </div>
         </div>
@@ -39,23 +39,9 @@
   </div>
 </div>
       
-      
-      <!--<div class="col-sm-2">
-        <div class="panel-success">
-          <div class="panel-heading">
-            Projects List3
-          </div>
-          <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listProjects">
-            <ul class="list-group" >
-              <li *ngFor="let project of listProjects; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{project}}</li>
-            </ul>
-          </div>
-        </div>
-      </div>-->
+    
 
 
-
-      
  
 <div class="modal fade bs-example-modal-lg" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
