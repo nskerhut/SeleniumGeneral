@@ -73,7 +73,16 @@ constructor(
        this.getAllEmployees();
        this.getListOfProject();
   }
-
+public enableForm(){
+        var name=<HTMLInputElement> document.getElementById("name");
+    var chargecode=<HTMLInputElement> document.getElementById("chargecode");
+    var manager=<HTMLInputElement> document.getElementById("manager");
+    var email=<HTMLInputElement> document.getElementById("email");
+    name.readOnly=false;
+    chargecode.readOnly=false;
+    manager.readOnly=false;
+    email.readOnly=false;
+    }
 }
 
 

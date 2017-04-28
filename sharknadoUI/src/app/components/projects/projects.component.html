@@ -25,8 +25,8 @@
         <!--wrap each project in container-->
         <div class="col-sm-2">
           <div class="panel-info">
-            <div class="panel-heading">
-              {{project}}
+            <div class="panel-heading" (click)="projectEdit.show()">
+              {{project}} 
             </div>
             <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listTeamOne">
               <ul class="list-group" >
@@ -108,6 +108,74 @@
 		</div>
   </div>
 </div>
+
+
+<div class="modal fade bs-example-modal-lg" bsModal #projectEdit="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Project Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	
+				<h5>View Project Details Form.</h5>
+				
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  [readonly] = "true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Project Charge Code:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargecode" id="chargecode"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="manager" class="cols-sm-2 control-label">Project Manager:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="manager" id="manager"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="email" class="form-control" name="email" id="email"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+<a type = "button"  (click) = "enableForm();">Submit</a>
+						<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>
+						
+					</form>
+				</div>
+		</div>
+  </div>
+</div>
     </div>
 </div>
 
@@ -117,7 +185,7 @@
 		<div class="container">
 			<div class="row main">
 				<div class="main-login main-center">
-				<h5>Create a new project form.</h5>
+				<h5>Project Details.</h5>
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
@@ -125,7 +193,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
+									<input type="text" class="form-control" name="name" id="name"  disabled />
 								</div>
 							</div>
 						</div>
