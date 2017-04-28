@@ -73,20 +73,39 @@ constructor(
        this.getAllEmployees();
        this.getListOfProject();
   }
-public bee(){
-    alert("funrun");
+public enableForm(){
+    //Enables fields in project details form.
     var name2=<HTMLInputElement> document.getElementById("name2");
     var chargecode=<HTMLInputElement> document.getElementById("chargecode2");
     var manager=<HTMLInputElement> document.getElementById("manager2");
     var email=<HTMLInputElement> document.getElementById("email2");
-    console.log(name2);
-    console.log(chargecode);
     
-    name2.readOnly=false;
-    chargecode.readOnly=false;
-    manager.readOnly=false;
-    email.readOnly=false;
+    if(name2.readOnly == true){
+        name2.readOnly=false;
+        chargecode.readOnly=false;
+        manager.readOnly=false;
+        email.readOnly=false;
+    }else{
+        name2.readOnly=true;
+    chargecode.readOnly=true;
+    manager.readOnly=true;
+    email.readOnly=true; 
     }
+    
+   
+    }
+public setFieldReadOnly(){
+    var name2=<HTMLInputElement> document.getElementById("name2");
+    var chargecode=<HTMLInputElement> document.getElementById("chargecode2");
+    var manager=<HTMLInputElement> document.getElementById("manager2");
+    var email=<HTMLInputElement> document.getElementById("email2");
+    
+    name2.readOnly = true;
+    chargecode.readOnly = true;
+    manager.readOnly = true;
+    email.readOnly = true;
+    }
+
 }
 
 

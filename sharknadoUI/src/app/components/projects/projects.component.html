@@ -105,6 +105,10 @@
 						
 					</form>
 				</div>
+				<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
 		</div>
   </div>
 </div>
@@ -116,14 +120,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">Project Details</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 	
-				<h5>View Project Details Form.</h5>
-				
+				<ul id = "projectDetailsList">
+					<li class = "pdlItem"><h5>View Project Details Form.</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				</ul>
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
@@ -166,14 +172,17 @@
 								</div>
 							</div>
 						</div>
-						<!--<a type = "button"  (click) = "enableForm()" >Submit</a>-->
-						<input type = "button" (click) = "bee();" value = "Submit">
+						
 						<div class="form-group ">
 							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
 						</div>
 						
 					</form>
 				</div>
+				<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
 		</div>
   </div>
 </div>

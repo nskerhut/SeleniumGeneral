@@ -134,6 +134,12 @@ padding: 8px 12px !important;
     box-shadow: 0 1px #fff inset, 0 1px #ddd;
     background: #f5f5f5;
 }
+#projectDetailsList{
+	list-style-type: none; 
+}
+.pdlItem{
+	display: inline;
+}
 
 
 
