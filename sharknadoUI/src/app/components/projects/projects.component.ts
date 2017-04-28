@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './../../service/projectservice.service';
 import { Employee } from '../../model/employee';
+import { Project } from '../../model/project';
 import {EventEmitter, Input, Output} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DndModule} from 'ng2-dnd';
@@ -15,20 +16,23 @@ export class ProjectsComponent implements OnInit {
 
 
     employeeList: Array<Employee> = [];
+    projectList: Array<Project> = [];
 
     listEmployees:Array<string> = [];
+    listProjects:Array<string> = [];
+
     listTeamOne:Array<string> = [];
-    listTeamTwo:Array<string> = [];
-    listTeamThree:Array<string> = [];
-    listTeamFour:Array<string> = [];
-    listTeamFive:Array<string> = [];
-    listTeamSix:Array<string> = [];
-    listTeamSeven:Array<string> = [];
-    listTeamEight:Array<string> = [];
-    listTeamNine:Array<string> = [];
-    listTeamTen:Array<string> = [];
-    listTeamEleven:Array<string> = [];
-    listTeamTwelve:Array<string> = [];
+    // listTeamTwo:Array<string> = [];
+    // listTeamThree:Array<string> = [];
+    // listTeamFour:Array<string> = [];
+    // listTeamFive:Array<string> = [];
+    // listTeamSix:Array<string> = [];
+    // listTeamSeven:Array<string> = [];
+    // listTeamEight:Array<string> = [];
+    // listTeamNine:Array<string> = [];
+    // listTeamTen:Array<string> = [];
+    // listTeamEleven:Array<string> = [];
+    // listTeamTwelve:Array<string> = [];
             
             
 public getAllEmployees() {
@@ -45,6 +49,19 @@ public getAllEmployees() {
         });
 }
 
+public getListOfProject() {
+    console.log("getting list of projects")
+
+    return this.projectService.getAllProjects().subscribe(ress => {
+        this.projectList = ress;
+        console.log("projects ", this.projectList);
+
+        this.projectList.forEach(project => {
+            this.listProjects.push(project.Project_Name);
+        });
+    });
+}
+
 constructor(
         private projectService: ProjectService,
         private router : Router,
@@ -54,6 +71,7 @@ constructor(
     
     ngOnInit() {
        this.getAllEmployees();
+       this.getListOfProject();
   }
 
 }
