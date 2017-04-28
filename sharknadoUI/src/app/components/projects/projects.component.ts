@@ -73,12 +73,16 @@ constructor(
        this.getAllEmployees();
        this.getListOfProject();
   }
-public enableForm(){
-        var name=<HTMLInputElement> document.getElementById("name");
-    var chargecode=<HTMLInputElement> document.getElementById("chargecode");
-    var manager=<HTMLInputElement> document.getElementById("manager");
-    var email=<HTMLInputElement> document.getElementById("email");
-    name.readOnly=false;
+public bee(){
+    alert("funrun");
+    var name2=<HTMLInputElement> document.getElementById("name2");
+    var chargecode=<HTMLInputElement> document.getElementById("chargecode2");
+    var manager=<HTMLInputElement> document.getElementById("manager2");
+    var email=<HTMLInputElement> document.getElementById("email2");
+    console.log(name2);
+    console.log(chargecode);
+    
+    name2.readOnly=false;
     chargecode.readOnly=false;
     manager.readOnly=false;
     email.readOnly=false;

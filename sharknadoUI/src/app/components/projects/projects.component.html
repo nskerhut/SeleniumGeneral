@@ -131,7 +131,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  [readonly] = "true"/>
+									<input type="text" class="form-control" name="name" id="name2"  [readonly] = "true"/>
 								</div>
 							</div>
 						</div>
@@ -141,7 +141,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chargecode" id="chargecode"  [readonly]="true"/>
+									<input type="text" class="form-control" name="chargecode" id="chargecode2"  [readonly]="true"/>
 								</div>
 							</div>
 						</div>
@@ -151,7 +151,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="manager" id="manager"  [readonly]="true"/>
+									<input type="text" class="form-control" name="manager" id="manager2"  [readonly]="true"/>
 								</div>
 							</div>
 						</div>
@@ -162,11 +162,12 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="email"  [readonly]="true"/>
+									<input type="email" class="form-control" name="email" id="email2"  [readonly]="true"/>
 								</div>
 							</div>
 						</div>
-<a type = "button"  (click) = "enableForm();">Submit</a>
+						<!--<a type = "button"  (click) = "enableForm()" >Submit</a>-->
+						<input type = "button" (click) = "bee();" value = "Submit">
 						<div class="form-group ">
 							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
 						</div>
