@@ -13,7 +13,7 @@ import {DndModule} from 'ng2-dnd';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-
+    projectDetailsForm = "projectDetailsForm";
 
     employeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
@@ -80,9 +80,11 @@ constructor(
         
         
         
+        alert("funrun");
         
-        
-        if(document.getElementById("projectDetailsForm").style.display == "block"){
+        //if(document.getElementById("projectDetailsForm").style.display == "block"){
+          if(this.projectDetailsForm == "projectDetailsForm"){
+            alert("funrun2");
             var name2=<HTMLInputElement> document.getElementById("name2");
             var chargecode=<HTMLInputElement> document.getElementById("chargecode2");
             var manager=<HTMLInputElement> document.getElementById("manager2");
@@ -95,16 +97,34 @@ constructor(
                 email.readOnly=false;
             }else{
                 name2.readOnly=true;
-            chargecode.readOnly=true;
-            manager.readOnly=true;
-            email.readOnly=true; 
+                chargecode.readOnly=true;
+                manager.readOnly=true;
+                email.readOnly=true; 
             }
         }
-        else if(document.getElementById("projectContactForm").style.display == "block"){
+        else if(this.projectDetailsForm == "projectContactForm"){
+            var contactName = <HTMLInputElement> document.getElementById("contactName");
+            var contactPosition = <HTMLInputElement> document.getElementById("contactPosition");
+            var preferredContact = <HTMLInputElement> document.getElementById("preferredContact");
+            var altContact = <HTMLInputElement> document.getElementById("altContact");
+            
+            if(contactName.readOnly == true){
+                contactName.readOnly = false;
+                contactPosition.readOnly = false;
+                preferredContact.readOnly = false;
+                altContact.readOnly = false;
+            }else{
+                contactName.readOnly = true;
+                contactPosition.readOnly = true;
+                preferredContact.readOnly = true;
+                altContact.readOnly = true;
+            }
+        }
+        else if(this.projectDetailsForm == "projectChargeCodeForm"){
             
         }
         else{
-            
+              console.log("Error @ projects.component.ts on line 112.  Broken pencil icon");
         }
         
        
@@ -144,6 +164,7 @@ constructor(
         }
    
     public showContacts(){
+        this.projectDetailsForm = "projectContactForm";
         document.getElementById("projectContactForm").style.display = "block";
         document.getElementById("projDetailsHead").textContent = "View Project Contacts";
         
@@ -155,6 +176,7 @@ constructor(
         
         }
     public showChargeCodes(){
+        this.projectDetailsForm = "projectChargeCodeForm";
         document.getElementById("projDetailsHead").textContent = "View Project Charge Codes";
         document.getElementById("projectChargeCodeForm").style.display = "block";
         }
@@ -164,6 +186,7 @@ constructor(
         //save changes to db
     }
     public normalizeProjectForm(){
+        this.projectDetailsForm = "projectDetailsForm";
         document.getElementById("projectContactForm").style.display = "none";
         document.getElementById("projectChargeCodeForm").style.display = "none";
         
