@@ -119,16 +119,22 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Project Details</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
+      	<ul id = "projectDetailsMenu">
+      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Details</h4></a></li>&emsp;
+      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
+      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
+      	</ul>
+        <!--<h4 class="modal-title pull-left">Project Details</h4>-->
+        <!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
+        <!--<button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
           <span aria-hidden="true">&times;</span>
-        </button>
+        </button>-->
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id = "projectDetailsForm">
 	
-				<ul id = "projectDetailsList">
-					<li class = "pdlItem"><h5>View Project Details Form.</h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				<ul class = "projectDetailsList">
+					<li class = "pdlItem"><h5 id = "projDetailsHead">View Project Details Form</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
 				</ul>
 					<form class="" method="post" action="#">
 						
@@ -173,24 +179,143 @@
 							</div>
 						</div>
 						
-						<div class="form-group ">
+						<!-- This was one of two buttons on this form.  Decided to comment this out until I got additional input on which
+						button to keep and which to remove.   -->
+						<!--<div class="form-group ">
 							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>-->
+						
+					</form>
+				</div>
+				
+				
+				<div class="modal-body" id = "projectContactForm">
+	
+				<ul class = "projectDetailsList">
+					<li class = "pdlItem"><h5 id = "projDetailsHead">View Project Contacts</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				</ul>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Contact Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="contactName" id="contactName"  [readonly] = "true"/>
+								</div>
+							</div>
 						</div>
+
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Contact Position:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="contactPosition" id="contactPosition"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="manager" class="cols-sm-2 control-label">Preferred Contact Info.</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="preferredContact" id="preferredContact"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="Email" class="cols-sm-2 control-label">Alt. Contact Info.</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="altContact" id="altContact"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+						
+						<!-- This was one of two buttons on this form.  Decided to comment this out until I got additional input on which
+						button to keep and which to remove.   -->
+						<!--<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>-->
+						
+					</form>
+				</div>
+				
+				<div class="modal-body" id = "projectChargeCodeForm">
+	
+				<ul class = "projectDetailsList">
+					<li class = "pdlItem"><h5 id = "projDetailsHead">View Project Charge Codes</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				</ul>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Charge Code:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargeCode" id="detailsChargeCode"  [readonly] = "true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Description:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="description" id="chargeCodeDescription"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="manager" class="cols-sm-2 control-label">Start Date:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargeCodeStartDate" id="chargeCodeStartDate"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="Email" class="cols-sm-2 control-label">End Date:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargeCodeEndDate" id="chargeCodeEndDate"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+						
+						<!-- This was one of two buttons on this form.  Decided to comment this out until I got additional input on which
+						button to keep and which to remove.   -->
+						<!--<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>-->
 						
 					</form>
 				</div>
 				<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
+        <button type="button" class="btn btn-primary" (click) = "submitChanges()">Save changes</button>
       </div>
 		</div>
   </div>
 </div>
     </div>
 </div>
+<!--
 
-
- 
+ -->
 	<!--<body>
 		<div class="container">
 			<div class="row main">
@@ -247,9 +372,11 @@
 				</div>
 			</div>
 		</div>
-<!--Contact Detail Form--><!--
+<!--Contact Detail Form  (May still need this)-->
 
-<div class="container">
+
+<!--
+<div class="container none">
 			<div class="row main">
 				<div class="main-login main-center">
 				<h5>Contact Details.</h5>
@@ -294,8 +421,8 @@
 				</div>
 			</div>
 		</div>
-
-<div class="container">
+<!--
+<div class="container none">
 			<div class="row main">
 				<div class="main-login main-center">
 				<h5>ChargeCodeDetails.</h5>
@@ -351,5 +478,5 @@
 			</div>
 		</div>
 
-		 
+		 <!--
 	</body>-->
