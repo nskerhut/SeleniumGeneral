@@ -155,6 +155,7 @@ padding: 8px 12px !important;
     border-width:5px;  
     border-style:outset;
     margin-top: 5px;
+    border-color: #00bada;
 }
 .projectDetailsMenuItem{
 	float: left;
