@@ -80,11 +80,8 @@ constructor(
         
         
         
-        alert("funrun");
-        
         //if(document.getElementById("projectDetailsForm").style.display == "block"){
           if(this.projectDetailsForm == "projectDetailsForm"){
-            alert("funrun2");
             var name2=<HTMLInputElement> document.getElementById("name2");
             var chargecode=<HTMLInputElement> document.getElementById("chargecode2");
             var manager=<HTMLInputElement> document.getElementById("manager2");
@@ -164,9 +161,9 @@ constructor(
         }
    
     public showContacts(){
+        this.removeElements();
         this.projectDetailsForm = "projectContactForm";
         document.getElementById("projectContactForm").style.display = "block";
-        document.getElementById("projDetailsHead").textContent = "View Project Contacts";
         
         
         //also need to get the values for charge codes and make sure they are set to a variable
@@ -176,8 +173,9 @@ constructor(
         
         }
     public showChargeCodes(){
+        this.removeElements();
         this.projectDetailsForm = "projectChargeCodeForm";
-        document.getElementById("projDetailsHead").textContent = "View Project Charge Codes";
+        
         document.getElementById("projectChargeCodeForm").style.display = "block";
         }
     public submitChanges(){
@@ -187,10 +185,10 @@ constructor(
     }
     public normalizeProjectForm(){
         this.projectDetailsForm = "projectDetailsForm";
-        document.getElementById("projectContactForm").style.display = "none";
-        document.getElementById("projectChargeCodeForm").style.display = "none";
         
-        document.getElementById("projDetailsHead").textContent = "View Project Details Form";
+        this.removeElements();
+        
+        
         
         document.getElementById("projectDetailsForm").style.display = "block";
         

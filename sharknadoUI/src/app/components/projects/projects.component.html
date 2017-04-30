@@ -120,9 +120,10 @@
     <div class="modal-content">
       <div class="modal-header">
       	<ul id = "projectDetailsMenu">
-      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Details</h4></a></li>&emsp;
-      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
-      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
+      		<li class = "projectDetailsMenuItem"><a type = "button"  (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Details</h4></a></li>
+      		<li class = "projectDetailsMenuItem"><a type = "button"  (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
+      		<li class = "projectDetailsMenuItem"><a type = "button"  (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
+      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" ><h4 class = "modal-title pull-left">Employees</h4></a></li>
       	</ul>
         <!--<h4 class="modal-title pull-left">Project Details</h4>-->
         <!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
@@ -132,14 +133,16 @@
       </div>
       <div class="modal-body" id = "projectDetailsForm">
 	
-				<ul class = "projectDetailsList">
+				
 					<li class = "pdlItem"><h5 id = "projDetailsHead">View Project Details Form</h5></li>
 					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				</ul>
+				
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
+						
 							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
@@ -191,10 +194,10 @@
 				
 				<div class="modal-body" id = "projectContactForm">
 	
-				<ul class = "projectDetailsList">
-					<li class = "pdlItem"><h5 id = "projDetailsHead">View Project Contacts</h5></li>
+				
+					<li class = "pdlItem"><h5 id = "projContactsHead">View Project Contacts</h5></li>
 					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				</ul>
+				
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
@@ -249,10 +252,10 @@
 				
 				<div class="modal-body" id = "projectChargeCodeForm">
 	
-				<ul class = "projectDetailsList">
-					<li class = "pdlItem"><h5 id = "projDetailsHead">View Project Charge Codes</h5></li>
+				
+					<li class = "pdlItem"><h5 id = "projChargeCodesHead">View Project Charge Codes</h5></li>
 					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				</ul>
+				
 					<form class="" method="post" action="#">
 						
 						<div class="form-group">
@@ -306,7 +309,7 @@
 				</div>
 				<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
-        <button type="button" class="btn btn-primary" (click) = "submitChanges()">Save changes</button>
+        <button type="button" class="btn btn-primary" (click) = "submitChanges()" id = "projectDetailsSaveButton">Save changes</button>
       </div>
 		</div>
   </div>

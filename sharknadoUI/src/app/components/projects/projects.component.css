@@ -167,6 +167,7 @@ padding: 8px 12px !important;
 }
 .projectDetailsMenuItem:hover{
 	background-color: #b6e3fd;
+	border: 2px solid white;
 }
 .none{
 	display: none;
@@ -176,6 +177,10 @@ padding: 8px 12px !important;
 }
 #projectChargeCodeForm{
 	display: none;
+}
+#projectDetailsHead{
+	margin-left: 0;
+	padding-left: 0;
 }
 
 
