@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 
+@Injectable()
+@Component(
+        {
+            selector:'employee-detail',
+            template:``
+        })
 export class Employee {
     Employee_Id: number;
     First_Name: string;
@@ -17,15 +23,15 @@ export class Employee {
     Company_Email: string;
     Personal_Email: string;
 
-constructor(
+/*constructor(
         Employee_Id: number,
         First_Name: string,
     Last_Name : string) {
     this.Employee_Id = Employee_Id;
     this.First_Name = First_Name;
     this.Last_Name = Last_Name;
-}
-/*constructor(
+}*/
+constructor(
         Employee_Id: number,
         First_Name: string,
     Last_Name : string,
@@ -57,5 +63,5 @@ constructor(
     this.Mobile_Phone_Number = Mobile_Phone_Number;
     this.Company_Email = Company_Email;
     this.Personal_Email = Personal_Email;
-}*/
+}
 }

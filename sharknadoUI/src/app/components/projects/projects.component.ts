@@ -10,7 +10,8 @@ import {DndModule} from 'ng2-dnd';
 @Component({
   selector: 'app-projects, demo-modal-static',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css']/*,
+  providers: [Project]*/
 })
 export class ProjectsComponent implements OnInit {
     projectDetailsForm = "projectDetailsForm";
@@ -18,22 +19,22 @@ export class ProjectsComponent implements OnInit {
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
 
-
-    transferData: Employee;
-    receivedData: Array<Employee> = [];
     
 
     
 addEmployeeToProject($event: any, projectId: number) {
     let newEmployee: Employee = $event.dragData;
     let project: Project = this.projectList[projectId];
-    //project.EmployeeList = new Array<Employee>();
-    //project.EmployeeList.push(new Employee(1,"BOB","Planet"));
-    //project.employeeList.push(employee);
-    alert(`move employee `+ newEmployee.First_Name + ` into project ` + projectId);
-    project.addEmployee(newEmployee);
-   // this.receivedData.push($event.dragData);
+    let id:number = project.projectId;
+   
+    console.log(`project id = %s`, project.projectId);
+    if(project.employees == null)
+        project.employees = new Array<Employee>();
     
+    project.employees.push(newEmployee);
+    console.log("employees list: %s", project.employees);
+    let popIndex = this.unassignedEmployeeList.indexOf(newEmployee);
+    this.unassignedEmployeeList.splice(popIndex, 1);
 }       
 
 public getAllEmployees() {
@@ -41,18 +42,9 @@ public getAllEmployees() {
     return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
         this.unassignedEmployeeList = ress;
         console.log("employees ",this.unassignedEmployeeList);
-        
-        /*this.unassignedEmployeeList.forEach(employee => {
-            this.employeeList.push(employee.First_Name);
+
         });
-        console.log("employee string list " + this.employeeList);*/
-        });
-    
-    
-    /*return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
-        this.unassignedEmployeeList = ress;
-        console.log("employees ",this.unassignedEmployeeList);
-        });*/
+
 }
 
 public getListOfProject() {

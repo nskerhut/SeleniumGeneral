@@ -33,8 +33,9 @@
             </div>
             <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,j)" [dropZones]="['employees-zone']" >
               <ul class="list-group" >
-                <li *ngFor="let item of project.employeeList; let m = index;" class="list-group-item" >
-                	{{item}}
+                <li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee">
+                	{{employee.First_Name}} {{employee.Last_Name}}
+                	<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
                 </li>
               </ul>
             </div>
