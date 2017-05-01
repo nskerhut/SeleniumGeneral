@@ -120,10 +120,10 @@
     <div class="modal-content">
       <div class="modal-header">
       	<ul id = "projectDetailsMenu">
-      		<li class = "projectDetailsMenuItem"><a type = "button"  (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Details</h4></a></li>
-      		<li class = "projectDetailsMenuItem"><a type = "button"  (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
-      		<li class = "projectDetailsMenuItem"><a type = "button"  (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
-      		<li class = "projectDetailsMenuItem"><a type = "button" (click) = "removeElements()" ><h4 class = "modal-title pull-left">Employees</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuProjectDetails"><a type = "button"  (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Details</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuContacts"><a type = "button"  (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuChargeCodes"><a type = "button"  (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuEmployee"><a type = "button" (click) = "showEmployee()" ><h4 class = "modal-title pull-left">Employees</h4></a></li>
       	</ul>
         <!--<h4 class="modal-title pull-left">Project Details</h4>-->
         <!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
@@ -279,7 +279,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="manager" class="cols-sm-2 control-label">Start Date:</label>
+							<label for="manager" class="cols-sm-2 control-label">Start Date:</label><a type = "button" ><span class="glyphicon glyphicon-calendar calendar"></span></a>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
@@ -290,7 +290,7 @@
 
 
 						<div class="form-group">
-							<label for="Email" class="cols-sm-2 control-label">End Date:</label>
+							<label for="Email" class="cols-sm-2 control-label">End Date:</label><span class="glyphicon glyphicon-calendar calendar"></span>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
