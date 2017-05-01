@@ -14,6 +14,7 @@ import {DndModule} from 'ng2-dnd';
   providers: [Project]*/
 })
 export class ProjectsComponent implements OnInit {
+    contactList:Array<string> = ["","one", "two", "three", "four", "Add New Charge Code"];
     projectDetailsForm = "projectDetailsForm";
 
     unassignedEmployeeList: Array<Employee> = [];
@@ -96,7 +97,8 @@ constructor(
             
             if(name2.readOnly == true){
                 name2.readOnly=false;
-                chargecode.readOnly=false;
+                //chargecode.readOnly=false;
+                chargecode.disabled = false;
                 manager.readOnly=false;
                 email.readOnly=false;
             }else{
@@ -181,6 +183,9 @@ constructor(
         
         document.getElementById("menuChargeCodes").style.border = "none";
         document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
+        
+        //remove
+        document.getElementById("projectChargeCodeForm2").style.display = "block";
     }
    
     public showContacts(){
@@ -260,6 +265,29 @@ constructor(
             email.readOnly = true;
         }
         
+    }
+    public projDetailsGetChargeCode(chargeCode){
+        
+        if(chargeCode == "Add New Charge Code"){
+            this.removeElements();
+            this.showChargeCodes();
+            //At this point (once the charge codes tab is finished) enable new charge code.
+            //add focus to it. set view/edit charge codes to read only
+            
+        }
+//        else{
+//            this.removeElements();
+//            this.showChargeCodes();
+//            
+//            //display information based on the charge code that is pulled from html
+//            var viewChargeCode = chargeCode;
+//        }
+        
+    }
+    public getSize(){
+        alert("funrun");
+        console.log(this.contactList.length);
+        return this.contactList.length;
     }
 
 }
