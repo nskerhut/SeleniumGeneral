@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output,Injectable } from '@angular/core';
 import {Employee} from './employee';
 
+@Injectable()
 export class Project {
     projectId: number;
     verticalId: string;
@@ -12,7 +13,7 @@ export class Project {
     projectDescription: string;
     projectStatus: string;
     positionDescription: string;
-    @Input() EmployeeList: Array<Employee>;
+    employeeList: Array<Employee>;
 
 constructor(
         projectId: number,
@@ -21,7 +22,10 @@ constructor(
     this.projectId = projectId;
     this.Project_Name = Project_Name;
     
-    this.EmployeeList = new Array<Employee>();
+    this.employeeList  = new Array<Employee>();
     }
 
+public addEmployee(employee: Employee){
+    this.employeeList.push(employee);
+}
 }
