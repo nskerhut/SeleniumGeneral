@@ -152,7 +152,7 @@ padding: 8px 12px !important;
 	/*padding:0;*/
 	overflow: hidden;
 	background-color: lightskyblue;
-	
+	cursor: pointer;
 	padding: 10px;
     border-width:5px;  
     border-style:outset;
