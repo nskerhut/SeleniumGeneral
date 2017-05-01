@@ -161,8 +161,35 @@ constructor(
         //Remove "Contacts" Tab
         document.getElementById("projectContactForm").style.display = "none";
         }
+    
+    public showEmployee(){
+        this.removeElements();
+        
+        document.getElementById("menuEmployee").style.border = "2px solid white";
+        document.getElementById("menuEmployee").style.backgroundColor = "#b6e3fd";
+        
+        document.getElementById("menuProjectDetails").style.border = "none";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuContacts").style.border = "none";
+        document.getElementById("menuContacts").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuChargeCodes").style.border = "none";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
+    }
    
     public showContacts(){
+        document.getElementById("menuContacts").style.border = "2px solid white";
+        document.getElementById("menuContacts").style.backgroundColor = "#b6e3fd";
+        
+        document.getElementById("menuChargeCodes").style.border = "none";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuProjectDetails").style.border = "none";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuEmployee").style.border = "none";
+        document.getElementById("menuEmployee").style.backgroundColor = "lightskyblue";
         this.removeElements();
         this.projectDetailsForm = "projectContactForm";
         document.getElementById("projectContactForm").style.display = "block";
@@ -175,6 +202,18 @@ constructor(
         
         }
     public showChargeCodes(){
+        document.getElementById("menuChargeCodes").style.border = "2px solid white";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "#b6e3fd";
+        
+        document.getElementById("menuProjectDetails").style.border = "none";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuContacts").style.border = "none";
+        document.getElementById("menuContacts").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuEmployee").style.border = "none";
+        document.getElementById("menuEmployee").style.backgroundColor = "lightskyblue";
+        
         this.removeElements();
         this.projectDetailsForm = "projectChargeCodeForm";
         
@@ -190,7 +229,17 @@ constructor(
         
         this.removeElements();
         
+        document.getElementById("menuProjectDetails").style.border = "2px solid white";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "#b6e3fd";
         
+        document.getElementById("menuChargeCodes").style.border = "none";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuContacts").style.border = "none";
+        document.getElementById("menuContacts").style.backgroundColor = "lightskyblue";
+        
+        document.getElementById("menuEmployee").style.border = "none";
+        document.getElementById("menuEmployee").style.backgroundColor = "lightskyblue";
         
         document.getElementById("projectDetailsForm").style.display = "block";
         

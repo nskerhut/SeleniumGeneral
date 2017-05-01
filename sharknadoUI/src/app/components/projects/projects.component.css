@@ -168,10 +168,11 @@ padding: 8px 12px !important;
 	padding: 14px 16px;
 	text-decoration: none;
 }
+/*
 .projectDetailsMenuItem:hover{
 	background-color: #b6e3fd;
 	border: 2px solid white;
-}
+}*/
 .none{
 	display: none;
 }
@@ -184,6 +185,9 @@ padding: 8px 12px !important;
 #projectDetailsHead{
 	margin-left: 0;
 	padding-left: 0;
+}
+.calendar{
+	margin-right: 555px;
 }
 
 
