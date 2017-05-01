@@ -28,6 +28,7 @@ import { Component, NgZone, Inject } from '@angular/core';
 import { NgUploaderOptions } from 'ngx-uploader';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { Employee } from './model/employee'
+import { Project } from './model/project'
 import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './../../service/projectservice.service';
 import { Employee } from '../../model/employee';
+import { Project } from '../../model/project';
 import {EventEmitter, Input, Output} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {DndModule} from 'ng2-dnd';
@@ -14,42 +15,44 @@ import {DndModule} from 'ng2-dnd';
 export class ProjectsComponent implements OnInit {
 
 
-    employeeList: Array<Employee> = [];
+    unassignedEmployeeList: Array<Employee> = [];
+    projectList: Array<Project> = [];
 
-    transferData: Employee [];
-    receivedData: Array<any> [];
 
-    listTeamOne:Array<string> = [];
-    listTeamTwo:Array<string> = [];
-    listTeamThree:Array<string> = [];
-    listTeamFour:Array<string> = [];
-    listTeamFive:Array<string> = [];
-    listTeamSix:Array<string> = [];
-    listTeamSeven:Array<string> = [];
-    listTeamEight:Array<string> = [];
-    listTeamNine:Array<string> = [];
-    listTeamTen:Array<string> = [];
-    listTeamEleven:Array<string> = [];
-    listTeamTwelve:Array<string> = [];
-            
-transferDataSuccess($event: any){
-    console.log($event);
+transferData: Employee;
+receivedData: Array<Employee> = [];
+
+transferDataSuccess(
+        project: any,
+        
+        $event: any) {
+    project.EmployeeList = new Array<Employee>();
+    project.EmployeeList.push(new Employee(1,"BOB","Planet"));
+    //project.employeeList.push(employee);
+    alert(`move employee `+ $event.Target + ` to ` + project);
+    console.log("move employee " + project);
     this.receivedData.push($event);
-}            
+    
+}       
 
 public getAllEmployees() {
     console.log("getting all employees.")
 
     return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
-        this.employeeList = ress;
-        console.log("employees ",this.employeeList);
-        
-        /*this.employeeList.forEach(employee => {
-            this.listEmployees.push(employee.First_Name + ' ' + employee.Last_Name);
-        });*/
-        
+        this.unassignedEmployeeList = ress;
+        console.log("employees ",this.unassignedEmployeeList);
         });
 }
+
+public getListOfProject() {
+    console.log("getting list of projects")
+
+    return this.projectService.getAllProjects().subscribe(ress => {
+        this.projectList = ress;
+        console.log("projects ", this.projectList);
+    });
+}
+
 constructor(
         private projectService: ProjectService,
         private router : Router,
@@ -59,6 +62,7 @@ constructor(
     
     ngOnInit() {
        this.getAllEmployees();
+       this.getListOfProject();
   }
 
 }
