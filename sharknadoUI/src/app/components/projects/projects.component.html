@@ -28,9 +28,9 @@
             <div class="panel-heading">
               {{project}}
             </div>
-            <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]=listTeamOne>
+            <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]='listTeamOne'>
               <ul class="list-group" >
-                <li *ngFor="let item of listTeamOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+                <li *ngFor="let item of listTeamOne; let i = index;" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
               </ul>
             </div>
           </div>

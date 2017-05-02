@@ -14,7 +14,6 @@ import {DndModule} from 'ng2-dnd';
 })
 export class ProjectsComponent implements OnInit {
 
-
     employeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
 
@@ -37,7 +36,7 @@ export class ProjectsComponent implements OnInit {
             
 public getAllEmployees() {
     console.log("getting all employees.")
-
+    
     return this.projectService.getAllUnassignedEmployee().subscribe(ress => {
         this.employeeList = ress;
         console.log("employees ",this.employeeList);
