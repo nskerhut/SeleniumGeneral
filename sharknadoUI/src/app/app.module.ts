@@ -59,9 +59,8 @@ const appRoutes: Routes = [
     path:'projects',
     component:ProjectsComponent
   },
-  { path:'employee',
-    component:Employee
-  },
+  { path:'employee-details', component:Employee },
+  {path:'project-details',component:Project },
   {
     path: '404',
     component:NopageComponent
@@ -78,6 +77,7 @@ const appRoutes: Routes = [
      path: 'about',
      component:AboutComponent
    },
+   
   {
      path: '**', redirectTo: '404'
    }
@@ -99,6 +99,8 @@ const appRoutes: Routes = [
     AboutComponent,
     EmployeeComponent,
     ProjectsComponent,
+    Employee,
+    Project
   ],
   imports: [
     FlashMessagesModule,
@@ -112,7 +114,11 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
     
   ],
-  providers: [UserService, EmployeeService,  CanActivateAuthGuard, ProjectService],
+  providers: [
+              UserService, 
+              EmployeeService,  
+              CanActivateAuthGuard, 
+              ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

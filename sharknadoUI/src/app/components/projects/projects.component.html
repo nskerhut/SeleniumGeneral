@@ -8,9 +8,12 @@
           <div class="panel-heading">
             Available Employees
           </div>
-          <div id="Emppanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]="listEmployees">
+          <div id="Emppanel" class="body" >
             <ul class="list-group" >
-              <li *ngFor="let employee of listEmployees; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">{{employee}}<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span></li>
+              <li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']">
+              	{{employee.First_Name}} {{employee.Last_Name}}
+              	<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -20,17 +23,20 @@
 
 
 <div class="row">
-  <div *ngFor="let project of listProjects; let index = index;">
+  <div *ngFor="let project of projectList; let j = index;">
     <div>
         <!--wrap each project in container-->
         <div class="col-sm-2">
           <div class="panel-info">
-            <div class="panel-heading">
-              {{project}}
+            <div class="panel-heading" (click) = "projectEdit.show()">
+              {{j}} {{project.Project_Name}} 
             </div>
-            <div id="Projpanel" class="body" dnd-sortable-container [dropZones]="['employees-zone']" [sortableData]='listTeamOne'>
+            <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,j)" [dropZones]="['employees-zone']" >
               <ul class="list-group" >
-                <li *ngFor="let item of listTeamOne; let i = index;" class="list-group-item" dnd-sortable [sortableIndex]="i">{{item}}</li>
+                <li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']">
+                	{{employee.First_Name}} {{employee.Last_Name}}
+                	<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
+                </li>
               </ul>
             </div>
           </div>
@@ -49,9 +55,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title pull-left">Add New Project</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+       
       </div>
       <div class="modal-body">
 	
@@ -99,14 +103,344 @@
 							</div>
 						</div>
 
+						
+						
+					</form>
+				</div>
+				<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+		</div>
+  </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-lg" bsModal #projectEdit="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<ul id = "projectDetailsMenu">
+      		<li class = "projectDetailsMenuItem" id = "menuProjectDetails"><a type = "button"  (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Overview</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuContacts"><a type = "button"  (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuChargeCodes"><a type = "button"  (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
+      		<li class = "projectDetailsMenuItem" id = "menuEmployee"><a type = "button"  ><h4 class = "modal-title pull-left">Employees</h4></a></li>
+      	</ul>
+        <!--<h4 class="modal-title pull-left">Project Details</h4>-->
+        <!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
+        <!--<button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
+          <span aria-hidden="true">&times;</span>
+        </button>-->
+      </div>
+      <div class="modal-body" id = "projectDetailsForm">
+					<!-- 
+					Needs to finish designing based on get_project stored procedure in prjservices schema
+					needs addition textfields and typescript to finish this section.
+					
+					 -->
+					<li class = "pdlItem"><h5 id = "projDetailsHead">Project Overview</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+						
+							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name2"  [readonly] = "true"/>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="agency" class="cols-sm-2 control-label">Agency:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="agency" id="agency"  [readonly]="true"/>
+
+								</div>
+							</div>
+							<aside style = "float: right;">
+							<label for="agencyAbbr" class = "cols-sm-2 control-label">Agency Abbr.</label>
+							<div class = "cols-sm-10">
+								<div class = "input-group">
+									<span class = "input-group-addon"><i class = "fa fa-users fa" aria-hidden = "true"></i></span>
+									<input type = "text" class = "form-control" name = "agencyAbbr" id = "agencyAbbr" [readonly] = "true" />
+								</div>
+							</div>
+
+							</aside>
+						</div>
+
+						<!-- <div class="form-group">
+							<label for="manager2" class="cols-sm-2 control-label">Project Manager:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="manager" id="manager2"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>-->
+						
+						
+						<div class="form-group">
+							<label for="contactName" class="cols-sm-2 control-label">Project Contact Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="contactName" id="contactName"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email2" class="cols-sm-2 control-label">Preferred Contact Method:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon" id = "preferredContactMethodType"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="email" class="form-control" name="email" id="email2"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Project Charge Code(s):</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<!--<input type="text" class="form-control" name="chargecode" id="chargecode2"  [readonly]="true"/>-->
+									<select  multiple (change) = "projDetailsGetChargeCode($event.target.value)" name = "chargecode" id = "chargecode2" class = "form-control" disabled><!--class = "form-control"-->
+									<option *ngFor = "let i of contactList">{{i}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<!-- This is the save button that does nothing until further coding -->
+						<div class="form-group ">
+							<a target="_blank" type="button" id="SaveFormbutton" class="btn btn-primary btn-lg btn-block login-button"(click)="submitChanges()">Save</a>
+						</div>
+						
+					</form>
+				</div>
+				
+				
+				<div class="modal-body" id = "projectContactForm">
+					<!-- 
+						This is the contact tab in the project details.  It needs to be designed based on the get_contacts stored
+						procedure in prjservices schema.
+						
+						Needs to allow for multiple contacts to be viewed so that the contact can be clicked from a list box and the info
+						will auto fill into appropriate text fields for viewing and possible editing.
+						
+						Maybe add a function that allows for new contacts to be created.
+					
+					
+					
+					 -->
+				
+					
+				</div>
+				
+				
+				
+				<div class="modal-body" id = "projectChargeCodeForm">
+	
+					<!-- 
+						This is the Charge code tab in the project details 
+					
+						Needs to be designed based on the get_charge_code stored procedure in the prjservices schema
+						
+						Allow for multiple charge codes to be viewed and clicked from a list box and auto fill text fields to view info.
+						
+						allow to add new charge codes in this place
+						
+						
+						Perhaps use a split screen for the different sections.
+					
+					 -->
+				<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
+        <button type="button" class="btn btn-primary" (click) = "submitChanges()" id = "projectDetailsSaveButton">Save changes</button>
+      </div>
+		</div>
+  </div>
+</div>
+    </div>
+<<<<<<< HEAD
+</div>
+=======
+</div>
+
+
+ 
+	<!--<body>
+		<div class="container">
+			<div class="row main">
+				<div class="main-login main-center">
+				<h5>Project Details.</h5>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  disabled />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="charge" class="cols-sm-2 control-label">Project Charge Code:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="chargecode" id="chargecode"  placeholder="Enter the Charge Code"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="manager" class="cols-sm-2 control-label">Project Manager:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="manager" id="manager"  placeholder="Enter the Manager for this Project"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="email" id="email"  placeholder="Enter Project POC Email"/>
+								</div>
+							</div>
+						</div>
+
 						<div class="form-group ">
 							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
 						</div>
 						
 					</form>
 				</div>
+			</div>
 		</div>
-  </div>
-</div>
-    </div>
-</div>
+<!--Contact Detail Form  (May still need this)-->
+
+
+<!--
+<div class="container none">
+			<div class="row main">
+				<div class="main-login main-center">
+				<h5>Contact Details.</h5>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="First Name" class="cols-sm-2 control-label">Contact First Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="ContactName"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="Last Name" class="cols-sm-2 control-label">Contact Last Name::</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Last Name" id="ContactLastName"  {readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="Position" class="cols-sm-2 control-label">Position:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Position" id="ContactPosition"[readonly]="true"  />
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+<!--
+<div class="container none">
+			<div class="row main">
+				<div class="main-login main-center">
+				<h5>ChargeCodeDetails.</h5>
+					<form class="" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="ChargeCode" class="cols-sm-2 control-label">ChargeCode:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="ChargeCode" id="ChargeCode"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="Description" class="cols-sm-2 control-label">ChargeCode Description:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Description" id="ChargeCodeDescription"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="Start Date" class="cols-sm-2 control-label">Start Date:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Start Date" id="StartDate"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label for="End Date" class="cols-sm-2 control-label">End Date:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="password" class="form-control" name="End Date" id="EndDate"  [readonly]="true"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+
+		 <!--
+	</body>-->
+>>>>>>> a6e0067daf052764bd26e6838bd703793719173c
