@@ -28,7 +28,7 @@
         <!--wrap each project in container-->
         <div class="col-sm-2">
           <div class="panel-info">
-            <div class="panel-heading">
+            <div class="panel-heading" (click) = "projectEdit.show()">
               {{j}} {{project.Project_Name}} 
             </div>
             <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,j)" [dropZones]="['employees-zone']" >
@@ -134,7 +134,11 @@
         </button>-->
       </div>
       <div class="modal-body" id = "projectDetailsForm">
+					<!-- 
+					Needs to finish designing based on get_project stored procedure in prjservices schema
+					needs addition textfields and typescript to finish this section.
 					
+					 -->
 					<li class = "pdlItem"><h5 id = "projDetailsHead">Project Overview</h5></li>
 					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
 				
@@ -229,140 +233,39 @@
 				
 				
 				<div class="modal-body" id = "projectContactForm">
-	
-				
-					<li class = "pdlItem"><h5 id = "projContactsHead">View Project Contacts</h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				
-					<form class="" method="post" action="#">
+					<!-- 
+						This is the contact tab in the project details.  It needs to be designed based on the get_contacts stored
+						procedure in prjservices schema.
 						
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Contact Name:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="contactName" id="contactName"  [readonly] = "true"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="charge" class="cols-sm-2 control-label">Contact Position:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="contactPosition" id="contactPosition"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="manager" class="cols-sm-2 control-label">Preferred Contact Info.</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="preferredContact" id="preferredContact"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label for="Email" class="cols-sm-2 control-label">Alt. Contact Info.</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="altContact" id="altContact"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
+						Needs to allow for multiple contacts to be viewed so that the contact can be clicked from a list box and the info
+						will auto fill into appropriate text fields for viewing and possible editing.
 						
-						<!-- This was one of two buttons on this form.  Decided to comment this out until I got additional input on which
-						button to keep and which to remove.   -->
-						<!--<div class="form-group ">
-							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
-						</div>-->
-						
-					</form>
-				</div>
-				
-				<div  style = "display: none;" class = "modal-body" id = "projectChargeCodeForm2">
-					<div style = "display: none;">
-						<select name = "sometext" size = "5">
-							<option>text1</option>
-							<option>text2</option>
-							<option>text3</option>
-						</select>
-					</div>
+						Maybe add a function that allows for new contacts to be created.
 					
-					<div>
-						<section style = "float: left;">
-						<h4>Add New Charge Code</h4>
-						</section>
-						<aside style = "float: right;">
-						<h4>View/Edit Charge Codes</h4>
-						</aside>
-					</div>
+					
+					
+					 -->
+				
 					
 				</div>
+				
+				
 				
 				<div class="modal-body" id = "projectChargeCodeForm">
 	
-				
-					<li class = "pdlItem"><h5 id = "projChargeCodesHead">View Project Charge Codes</h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><li class = "pdlItem"><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				
-					<form class="" method="post" action="#">
+					<!-- 
+						This is the Charge code tab in the project details 
+					
+						Needs to be designed based on the get_charge_code stored procedure in the prjservices schema
 						
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Charge Code:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chargeCode" id="detailsChargeCode"  [readonly] = "true"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="charge" class="cols-sm-2 control-label">Description:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="description" id="chargeCodeDescription"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="manager" class="cols-sm-2 control-label">Start Date:</label><a type = "button" ><span class="glyphicon glyphicon-calendar calendar"></span></a>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chargeCodeStartDate" id="chargeCodeStartDate"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label for="Email" class="cols-sm-2 control-label">End Date:</label><span class="glyphicon glyphicon-calendar calendar"></span>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chargeCodeEndDate" id="chargeCodeEndDate"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
+						Allow for multiple charge codes to be viewed and clicked from a list box and auto fill text fields to view info.
 						
-						<!-- This was one of two buttons on this form.  Decided to comment this out until I got additional input on which
-						button to keep and which to remove.   -->
-						<!--<div class="form-group ">
-							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
-						</div>-->
+						allow to add new charge codes in this place
 						
-					</form>
-				</div>
+						
+						Perhaps use a split screen for the different sections.
+					
+					 -->
 				<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
         <button type="button" class="btn btn-primary" (click) = "submitChanges()" id = "projectDetailsSaveButton">Save changes</button>
