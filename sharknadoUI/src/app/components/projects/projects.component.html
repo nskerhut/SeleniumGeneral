@@ -231,6 +231,10 @@
 				
 				
 				<div class="modal-body" id = "projectContactForm">
+						<li class = "pdlItem"><h5 id = "ContactDetailsHead">Contact Overview</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				
+			
 					<!-- 
 						This is the contact tab in the project details.  It needs to be designed based on the get_contacts stored
 						procedure in prjservices schema.
@@ -244,13 +248,106 @@
 					
 					 -->
 				
+							
+						<div class="form-group">
+							<label for="First Name" class="cols-sm-2 control-label">Contact First Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="ContactName"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+
+							
+						<div class="form-group">
+							<label for="Last Name" class="cols-sm-2 control-label">Contact Last Name:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="Lname" id="ContactName"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
 					
+				
+						<div class="form-group">
+							<label for="Position" class="cols-sm-2 control-label">Contact Position:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="ContactPosition" id="ContactPosition"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+					
+						<div class="form-group">
+							<label for="Prefered Contact Method" class="cols-sm-2 control-label">Contact Preferred Method:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="PreferedMethod" id="ContactPreferedMethod"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+					
+				</div>
+				
+				<div class="modal-body" id = "projectChargeCodeForm">
+		<li class = "pdlItem"><h5 id = "ChargeCodeDetailsHead">Charge Code Overview</h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
+				
+			
+						<div class="form-group">
+							<label for="Project Charge Code" class="cols-sm-2 control-label">Project Charge Code:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="ProjectChargeCode" id="Project Charge Code"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+					
+
+						<div class="form-group">
+							<label for="Description" class="cols-sm-2 control-label">Charge Code Description:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="ChargeCodeDescription" id="ChargeCodeDescription"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+					
+
+						<div class="form-group">
+							<label for="Charge Code Start Date" class="cols-sm-2 control-label">Charge Code Start Date:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="ChargeCodeStartDate" id="ChargeCodeStartDate"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+					
+
+						<div class="form-group">
+							<label for="Charge Code End Date" class="cols-sm-2 control-label">Charge Code End Date:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="ChargeCodeEndDate" id="ChargeCodeEndDate"  [readonly]="true" />
+								</div>
+							</div>
+						</div>
+					
+
+		
 				</div>
 				
 				
 				
-				<div class="modal-body" id = "projectChargeCodeForm">
-	
+			
 					<!-- 
 						This is the Charge code tab in the project details 
 					
@@ -264,7 +361,8 @@
 						Perhaps use a split screen for the different sections.
 					
 					 -->
-				<div class="modal-footer">
+
+						<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
         <button type="button" class="btn btn-primary" (click) = "submitChanges()" id = "projectDetailsSaveButton">Save changes</button>
       </div>
