@@ -19,10 +19,12 @@ export class ProjectsComponent implements OnInit {
 
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
-
+    employee: Employee = new Employee;
     
 
-    
+    public setEmployee(employee:Employee):void {
+        this.employee = employee;
+    }
 addEmployeeToProject($event: any, projectId: number) {
     let newEmployee: Employee = $event.dragData;
     let project: Project = this.projectList[projectId];
