@@ -28,7 +28,7 @@
         <!--wrap each project in container-->
         <div class="col-sm-2">
           <div class="panel-info">
-            <div class="panel-heading" (click) = "projectEdit.show()">
+            <div class="panel-heading" (click) = "showProjectModal(project.projectId); projectEdit.show();">
               {{j}} {{project.Project_Name}} 
             </div>
             <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,j)" [dropZones]="['employees-zone']" >
@@ -151,7 +151,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name2"  [readonly] = "true"/>
+									<input type="text" class="form-control" name="name" id="name2"  [readonly] = "true" [placeholder]="currentproject?.Project_Name"/>
 									
 								</div>
 							</div>
@@ -162,7 +162,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="agency" id="agency"  [readonly]="true"/>
+									<input type="text" class="form-control" name="agency" id="agency"  [readonly]="true"[placeholder]="currentproject?.agency"/>
 
 								</div>
 							</div>
@@ -171,53 +171,40 @@
 							<div class = "cols-sm-10">
 								<div class = "input-group">
 									<span class = "input-group-addon"><i class = "fa fa-users fa" aria-hidden = "true"></i></span>
-									<input type = "text" class = "form-control" name = "agencyAbbr" id = "agencyAbbr" [readonly] = "true" />
+									<input type = "text" class = "form-control" name = "agencyAbbr" id = "agencyAbbr" [readonly] = "true"[placeholder]="currentproject?.agencyAbbr"/>
 								</div>
 							</div>
 
 							</aside>
 						</div>
 
-						<!-- <div class="form-group">
-							<label for="manager2" class="cols-sm-2 control-label">Project Manager:</label>
+						<div class="form-group">
+							<label for="projectdesc" class="cols-sm-2 control-label">Project Description:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="manager" id="manager2"  [readonly]="true"/>
+									<input type="text" class="form-control" name="projDesc" id="projectDesc2" [readonly]="true"[placeholder]="currentproject?.projectDescription"/>
 								</div>
 							</div>
-						</div>-->
+						</div>
 						
 						
 						<div class="form-group">
-							<label for="contactName" class="cols-sm-2 control-label">Project Contact Name:</label>
+							<label for="projStatus" class="cols-sm-2 control-label">Project Status:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="contactName" id="contactName"  [readonly]="true"/>
+									<input type="text" class="form-control" name="projStatus" id="projectStatus"  [readonly]="true"[placeholder]="currentproject?.projectStatus"/>
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label for="email2" class="cols-sm-2 control-label">Preferred Contact Method:</label>
+							<label for="projCode" class="cols-sm-2 control-label">Project Chargecode:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon" id = "preferredContactMethodType"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="email2"  [readonly]="true"/>
-								</div>
-							</div>
-						</div>
-						
-						<div class="form-group">
-							<label for="charge" class="cols-sm-2 control-label">Project Charge Code(s):</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<!--<input type="text" class="form-control" name="chargecode" id="chargecode2"  [readonly]="true"/>-->
-									<select  multiple (change) = "projDetailsGetChargeCode($event.target.value)" name = "chargecode" id = "chargecode2" class = "form-control" disabled><!--class = "form-control"-->
-									<option *ngFor = "let i of contactList">{{i}}</option>
-									</select>
+									<input type="text" class="form-control" name="projChargeCode" id="projectCode"  [readonly]="true"[placeholder]="currentproject?.projectCode"/>
 								</div>
 							</div>
 						</div>
@@ -303,7 +290,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="ProjectChargeCode" id="Project Charge Code"  [readonly]="true" />
+									<input type="text" class="form-control" name="ProjectChargeCode" id="Project Charge Code"  [readonly]="true"[placeholder]="currentproject?.projectCode"/>
 								</div>
 							</div>
 						</div>

@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
 
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
-
+    public currentproject:Project;
     
 
     
@@ -142,9 +142,7 @@ constructor(
         var manager=<HTMLInputElement> document.getElementById("manager2");
         var email=<HTMLInputElement> document.getElementById("email2");
         
-        //projectContactForm
-        
-        
+        //projectContactForm        
         //projectChargeCodeForm
         
         
@@ -289,7 +287,15 @@ constructor(
         console.log(this.contactList.length);
         return this.contactList.length;
     }
-
+    
+    public showProjectModal(projectId:number){
+        this.projectService.getProjectById(projectId).subscribe(ress => 
+        {
+            this.currentproject = ress;
+            console.log("Received Project %s", this.currentproject.Project_Name);
+        });
+}
+    
 }
 
 

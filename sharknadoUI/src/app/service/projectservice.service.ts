@@ -50,4 +50,22 @@ export class ProjectService{
         console.log("error: ", error);
         return Promise.reject(error.message || error);
       }
-}
+    public getToken(): String{
+      let token = sessionStorage.getItem('currentUser');
+      return token ? token : "";
+    }
+public getProjectById(project_Id:number):Observable<Project>{
+        
+    let headers = new Headers({ "Content-Type": "application/json"});
+    let options = new RequestOptions({headers: headers});
+        
+    console.log("Retrieving all projectbyId(%s).",project_Id); 
+        
+    return this.http.post(this.baseURL+'get_project_by_id'
+        ,JSON.stringify({"projectId": project_Id}),
+         options)
+       .map((ress: Response) => <Project> ress.json())
+       .catch(this.handleError);
+
+}    
+    }
