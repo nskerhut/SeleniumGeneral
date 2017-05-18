@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
 
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
-
+    employee: Employee = new Employee;
     
 
  addProject(name:string, manager:string, charge_code:string){
@@ -43,6 +43,9 @@ export class ProjectsComponent implements OnInit {
     
     
  }   
+    public setEmployee(employee:Employee):void {
+        this.employee = employee;
+    }
 addEmployeeToProject($event: any, projectId: number) {
     let newEmployee: Employee = $event.dragData;
     let project: Project = this.projectList[projectId];
