@@ -67,7 +67,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
+									<input [(ngModel)]="names" type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
 								</div>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 				</div>
 				<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" (click)=addProject(names,chargecode,manager) class="btn btn-primary">Add Project</button>
       </div>
 		</div>
   </div>
