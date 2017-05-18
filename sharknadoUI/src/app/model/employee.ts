@@ -32,21 +32,21 @@ export class Employee {
     this.Last_Name = Last_Name;
 }*/
 constructor(
-        Employee_Id: number,
-        First_Name: string,
-    Last_Name : string,
-    Date_of_Birth: string,
-    Personnel_Number: string,
-    Workday_Position_Id: string,
-    Seat_Location: string,
-    Hire_Date: string,
-    Termination_Date: string,
-    Reports_To: string,
-    Shortname: string,
-    Office_Phone_Number: string,
-    Mobile_Phone_Number: string,
-    Company_Email: string,
-    Personal_Email: string){
+        Employee_Id?: number,
+        First_Name?: string,
+    Last_Name?: string,
+    Date_of_Birth?: string,
+    Personnel_Number?:string,
+    Workday_Position_Id?: string,
+    Seat_Location?: string,
+    Hire_Date?: string,
+    Termination_Date?: string,
+    Reports_To?: string,
+    Shortname?: string,
+    Office_Phone_Number?: string,
+    Mobile_Phone_Number?: string,
+    Company_Email?: string,
+    Personal_Email?: string){
     
     this.Employee_Id = Employee_Id;
     this.First_Name = First_Name;

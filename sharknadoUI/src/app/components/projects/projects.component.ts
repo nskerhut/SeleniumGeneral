@@ -19,10 +19,37 @@ export class ProjectsComponent implements OnInit {
 
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
+<<<<<<< HEAD
     public currentproject:Project;
+=======
+    employee: Employee = new Employee;
+    
+
+ addProject(name:string, manager:string, charge_code:string){
+    let employees = new Array<Employee>();
+    // this.projectList.push(newProject);
+    var obj = { projectId: null,
+    verticalId: <string> null,
+    projectCode: <string> null,
+    agency:<string> null ,
+    agencyAbbr: <string> null,
+    Project_Name: name,
+    projectAbbr: <string> null,
+    projectDescription: <string> null,
+    projectStatus: <string> null,
+    positionDescription: <string> null,
+    employees: employees};
+    this.projectList.push(<Project> obj);
+    this.projectService.addProject(name,manager,charge_code).subscribe(ress => { console.log("project added"); });
+>>>>>>> 1e80c13f2f43865a2ec0372ce0ef64421c55a9af
     
 
     
+    
+ }   
+    public setEmployee(employee:Employee):void {
+        this.employee = employee;
+    }
 addEmployeeToProject($event: any, projectId: number) {
     let newEmployee: Employee = $event.dragData;
     let project: Project = this.projectList[projectId];

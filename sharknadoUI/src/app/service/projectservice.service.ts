@@ -30,7 +30,19 @@ export class ProjectService{
         }
 
         return body || {};
+    }  
+    public addProject(name:string, manager:string, charge_code:string){
+        console.log("adding project %s", name)
+      let headers = new Headers({ "Content-Type": "application/json"});
+      let options = new RequestOptions({headers: headers});
+       return this.http.post(this.baseURL+'create',
+         JSON.stringify({Project_Name: name}),
+         options).map((res: Response) => <Project> res.json())
+         .catch(this.handleError)
+
     }
+
+
 
     public getAllUnassignedEmployee (): Observable<Array<Employee>> {
         console.log("Retrieving all unsigned employees.")
