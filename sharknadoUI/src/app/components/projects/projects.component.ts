@@ -19,9 +19,7 @@ export class ProjectsComponent implements OnInit {
 
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
-<<<<<<< HEAD
     public currentproject:Project;
-=======
     employee: Employee = new Employee;
     
 
@@ -41,7 +39,6 @@ export class ProjectsComponent implements OnInit {
     employees: employees};
     this.projectList.push(<Project> obj);
     this.projectService.addProject(name,manager,charge_code).subscribe(ress => { console.log("project added"); });
->>>>>>> 1e80c13f2f43865a2ec0372ce0ef64421c55a9af
     
 
     
