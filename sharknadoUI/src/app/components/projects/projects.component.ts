@@ -51,7 +51,8 @@ export class ProjectsComponent implements OnInit {
     }
     moveEmployeeToEmployeeList( $event: any ) {
         let newEmployee: Employee = $event.dragData;
-        this.unassignedEmployeeList.push( newEmployee );
+
+
 
         this.projectList.forEach( project => {
             if ( project.employees != null ) {
@@ -64,20 +65,27 @@ export class ProjectsComponent implements OnInit {
     }
     addEmployeeToProject( $event: any, projectId: number ) {
         let newEmployee: Employee = $event.dragData;
-        let project: Project = this.projectList[projectId];
-        let id: number = project.projectId;
+        let projectTo: Project = this.projectList[projectId];
+        let id: number = projectTo.projectId;
 
-        console.log( `project id = %s`, project.projectId );
-        this.projectList.forEach( project => {
-            if ( project.employees != null ) {
-                project.employees = project.employees.filter( item => item !== newEmployee );
-            }
-        } );
+        let projectFrom: Project = newEmployee.AssignedProject;
 
-        if ( project.employees == null )
-            project.employees = new Array<Employee>();
-        project.employees.push( newEmployee );
-        console.log( "employees list: %s", project.employees );
+        if ( projectFrom != null ) {
+            projectFrom.employees = projectFrom.employees.filter( item => item !== newEmployee );
+            console.log( `project From(%s) To(%s)`, projectFrom.projectId, projectTo.projectId );
+        }
+
+        //Move Employee to bottom allocated.
+        this.unassignedEmployeeList = this.unassignedEmployeeList.filter( employee => employee !== newEmployee );
+        this.unassignedEmployeeList.push( newEmployee );
+
+
+        if ( projectTo.employees == null )
+            projectTo.employees = new Array<Employee>();
+
+        projectTo.employees.push( newEmployee );
+        newEmployee.AssignedProject = projectTo;
+        console.log( "employees list: %s", projectTo.employees );
 
     }
 
