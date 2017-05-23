@@ -51,17 +51,11 @@ addEmployeeToProject($event: any, projectId: number) {
     let newEmployee: Employee = $event.dragData;
     let project: Project = this.projectList[projectId];
     let id:number = project.projectId;
-   console.log("event target %s",$event.Target);
-   console.log("event source %s",$event.Source);
-   console.log("event id %s",$event.id);
    
     console.log(`project id = %s`, project.projectId);
     this.projectList.forEach(project => {
         if(project.employees != null){
-            let projectEmployeePop = project.employees.indexOf(newEmployee);
-            if(projectEmployeePop >= 0){
-                project.employees.splice(projectEmployeePop, 1);
-            }
+            project.employees = project.employees.filter(item => item !== newEmployee);
         }
     });
     
@@ -69,9 +63,6 @@ addEmployeeToProject($event: any, projectId: number) {
         project.employees = new Array<Employee>();
     project.employees.push(newEmployee);
     console.log("employees list: %s", project.employees);
-    let popIndex = this.unassignedEmployeeList.indexOf(newEmployee);
-    if(popIndex >= 0)
-        this.unassignedEmployeeList.splice(popIndex, 1);
     
 }       
 

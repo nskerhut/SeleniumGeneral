@@ -59,8 +59,6 @@ const appRoutes: Routes = [
     path:'projects',
     component:ProjectsComponent
   },
-  { path:'employee-details', component:Employee },
-  {path:'project-details',component:Project },
   {
     path: '404',
     component:NopageComponent
@@ -99,8 +97,7 @@ const appRoutes: Routes = [
     AboutComponent,
     EmployeeComponent,
     ProjectsComponent,
-    Employee,
-    Project
+
   ],
   imports: [
     FlashMessagesModule,
