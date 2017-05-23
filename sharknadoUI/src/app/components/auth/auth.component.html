@@ -5,7 +5,7 @@
 
       <div class="left">
         <div class="form-item">
-          <input class="input" onblur="this.placeholder = 'Enter the code'" type="text" name="token" id="token" placeholder="Enter the code" onfocus="this.placeholder = ''">
+          <input class="input" (blur)="this.placeholder = 'Enter the code'" type="text" name="token" id="token" placeholder="Enter the code" (focus)="this.placeholder = ''">
           <div class="dropdown">
             <select  id="auth" class="btn-select">
               <option value="SMS_FACTOR" selected>SMS Authentication</option>
