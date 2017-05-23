@@ -1,14 +1,8 @@
-import { Component, Input, Output,Injectable, Inject, NgModule, OnInit } from '@angular/core'
-import {Employee} from './employee';
-import {Observable} from 'rxjs/Observable';
+import { Input, Output } from '@angular/core'
+import { Employee } from './employee';
 
-@Component({
-    selector:'project-detail'
-    ,template:``
-    ,providers:[Employee]
-})
-export class Project  implements OnInit 
-{
+
+export class Project {
 
     projectId: number;
     verticalId: string;
@@ -20,37 +14,43 @@ export class Project  implements OnInit
     projectDescription: string;
     projectStatus: string;
     positionDescription: string;
-@Input() employees: Employee[] = [];
-    
-constructor(projectId: number
-        , projectName:string
-        , employees:Employee[]
-        ) {
-    this.projectId = projectId;
-    this.Project_Name = projectName;
-    /*this.verticalId = projectInfo.verticalId;
-    this.projectCode = projectInfo.projectCode;
-    this.agency = projectInfo.agency;
-    this.agencyAbbr = projectInfo.agencyAbbr;
-    this.projectAbbr =  projectInfo.projectAbbr;
-    this.projectDescription = projectInfo.projectDescription;
-    this.projectStatus = projectInfo.projectStatus;
-    this.positionDescription = projectInfo.positionDescription;*/
-    this.employees  = employees;
+    @Input() employees: Employee[] = [];
+
+    constructor( projectId: number
+        , projectName: string
+        , employees: Employee[]
+        , verticalId?: string
+        , projectCode?: string
+        , agency?: string
+        , agencyAbbr?: string
+        , projectAbbr?: string
+        , projectDescription?: string
+        , projectStatus?: string
+        , positionDescription?: string
+    ) {
+        this.projectId = projectId;
+        this.Project_Name = projectName;
+        this.verticalId = verticalId;
+        this.projectCode = projectCode;
+        this.agency = agency;
+        this.agencyAbbr = agencyAbbr;
+        this.projectAbbr = projectAbbr;
+        this.projectDescription = projectDescription;
+        this.projectStatus = projectStatus;
+        this.positionDescription = positionDescription;
+        this.employees = employees;
     }
 
     ngOnInit(): void {
-     this.employees = new Array<Employee>();
+        this.employees = new Array<Employee>();
     }
 
-@Output()
-public get getEmployees(): Employee[]{
-    return this.employees;
-}
-public get getProjectId(): number {
-    return this.projectId;
-}
-/*public addEmployee(employee: Employee){
-    return this.employeeList.push(employee);
-}*/
+    @Output()
+    public get getEmployees(): Employee[] {
+        return this.employees;
+    }
+    public get getProjectId(): number {
+        return this.projectId;
+    }
+
 }
