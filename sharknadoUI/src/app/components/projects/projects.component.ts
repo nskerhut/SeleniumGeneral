@@ -51,17 +51,12 @@ export class ProjectsComponent implements OnInit {
     }
     moveEmployeeToEmployeeList( $event: any ) {
         let newEmployee: Employee = $event.dragData;
+        let projectFrom: Project = newEmployee.AssignedProject;
 
-
-
-        this.projectList.forEach( project => {
-            if ( project.employees != null ) {
-                let projectEmployeePop = project.employees.indexOf( newEmployee );
-                if ( projectEmployeePop >= 0 ) {
-                    project.employees.splice( projectEmployeePop, 1 );
-                }
-            }
-        } );
+        if ( projectFrom != null ) {
+            projectFrom.employees = projectFrom.employees.filter( item => item !== newEmployee );
+            console.log( `project From(%s) employee list`, projectFrom.projectId);
+        }
     }
     addEmployeeToProject( $event: any, projectId: number ) {
         let newEmployee: Employee = $event.dragData;
