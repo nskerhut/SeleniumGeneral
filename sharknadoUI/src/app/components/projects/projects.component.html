@@ -67,7 +67,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input [(ngModel)]="names" type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
+									<input [(ngModel)]="name" type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
 								</div>
 							</div>
 						</div>
@@ -77,7 +77,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chargecode" id="chargecode"  placeholder="Enter the Charge Code"/>
+									<input type="text" class="form-control" name="charge" id="charge"  placeholder="Enter the Charge Code"/>
 								</div>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="email" class="form-control" name="email" id="email"  placeholder="Enter Project POC Email"/>
+									<input type="text" class="form-control" name="Email" id="Email"  placeholder="Enter Project POC Email"/>
 								</div>
 							</div>
 						</div>
@@ -274,12 +274,12 @@
 						
 						<div class="form-group">
 						
-							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+							<label for="pName" class="cols-sm-2 control-label">Project Name:</label>
 							
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name2"  [readonly] = "true" [placeholder]="currentproject?.Project_Name"/>
+									<input type="text" class="form-control" name="pName" id="pName2"  [readonly] = "true" [placeholder]="currentproject?.Project_Name"/>
 									
 								</div>
 							</div>
@@ -311,7 +311,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="projDesc" id="projectDesc2" [readonly]="true"[placeholder]="currentproject?.projectDescription"/>
+									<input type="text" class="form-control" name="projectdesc" id="projectdesc" [readonly]="true"[placeholder]="currentproject?.projectDescription"/>
 								</div>
 							</div>
 						</div>
@@ -322,7 +322,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="projStatus" id="projectStatus"  [readonly]="true"[placeholder]="currentproject?.projectStatus"/>
+									<input type="text" class="form-control" name="projStatus" id="projStatus"  [readonly]="true"[placeholder]="currentproject?.projectStatus"/>
 								</div>
 							</div>
 						</div>
@@ -331,12 +331,13 @@
 							<label for="projCode" class="cols-sm-2 control-label">Project Chargecode:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
-									<span class="input-group-addon" id = "preferredContactMethodType"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="projChargeCode" id="projectCode"  [readonly]="true"[placeholder]="currentproject?.projectCode"/>
-								</div>
-							</div>
+									<span class="datalist-group-addon" id = "projectchargecodes"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+<input type="text" class="form-control" name="projCode" id="projCode"  [readonly]="true"[placeholder]="currentproject?.projectChargeCode"/>				
+				</div>
 						</div>
+					</div>
 						<!-- This is the save button that does nothing until further coding -->
+						
 						<div class="form-group ">
 							<a target="_blank" type="button" id="SaveFormbutton" class="btn btn-primary btn-lg btn-block login-button"(click)="submitChanges()">Save</a>
 						</div>
@@ -365,22 +366,22 @@
 				
 							
 						<div class="form-group">
-							<label for="First Name" class="cols-sm-2 control-label">Contact First Name:</label>
+							<label for="first_Name" class="cols-sm-2 control-label">Contact First Name:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="ContactName"  [readonly]="true" />
+									<input type="text" class="form-control" name="first_Name" id="first_Name"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
 
 							
 						<div class="form-group">
-							<label for="Last Name" class="cols-sm-2 control-label">Contact Last Name:</label>
+							<label for="last_Name" class="cols-sm-2 control-label">Contact Last Name:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="Lname" id="ContactName"  [readonly]="true" />
+									<input type="text" class="form-control" name="last_Name" id="last_Name"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
@@ -391,17 +392,17 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="ContactPosition" id="ContactPosition"  [readonly]="true" />
+									<input type="text" class="form-control" name="Position" id="Position"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
 					
 						<div class="form-group">
-							<label for="Prefered Contact Method" class="cols-sm-2 control-label">Contact Preferred Method:</label>
+							<label for="prfContactMethod" class="cols-sm-2 control-label">Contact Preferred Method:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="PreferedMethod" id="ContactPreferedMethod"  [readonly]="true" />
+									<input type="text" class="form-control" name="prfContactMethod" id="prfContactMethod"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
@@ -414,11 +415,11 @@
 				
 			
 						<div class="form-group">
-							<label for="Project Charge Code" class="cols-sm-2 control-label">Project Charge Code:</label>
+							<label for="prjChargeCode" class="cols-sm-2 control-label">Project Charge Code:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="ProjectChargeCode" id="Project Charge Code"  [readonly]="true"[placeholder]="currentproject?.projectCode"/>
+									<input type="text" class="form-control" name="prjChargeCode" id="prjChargeCode"  [readonly]="true"[placeholder]="currentproject?.projectCode"/>
 								</div>
 							</div>
 						</div>
@@ -429,29 +430,29 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="ChargeCodeDescription" id="ChargeCodeDescription"  [readonly]="true" />
+									<input type="text" class="form-control" name="Description" id="Description"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
 					
 
 						<div class="form-group">
-							<label for="Charge Code Start Date" class="cols-sm-2 control-label">Charge Code Start Date:</label>
+							<label for="chrgeCodeSdate" class="cols-sm-2 control-label">Charge Code Start Date:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="ChargeCodeStartDate" id="ChargeCodeStartDate"  [readonly]="true" />
+									<input type="text" class="form-control" name="chrgeCodeSdate" id="chrgeCodeSdate"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
 					
 
 						<div class="form-group">
-							<label for="Charge Code End Date" class="cols-sm-2 control-label">Charge Code End Date:</label>
+							<label for="chrgeCodeEDate" class="cols-sm-2 control-label">Charge Code End Date:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="ChargeCodeEndDate" id="ChargeCodeEndDate"  [readonly]="true" />
+									<input type="text" class="form-control" name="chrgeCodeEDate" id="chrgeCodeEDate"  [readonly]="true" />
 								</div>
 							</div>
 						</div>
@@ -591,10 +592,13 @@
 						<div class="form-group ">
 							<a target="_blank" type="button" id="newformbutton" class="btn btn-primary btn-lg btn-block login-button">Submit</a>
 						</div>
+
 						
 					</form>
 				</div>
 			</div>
+
+
 		</div>
 <!--
 <div class="container none">
