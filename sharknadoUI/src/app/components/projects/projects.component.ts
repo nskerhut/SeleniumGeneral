@@ -47,6 +47,19 @@ export class ProjectsComponent implements OnInit {
     public setEmployee(employee:Employee):void {
         this.employee = employee;
     }
+moveEmployeeToEmployeeList($event: any) {
+    let newEmployee: Employee = $event.dragData;
+    this.unassignedEmployeeList.push(newEmployee);
+
+    this.projectList.forEach(project => {
+        if(project.employees != null){
+            let projectEmployeePop = project.employees.indexOf(newEmployee);
+            if(projectEmployeePop >= 0){
+                project.employees.splice(projectEmployeePop, 1);
+            }
+        }
+    });
+}
 addEmployeeToProject($event: any, projectId: number) {
     let newEmployee: Employee = $event.dragData;
     let project: Project = this.projectList[projectId];

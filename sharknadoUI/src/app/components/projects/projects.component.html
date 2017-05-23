@@ -1,6 +1,6 @@
 
 <div>
-
+<!-- Employee Panel -->
  <h2>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h2>
     <div class="row">
       <div class="col-sm-2">
@@ -8,7 +8,7 @@
           <div class="panel-heading">
             Available Employees
           </div>
-          <div id="Emppanel" class="body" >
+          <div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
             <ul class="list-group" >
               <li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']">
               	{{employee.First_Name}} {{employee.Last_Name}}
@@ -21,7 +21,7 @@
 
 
 
-
+<!-- Project Panels -->
 <div class="row">
   <div *ngFor="let project of projectList; let j = index;">
     <div>
