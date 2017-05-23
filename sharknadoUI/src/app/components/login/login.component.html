@@ -6,18 +6,18 @@
         <div class="form-item">
           <input
             class="input"
-            onblur="this.placeholder = 'Username'"
+            (blur)="this.placeholder = 'Username'"
             type="text" name="username"id="username"
             placeholder="Username"
             [(ngModel)]="username"
             required="Username required"
-            onfocus="this.placeholder = ''">
+            (focus)="this.placeholder = ''">
         </div>
         <div class="form-item">
           <input
            class="input"
-            onblur="this.placeholder = 'Password'"
-             onfocus="this.placeholder = ''" type="password"
+            (blur)="this.placeholder = 'Password'"
+             (focus)="this.placeholder = ''" type="password"
               name="password" id="password"
               required="Password required"
               [(ngModel)]="password"
