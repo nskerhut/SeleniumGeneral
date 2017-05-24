@@ -9,7 +9,7 @@
       <div class="text-center">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQswzHMCVULjDZv0E67tAq7BgtEcIJMm_r6OKz3nrOlFNpLfwCwgcxNzA" class="avatar img-circle img-thumbnail" alt="avatar">
         <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block well well-sm">
+        <input type="file" class="text-center center-block well well-sm"id="uPic" name="userPicture"tabindex=1>
       </div>
     </div>
 
@@ -29,9 +29,9 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="lastName" class="col-lg-3 control-label">Last name:</label>
+          <label for="lName2" class="col-lg-3 control-label">Last name:</label>
           <div class="col-lg-8">
-            <input class="form-control" value= {{employee.Last_Name} type="text" name="lastName" id="lstName" [(ngModel)]="employee.Last_Name"  disabled />
+            <input class="form-control" value= {{employee.Last_Name} type="text" name="lName2" id="lName2" [(ngModel)]="employee.Last_Name"  disabled />
           </div>
         </div>
         <div class="form-group">
