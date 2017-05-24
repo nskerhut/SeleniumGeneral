@@ -60,6 +60,7 @@ element {
 }
 .glyphicon {
     position: relative;
+    vertical-align: middle;
     float:right;
     top: 1px;
     display: inline-block;
