@@ -17,8 +17,8 @@ export class Employee {
     Mobile_Phone_Number: string;
     Company_Email: string;
     Personal_Email: string;
-    assignedProject: AssignedProject[];
-    TotalAllocation: number;
+    assignedProject: AssignedProject[] = new Array<AssignedProject>();
+    TotalAllocation: number = 0;
   
     constructor(
         Employee_Id?: number,
