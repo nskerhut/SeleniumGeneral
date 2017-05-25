@@ -21,6 +21,7 @@ export class ProjectsComponent implements OnInit {
     projectList: Array<Project> = [];
     public currentproject: Project;
     employee: Employee = new Employee;
+    assignedEmployees: Array<Employee> = [];
 
 
     addProject( name: string, manager: string, charge_code: string ) {
@@ -147,8 +148,23 @@ export class ProjectsComponent implements OnInit {
         return this.projectService.getAllProjects().subscribe( ress => {
             this.projectList = ress;
             console.log( "projects ", this.projectList );
+            this.getAssignedForEachProject();
         } );
     }
+
+    public getAssignedForEachProject() {
+        this.projectList.forEach((proj, index) => {
+            this.getAllAssignedEmployees(proj.projectId, index);
+        });
+    }
+
+    public getAllAssignedEmployees(pid: number, index: number) {
+        return this.projectService.getAssignedEmployeesToProjectId(pid).subscribe(ress => {
+            this.assignedEmployees = ress;
+            this.projectList[index].employees = this.assignedEmployees;
+            console.log("project list updated", this.projectList);
+    });
+}
 
     constructor(
         private projectService: ProjectService,

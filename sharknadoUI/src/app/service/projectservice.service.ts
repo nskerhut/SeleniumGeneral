@@ -57,6 +57,19 @@ export class ProjectService{
        .map((ress: Response) => <Array<Project>> ress.json())
        .catch(this.handleError);
    }
+
+   public getAssignedEmployeesToProjectId(project_Id: number): Observable <Array<Employee>> {
+        let headers = new Headers({ "Content-Type": "application/json"});
+        let options = new RequestOptions({headers: headers});
+        console.log("Retrieving assigned employees for project id: ", project_Id); 
+        
+        return this.http.post(this.baseURL+'employees/get'
+            ,JSON.stringify({"projectId": project_Id}),
+            options)
+            .map((ress: Response) => <Array<Employee>> ress.json())
+            .catch(this.handleError);
+
+}
     
     private handleError(error:any): Promise<Object> {
         console.log("error: ", error);
