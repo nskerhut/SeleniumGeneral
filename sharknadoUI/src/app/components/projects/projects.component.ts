@@ -5,7 +5,7 @@ import { Project } from '../../model/project';
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DndModule } from 'ng2-dnd';
-
+import { AssignedProject } from '../../model/assignedproject';
 
 @Component( {
     selector: 'app-projects, demo-modal-static',
@@ -46,40 +46,83 @@ export class ProjectsComponent implements OnInit {
 
 
     }
+    compareEmployee( a: Employee, b: Employee ): number {
+
+        if ( a.TotalAllocation > b.TotalAllocation )
+            return 1;
+        else if ( a.TotalAllocation < b.TotalAllocation )
+            return -1;
+        else {
+            if ( a.Last_Name > b.Last_Name )
+                return 1;
+            else if ( a.Last_Name < b.Last_Name )
+                return -1;
+            else
+                return 0;
+        }
+
+    }
     public setEmployee( employee: Employee ): void {
         this.employee = employee;
     }
     moveEmployeeToEmployeeList( $event: any ) {
         let newEmployee: Employee = $event.dragData;
-        let projectFrom: Project = newEmployee.AssignedProject;
+        let projectFrom: Project = this.projectFrom;
 
         if ( projectFrom != null ) {
             projectFrom.employees = projectFrom.employees.filter( item => item !== newEmployee );
-            console.log( `project From(%s) employee list`, projectFrom.projectId);
+            console.log( `project From(%s) employee list`, projectFrom.projectId );
+        }
+
+        newEmployee.TotalAllocation = 40 - newEmployee.TotalAllocation;
+
+        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
+
+
+    }
+
+    projectFrom: Project;
+    dragStart( p: Project, e: Employee ) {
+        if ( p != null ) {
+            console.log( "removing %s from %s", e.First_Name, p.Project_Name )
+            //e.assignedProject = e.assignedProject.filter(x => x !== p);
+            this.projectFrom = p;
+            //p.employees = p.employees.filter(x => x !== e);
+
+        } else {
+            // this.unassignedEmployeeList = this.unassignedEmployeeList.filter(x => x !== e);
+            //this.unassignedEmployeeList.push(e);
         }
     }
-    addEmployeeToProject( $event: any, projectId: number ) {
+    addEmployeeToProject( $event: any, project: Project ) {
+
         let newEmployee: Employee = $event.dragData;
-        let projectTo: Project = this.projectList[projectId];
-        let id: number = projectTo.projectId;
+        let projectTo: Project = project;
+        let projectFrom: Project = this.projectFrom;
 
-        let projectFrom: Project = newEmployee.AssignedProject;
-
+        console.log( "adding %s to %s", newEmployee.First_Name, project.Project_Name );
         if ( projectFrom != null ) {
             projectFrom.employees = projectFrom.employees.filter( item => item !== newEmployee );
             console.log( `project From(%s) To(%s)`, projectFrom.projectId, projectTo.projectId );
         }
-
-        //Move Employee to bottom allocated.
-        this.unassignedEmployeeList = this.unassignedEmployeeList.filter( employee => employee !== newEmployee );
-        this.unassignedEmployeeList.push( newEmployee );
 
 
         if ( projectTo.employees == null )
             projectTo.employees = new Array<Employee>();
 
         projectTo.employees.push( newEmployee );
-        newEmployee.AssignedProject = projectTo;
+        let newProject: AssignedProject = projectTo as AssignedProject;
+
+        //newProject.AllocationHrs = 40; //TODO Set a real amount of time
+        newEmployee.TotalAllocation = 40;
+        if ( newEmployee.assignedProject == null )
+            newEmployee.assignedProject = new Array<AssignedProject>();
+        newEmployee.assignedProject.push( newProject );
+
+        //Move Employee to bottom allocated.
+
+        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
+
         console.log( "employees list: %s", projectTo.employees );
 
     }
@@ -87,7 +130,11 @@ export class ProjectsComponent implements OnInit {
     public getAllEmployees() {
         console.log( "getting all employees." )
         return this.projectService.getAllUnassignedEmployee().subscribe( ress => {
-            this.unassignedEmployeeList = ress;
+            this.unassignedEmployeeList = ress.sort( this.compareEmployee );
+            //Temp Code
+            this.unassignedEmployeeList.forEach( x => x.TotalAllocation = 0 );
+
+
             console.log( "employees ", this.unassignedEmployeeList );
 
         } );

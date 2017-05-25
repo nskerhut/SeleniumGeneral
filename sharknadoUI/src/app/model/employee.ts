@@ -1,4 +1,5 @@
 import { Project } from './project';
+import { AssignedProject } from './assignedproject';
 
 export class Employee {
     Employee_Id: number;
@@ -16,8 +17,8 @@ export class Employee {
     Mobile_Phone_Number: string;
     Company_Email: string;
     Personal_Email: string;
-    AssignedProject: Project;
-    Allocation: number;
+    assignedProject: AssignedProject[] = new Array<AssignedProject>();
+    TotalAllocation: number = 0;
   
     constructor(
         Employee_Id?: number,
@@ -35,8 +36,7 @@ export class Employee {
         Mobile_Phone_Number?: string,
         Company_Email?: string,
         Personal_Email?: string,
-        AssignedProject?: Project,
-        Allocation?: number ) {
+        assignedProject?: AssignedProject[]) {
 
         this.Employee_Id = Employee_Id;
         this.First_Name = First_Name;
@@ -53,7 +53,6 @@ export class Employee {
         this.Mobile_Phone_Number = Mobile_Phone_Number;
         this.Company_Email = Company_Email;
         this.Personal_Email = Personal_Email;
-        this.AssignedProject = AssignedProject;
-        this.Allocation = Allocation;
+        this.assignedProject = assignedProject;
     }
 }
