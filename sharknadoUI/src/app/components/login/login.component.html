@@ -4,16 +4,16 @@
       <h1 class="spacing log-header">Login</h1>
       <div class="left">
         <div class="form-item">
-          <input
-            class="input"
+         <label for="userName"  id="uName"></label>
+                   <input class="input"
             (blur)="this.placeholder = 'Username'"
-            type="text" name="username"id="username"
+            type="text" name="userName"id="userName"
             placeholder="Username"
             [(ngModel)]="username"
             required="Username required"
             (focus)="this.placeholder = ''">
-        </div>
-        <div class="form-item">
+       
+<div class="form-item">
           <input
            class="input"
             (blur)="this.placeholder = 'Password'"
@@ -25,7 +25,9 @@
         </div>
       </div>
 
-    <div class="buttons">
+       
+        </div>
+           <div class="buttons">
           <input (click)="login(username,password)" class="btn-yes btn" type="submit" value="Submit">
           <p>
             {{data.userId}}
