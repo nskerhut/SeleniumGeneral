@@ -10,8 +10,8 @@ import { AssignedProject } from '../../model/assignedproject';
 @Component( {
     selector: 'app-projects, demo-modal-static',
     templateUrl: './projects.component.html',
-    styleUrls: ['./projects.component.css'],
-    
+    styleUrls: ['./projects.component.css']/*,
+  providers: [Project]*/
 } )
 export class ProjectsComponent implements OnInit {
     contactList: Array<string> = ["", "one", "two", "three", "four", "Add New Charge Code"];
@@ -23,6 +23,7 @@ export class ProjectsComponent implements OnInit {
     projectList: Array<Project> = [];
     public currentproject: Project;
     employee: Employee = new Employee;
+    assignedEmployees: Array<Employee> = [];
 
 
     addProject( name: string, manager: string, charge_code: string ) {
@@ -96,7 +97,13 @@ export class ProjectsComponent implements OnInit {
     dragStart( p: Project, e: Employee ) {
         if ( p != null ) {
             console.log( "removing %s from %s", e.First_Name, p.Project_Name )
+            //e.assignedProject = e.assignedProject.filter(x => x !== p);
             this.projectFrom = p;
+            //p.employees = p.employees.filter(x => x !== e);
+
+        } else {
+            // this.unassignedEmployeeList = this.unassignedEmployeeList.filter(x => x !== e);
+            //this.unassignedEmployeeList.push(e);
         }
     }
     addEmployeeToProject( $event: any, project: Project ) {
@@ -105,6 +112,7 @@ export class ProjectsComponent implements OnInit {
         let projectEmployee: Employee = JSON.parse(JSON.stringify(masterEmployee)); //Deep Copy
  
         let projectTo: Project = project;
+        let projectFrom: Project = this.projectFrom;
 
         console.log( "adding %s to %s", projectEmployee.First_Name, project.Project_Name );
         
@@ -159,8 +167,23 @@ export class ProjectsComponent implements OnInit {
         return this.projectService.getAllProjects().subscribe( ress => {
             this.projectList = ress;
             this.projectList.forEach(x =>{ if(x.employees == null) x.employees = new Array<Employee>()});
+	    this.getAssignedForEachProject();
         } );
     }
+
+    public getAssignedForEachProject() {
+        this.projectList.forEach((proj, index) => {
+            this.getAllAssignedEmployees(proj.projectId, index);
+        });
+    }
+
+    public getAllAssignedEmployees(pid: number, index: number) {
+        return this.projectService.getAssignedEmployeesToProjectId(pid).subscribe(ress => {
+            this.assignedEmployees = ress;
+            this.projectList[index].employees = this.assignedEmployees;
+            console.log("project list updated", this.projectList);
+    });
+}
 
     constructor(
         private projectService: ProjectService,
