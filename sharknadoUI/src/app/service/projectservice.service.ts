@@ -91,6 +91,14 @@ public getProjectById(project_Id:number):Observable<Project>{
          options)
        .map((ress: Response) => <Project> ress.json())
        .catch(this.handleError);
-
-}    
+}
+    public getAllEmployees():Observable<Array<Employee>>{
+        let headers = new Headers({ "Content-Type": "application/json"});
+        let options = new RequestOptions({headers: headers});
+        console.log("Retrieving all employees.")
+        
+        return this.http.get(this.baseURL+'employees/get/all')
+        .map((ress: Response) => <Array<Employee>> ress.json())
+        .catch(this.handleError);
     }
+}
