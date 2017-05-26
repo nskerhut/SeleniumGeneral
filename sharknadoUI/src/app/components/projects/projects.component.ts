@@ -87,8 +87,6 @@ export class ProjectsComponent implements OnInit {
         if ( p != null ) {
             console.log( "removing %s from %s", e.First_Name, p.Project_Name )
             this.projectFrom = p;
-            e.assignedProject = e.assignedProject.filter(x => x != p);
-            
         }
     }
     addEmployeeToProject( $event: any, project: Project ) {
@@ -97,15 +95,15 @@ export class ProjectsComponent implements OnInit {
         let projectEmployee: Employee = JSON.parse(JSON.stringify(masterEmployee)); //Deep Copy
  
         let projectTo: Project = project;
-        let projectFrom: Project = this.projectFrom;
 
         console.log( "adding %s to %s", projectEmployee.First_Name, project.Project_Name );
         
         //Remove from previous project, employee list is not a project.
-        /*if ( projectFrom != null ) {
-            projectFrom.employees = projectFrom.employees.filter( item => item !== projectEmployee );
-            console.log( `project From(%s) To(%s)`, projectFrom.projectId, projectTo.projectId );
-        }*/
+        if ( this.projectFrom != null ) {
+            masterEmployee.TotalAllocation = 0;
+            this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id != projectEmployee.Employee_Id );
+            console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
+        }
         
         //Update the Employee Allocation
         //TODO Set a real amount of time
