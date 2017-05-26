@@ -7,16 +7,16 @@
         <legend>Register User</legend>
         <div class="top bottom">
           <div class="form-group">
-            <label class="col-lg-2  control-label">Username</label>
+            <label for="uName33" class="col-lg-2  control-label">Username</label>
             <div class="col-lg-3">
-              <input type="text" class="form-control" [(ngModel)]="username" name="username" required placeholder="Username">
+              <input type="text" class="form-control" [(ngModel)]="username" name="uName33" id="uName33" " required placeholder="Username">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+            <label for="password33" class="col-lg-2 control-label">Password</label>
             <div class="col-lg-3">
-              <input class="form-control" type="password" [(ngModel)]="password" name="password" required placeholder="Password">
+              <input class="form-control" type="password" [(ngModel)]="password" name="password33"id="password33"  required placeholder="Password">
             </div>
           </div>
         </div>
@@ -29,31 +29,31 @@
         </div>
 
         <div class="form-group bottom">
-          <label class="col-lg-2 control-label">Last Name</label>
+          <label for="lName44" class="col-lg-2 control-label">Last Name</label>
           <div class="col-lg-3" row="1">
-            <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" placeholder="Last Name" required>
+            <input type="text" class="form-control" [(ngModel)]="lastName" name="lName44" id="lName44" " placeholder="Last Name" required>
           </div>
         </div>
 
         <div class="form-group top">
           <label for="inputEmail" class="col-lg-2 control-label">Email</label>
           <div class="col-lg-6">
-            <input type="text" class="form-control" id="inputEmail" [(ngModel)]="email" name="email"placeholder="Email" required>
+            <input type="text" class="form-control"name="inputEmail" id="inputEmail" [(ngModel)]="email" name="email"placeholder="Email" required>
           </div>
         </div>
 <!--
         <div class="form-group top">
-          <label class="col-lg-2 control-label">Supervisor Name</label>
+          <label for="sName" class="col-lg-2 control-label">Supervisor Name</label>
           <div class="col-lg-6">
-            <input type="text" class="form-control" placeholder="Supervisor Name">
+            <input type="text" name="sName" id="sName" class="form-control" placeholder="Supervisor Name">
           </div>
         </div> -->
 
 
         <div class="form-group top">
-          <label for="select" class="col-lg-2 control-label">Role</label>
+          <label for="role" class="col-lg-2 control-label">Role</label>
           <div class="col-lg-3">
-            <select class="form-control" id="select" [(ngModel)]="role" name="role" required>
+            <select class="form-control"name="role " id="role" [(ngModel)]="role" name="role" required>
               <option>User</option>
               <option>Employee</option>
               <option>Manager</option>
