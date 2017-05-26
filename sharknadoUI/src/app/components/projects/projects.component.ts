@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from './../../service/projectservice.service';
+import { EmployeeService } from './../../service/employeeservice.service';
 import { Employee } from '../../model/employee';
 import { Project } from '../../model/project';
 import { EventEmitter, Input, Output } from '@angular/core';
@@ -87,8 +88,6 @@ export class ProjectsComponent implements OnInit {
             console.log( `project From(%s) employee list`, projectFrom.projectId );
         }
 
-        //newEmployee.TotalAllocation = 40 - newEmployee.TotalAllocation;
-
         this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
 
 
@@ -97,13 +96,8 @@ export class ProjectsComponent implements OnInit {
     dragStart( p: Project, e: Employee ) {
         if ( p != null ) {
             console.log( "removing %s from %s", e.First_Name, p.Project_Name )
-            //e.assignedProject = e.assignedProject.filter(x => x !== p);
             this.projectFrom = p;
-            //p.employees = p.employees.filter(x => x !== e);
 
-        } else {
-            // this.unassignedEmployeeList = this.unassignedEmployeeList.filter(x => x !== e);
-            //this.unassignedEmployeeList.push(e);
         }
     }
     addEmployeeToProject( $event: any, project: Project ) {
@@ -149,7 +143,7 @@ export class ProjectsComponent implements OnInit {
 
     public getAllEmployees() {
         console.log( "getting all employees." )
-        return this.projectService.getAllUnassignedEmployee().subscribe( ress => {
+        return this.employeeService.getAllEmployees().subscribe( ress => {
             this.unassignedEmployeeList = ress.sort( this.compareEmployee );
             
             //Temp Code
@@ -187,6 +181,7 @@ export class ProjectsComponent implements OnInit {
 
     constructor(
         private projectService: ProjectService,
+        private employeeService: EmployeeService,
         private router: Router,
         private route: ActivatedRoute ) {
         this.projectService = projectService;

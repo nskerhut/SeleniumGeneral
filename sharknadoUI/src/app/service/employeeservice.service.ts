@@ -3,6 +3,8 @@ import { Injectable, EventEmitter }  from '@angular/core';
 import {Http, Response, Headers,ResponseOptions, RequestOptions, RequestOptionsArgs, Request, RequestMethod } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 
+import { Employee } from '../model/employee';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -55,6 +57,17 @@ export class EmployeeService{
            token: this.getToken()
          }),
 	}*/
+    public getAllEmployees(): Observable<Array<Employee>> {
+        let headers = new Headers({ "Content-Type": "application/json",
+            "Authorization": "Bearer " + this.getToken() });
+        let options = new RequestOptions({headers: headers});
+        
+        return this.http.get(this.baseURL+'get_all_employees',
+                options).map((ress: Response) => <Array<Employee>>ress.json())
+                .catch(this.handleError);
+    }
+    
+    
     public getEmployee(employeeId: string): Observable<Employee>{
       console.log("this is getEmployee empID", this._employeeId);
       let headers = new Headers({ "Content-Type": "application/json",
@@ -92,7 +105,7 @@ export class EmployeeService{
                 mobilePhoneNumber: mobilePhoneNumber,
                 personalEmail: personalEmail,
              }),
-             options).map((resss: Response) => <Result>resss.json())
+             options).map((resss: Response) => <Employee>resss.json())
              .catch(this.handleError);
         }
 
@@ -125,60 +138,3 @@ export class EmployeeService{
 
 }
 
-interface Employee{
-  First_Name: string,
-  Last_Name : string,
-  Date_of_Birth: string,
-  Personnel_Number: string,
-  Workday_Position_Id: string,
-  Seat_Location: string,
-  Hire_Date: string,
-  Termination_Date: string,
-  Reports_To: string,
-  Shortname: string,
-  Office_Phone_Number: string,
-  Mobile_Phone_Number: string,
-  Company_Email: string,
-  Personal_Email: string,
-}
-
-// interface loginCredential{
-//      success: string,
-//      employeeId: string,
-//      role: string
-// }
-
-interface Result{
-  First_Name: string,
-  Last_Name : string,
-  Date_of_Birth: string,
-  Personnel_Number: string,
-  Workday_Position_Id: string,
-  Seat_Location: string,
-  Hire_Date: string,
-  Termination_Date: string,
-  Reports_To: string,
-  Shortname: string,
-  Office_Phone_Number: string,
-  Mobile_Phone_Number: string,
-  Company_Email: string,
-  Personal_Email: string,
-}
-/**
-
-     loadEmployees() {
-       fetch('/api/v1/employee').then((response) => {
-         return response.json();
-       }).then((data) => {
-         this.employees = data;
-       }).catch((ex) => {
-         console.error('Error fetching employees', ex);
-       });
-     }
-**/
-
-/**
- * 
- * 
- * 
- */
