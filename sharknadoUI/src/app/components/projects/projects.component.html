@@ -11,9 +11,11 @@
           <div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
             <ul class="list-group" >
               <li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-              	<div>{{employee.First_Name}} {{employee.Last_Name}}</div> 
-              	<div>{{employee.TotalAllocation}}</div>
-              	<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
+              	<div>
+              		<div>{{employee.First_Name}} {{employee.Last_Name}}</div> 
+              		<div>{{employee.TotalAllocation}}</div>
+              		<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
+              	</div>
               </li>
             </ul>
           </div>
