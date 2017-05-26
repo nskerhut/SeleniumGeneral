@@ -15,20 +15,22 @@ element {
     border-radius: 8px;
 }
 .panel-success {
-    border-color: #3c9a5f;
+     color: #081072;
+    background-color: #0ed8cf;
+   
 }
 .panel-info{
     padding: 10px;
     border-width:0px;  
     border-style:outset;
-    border-color: lightskyblue;
+     color: #ffffff;
+background-color: #081072;
 }
 .panel-heading{
     padding: 10px;
-    border-width:5px;  
-    border-style:outset;
-    margin-top: 5px;
-   
+     margin-top: 5px;
+   color: #ffffff;
+background-color: #081072;
 }
 #Emppanel {
     min-height:16vh;
@@ -36,7 +38,7 @@ element {
     overflow: scroll;
     background-color: #ffffff;
     border-radius: 0;
-    border: 1px solid #3c9a5f;
+border: 1px solid #0ed8cf;
 }
 #Projpanel {
     height:15vh;
@@ -129,7 +131,8 @@ padding: 8px 12px !important;
     border: 1px solid #ccc;
     margin-top: 28px;
     padding: 6px 12px;
-    color: #666;
+    color: #081072;
+    background-color: #0ed8cf;
     text-shadow: 0 1px #fff;
     cursor: pointer;
     -moz-border-radius: 3px 3px;
