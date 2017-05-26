@@ -52,9 +52,9 @@ export class ProjectsComponent implements OnInit {
     }
     compareEmployee( a: Employee, b: Employee ): number {
 
-        if ( a.TotalAllocation > b.TotalAllocation )
+        if ( a.allocatedHours > b.allocatedHours )
             return 1;
-        else if ( a.TotalAllocation < b.TotalAllocation )
+        else if ( a.allocatedHours < b.allocatedHours )
             return -1;
         else {
             if ( a.Last_Name > b.Last_Name )
@@ -75,15 +75,15 @@ export class ProjectsComponent implements OnInit {
         let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == newEmployee.Employee_Id);
         
         if ( projectFrom != null ) {
-            projectFrom.employees.filter(x => x.Employee_Id == newEmployee.Employee_Id).forEach(y => y.TotalAllocation = 0);
+            projectFrom.employees.filter(x => x.Employee_Id == newEmployee.Employee_Id).forEach(y => y.allocatedHours = 0);
             projectFrom.employees = projectFrom.employees.filter( item => item.Employee_Id != newEmployee.Employee_Id );
-            listEmployee.TotalAllocation = 0;
+            listEmployee.allocatedHours = 0;
             this.projectList
             .filter(x => x.employees != null)
             .forEach(x => 
             {
                     x.employees.filter(y => y.Employee_Id == newEmployee.Employee_Id)
-                    .forEach(y => listEmployee.TotalAllocation += y.TotalAllocation)
+                    .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
             });
             console.log( `project From(%s) employee list`, projectFrom.projectId );
         }
@@ -112,26 +112,26 @@ export class ProjectsComponent implements OnInit {
         
         //Remove from previous project, employee list is not a project.
         if ( this.projectFrom != null ) {
-            masterEmployee.TotalAllocation = 0;
+            masterEmployee.allocatedHours = 0;
             this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id != projectEmployee.Employee_Id );
             console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
         }
         
         //Update the Employee Allocation
         //TODO Set a real amount of time
-        projectEmployee.TotalAllocation = 4;
+        projectEmployee.allocatedHours = 4;
         projectTo.employees.push(projectEmployee);
         
         
         //Reset Allocation in employeeList;
         let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == masterEmployee.Employee_Id);
-        listEmployee.TotalAllocation = 0;
+        listEmployee.allocatedHours = 0;
         this.projectList
             .filter(x => x.employees != null)
             .forEach(x => 
             {
                     x.employees.filter(y => y.Employee_Id == masterEmployee.Employee_Id)
-                    .forEach(y => listEmployee.TotalAllocation += y.TotalAllocation)
+                    .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
             });
         
         //Sort the employee list
@@ -143,11 +143,8 @@ export class ProjectsComponent implements OnInit {
 
     public getAllEmployees() {
         console.log( "getting all employees." )
-        return this.employeeService.getAllEmployees().subscribe( ress => {
+        return this.projectService.getAllEmployees().subscribe( ress => {
             this.unassignedEmployeeList = ress.sort( this.compareEmployee );
-            
-            //Temp Code
-            this.unassignedEmployeeList.forEach( x => x.TotalAllocation = 0 );
             
             console.log( "employees ", this.unassignedEmployeeList );
 

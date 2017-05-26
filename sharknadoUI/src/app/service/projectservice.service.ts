@@ -92,6 +92,7 @@ export class ProjectService {
             .map(( ress: Response ) => <Project>ress.json() )
             .catch( this.handleError );
     }
+    
     public getAllEmployees(): Observable<Array<Employee>> {
         let headers = new Headers( { "Content-Type": "application/json" } );
         let options = new RequestOptions( { headers: headers } );

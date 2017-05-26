@@ -1,5 +1,6 @@
 import { AssignedProject } from './assignedproject';
-//import { Project } from './project';
+import { Output } from '@angular/core';
+
 
 export class Employee {
     Employee_Id: number;
@@ -18,7 +19,7 @@ export class Employee {
     Company_Email: string;
     Personal_Email: string;
     assignedProject: AssignedProject[];
-    TotalAllocation: number = 0;
+    allocatedHours: number = 0;
   
     constructor(
         Employee_Id?: number,
@@ -36,7 +37,7 @@ export class Employee {
         Mobile_Phone_Number?: string,
         Company_Email?: string,
         Personal_Email?: string,
-        assignedProject?: AssignedProject[]) {
+        allocatedHours?: number) {
 
         this.Employee_Id = Employee_Id;
         this.First_Name = First_Name;
@@ -53,16 +54,13 @@ export class Employee {
         this.Mobile_Phone_Number = Mobile_Phone_Number;
         this.Company_Email = Company_Email;
         this.Personal_Email = Personal_Email;
+        this.allocatedHours = allocatedHours;
         
-        if(assignedProject == null)
-            this.assignedProject = new Array<AssignedProject>();
-        else
-            this.assignedProject = assignedProject;
     }
     
     addProject(project: AssignedProject, allocation:number):void {
         
-        this.TotalAllocation = 0;
+        this.allocatedHours = 0;
         
         project.allocatedHrs = allocation;
         
@@ -71,14 +69,14 @@ export class Employee {
         
         this.assignedProject.push(project);
         
-        this.assignedProject.forEach(x => this.TotalAllocation += x.allocatedHrs);
+        this.assignedProject.forEach(x => this.allocatedHours += x.allocatedHrs);
     }
     
     removeProject(project: AssignedProject):void {
-        this.TotalAllocation = 0;
+        this.allocatedHours = 0;
         
         this.assignedProject = this.assignedProject.filter(x => x !== project);
         
-        this.assignedProject.forEach(x => this.TotalAllocation += x.allocatedHrs);
+        this.assignedProject.forEach(x => this.allocatedHours += x.allocatedHrs);
     }
 }
