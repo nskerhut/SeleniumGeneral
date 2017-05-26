@@ -7,28 +7,28 @@ element {
     border-width:5px;  
     border-style:outset;
     background-color: darkgrey;
-     text-align: center;
+    color: white;
+    text-align: center;
     font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 8px;
 }
 .panel-success {
-     color: #081072;
-    background-color: #0ed8cf;
-   
+    border-color: #3c9a5f;
 }
 .panel-info{
     padding: 10px;
     border-width:0px;  
-    border-style:outset;   
-background-color: #081072;
+    border-style:outset;
+    border-color: lightskyblue;
 }
 .panel-heading{
     padding: 10px;
-     margin-top: 5px;
-   color: #ffffff;
-background-color: #081072;
+    border-width:5px;  
+    border-style:outset;
+    margin-top: 5px;
+   
 }
 #Emppanel {
     min-height:16vh;
@@ -36,12 +36,13 @@ background-color: #081072;
     overflow: scroll;
     background-color: #ffffff;
     border-radius: 0;
-border: 1px solid #0ed8cf;
+    border: 1px solid #3c9a5f;
 }
 #Projpanel {
     height:15vh;
     overflow: scroll;
-     border-radius: 0;
+    background-color: #ffffff;
+    border-radius: 0;
     border: 1px solid lightskyblue;
     margin-bottom: 10px;   
 }
@@ -128,8 +129,7 @@ padding: 8px 12px !important;
     border: 1px solid #ccc;
     margin-top: 28px;
     padding: 6px 12px;
-    color: #081072;
-    background-color: #0ed8cf;
+    color: #666;
     text-shadow: 0 1px #fff;
     cursor: pointer;
     -moz-border-radius: 3px 3px;
@@ -203,6 +203,11 @@ padding: 8px 12px !important;
 }
 #chargecode2:hover{
 	cursor: auto;
+}
+
+#hours-modal {
+    height: 300px;
+    width: 300px;
 }
 
 
