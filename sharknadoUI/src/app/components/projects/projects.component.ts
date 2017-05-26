@@ -10,13 +10,15 @@ import { AssignedProject } from '../../model/assignedproject';
 @Component( {
     selector: 'app-projects, demo-modal-static',
     templateUrl: './projects.component.html',
-    styleUrls: ['./projects.component.css']/*,
-  providers: [Project]*/
+    styleUrls: ['./projects.component.css'],
+    
 } )
 export class ProjectsComponent implements OnInit {
     contactList: Array<string> = ["", "one", "two", "three", "four", "Add New Charge Code"];
     projectDetailsForm = "projectDetailsForm";
 
+    projectFrom: Project;
+    
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
     public currentproject: Project;
@@ -81,17 +83,14 @@ export class ProjectsComponent implements OnInit {
 
     }
 
-    projectFrom: Project;
     dragStart( p: Project, e: Employee ) {
         if ( p != null ) {
             console.log( "removing %s from %s", e.First_Name, p.Project_Name )
-            //e.assignedProject = e.assignedProject.filter(x => x !== p);
             this.projectFrom = p;
-            //p.employees = p.employees.filter(x => x !== e);
-
-        } else {
-            // this.unassignedEmployeeList = this.unassignedEmployeeList.filter(x => x !== e);
-            //this.unassignedEmployeeList.push(e);
+            //e.removeProject(<AssignedProject>p);
+            e.TotalAllocation = 0;
+            e.assignedProject = e.assignedProject.filter(x => x != p);
+            e.assignedProject.forEach(x => e.TotalAllocation += x.allocatedHrs);
         }
     }
     addEmployeeToProject( $event: any, project: Project ) {
@@ -106,21 +105,19 @@ export class ProjectsComponent implements OnInit {
             console.log( `project From(%s) To(%s)`, projectFrom.projectId, projectTo.projectId );
         }
 
-
-        if ( projectTo.employees == null )
-            projectTo.employees = new Array<Employee>();
-
-        projectTo.employees.push( newEmployee );
-        let newProject: AssignedProject = projectTo as AssignedProject;
-
-        //newProject.AllocationHrs = 40; //TODO Set a real amount of time
-        newEmployee.TotalAllocation = 40;
-        if ( newEmployee.assignedProject == null )
+        //Update the Employee Allocation
+        //TODO Set a real amount of time
+        let assignProject = <AssignedProject>projectTo;
+        newEmployee.TotalAllocation = 0;
+        assignProject.allocatedHrs = 4;
+        
+        if(newEmployee.assignedProject == null)
             newEmployee.assignedProject = new Array<AssignedProject>();
-        newEmployee.assignedProject.push( newProject );
-
-        //Move Employee to bottom allocated.
-
+        newEmployee.assignedProject.forEach(x => newEmployee.TotalAllocation += x.allocatedHrs);
+        
+        projectTo.employees.push(newEmployee);
+        
+        //Sort the employee list
         this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
 
         console.log( "employees list: %s", projectTo.employees );
@@ -131,10 +128,10 @@ export class ProjectsComponent implements OnInit {
         console.log( "getting all employees." )
         return this.projectService.getAllUnassignedEmployee().subscribe( ress => {
             this.unassignedEmployeeList = ress.sort( this.compareEmployee );
+            
             //Temp Code
             this.unassignedEmployeeList.forEach( x => x.TotalAllocation = 0 );
-
-
+            
             console.log( "employees ", this.unassignedEmployeeList );
 
         } );
@@ -146,7 +143,7 @@ export class ProjectsComponent implements OnInit {
 
         return this.projectService.getAllProjects().subscribe( ress => {
             this.projectList = ress;
-            console.log( "projects ", this.projectList );
+            this.projectList.forEach(x =>{ if(x.employees === null) x.employees = new Array<Employee>()});
         } );
     }
 

@@ -11,7 +11,7 @@
           <div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
             <ul class="list-group" >
               <li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-              	{{employee.First_Name}} {{employee.Last_Name}} 
+              	<div>{{employee.First_Name}} {{employee.Last_Name}}</div> 
               	<div>{{employee.TotalAllocation}}</div>
               	<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
               </li>
@@ -35,7 +35,8 @@
             <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']" >
               <ul class="list-group" >
                 <li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
-                	{{employee.First_Name}} {{employee.Last_Name}}
+                	<div>{{employee.First_Name}} {{employee.Last_Name}}</div>
+                	<div>{{employee.TotalAllocation}}</div>
                 	<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
                 </li>
               </ul>
