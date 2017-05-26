@@ -15,19 +15,20 @@ a.nav-name{
 }
 li.nav-item {
     float: left;
+    
 }
 
 li.nav-item a.nav-item{
     float: left;
     display: block;
     color: white;
-    text-align: center;
+     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li.nav-item a.nav-item:hover {
-    background-color: #111;
+ bakcground-color: #111;   
 }
 
 li.item-right{

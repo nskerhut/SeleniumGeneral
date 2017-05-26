@@ -6,8 +6,8 @@ element {
     padding: 10px;
     border-width:5px;  
     border-style:outset;
-    background-color: darkgrey;
-    color: white;
+    background-color: #0ed8cf;
+    color: #081072;
     text-align: center;
     font-size: 14px;
     margin: 4px 2px;
@@ -16,19 +16,21 @@ element {
 }
 .panel-success {
     border-color: #3c9a5f;
+
 }
 .panel-info{
     padding: 10px;
     border-width:0px;  
     border-style:outset;
     border-color: lightskyblue;
+    
 }
 .panel-heading{
     padding: 10px;
-    border-width:5px;  
-    border-style:outset;
-    margin-top: 5px;
-   
+      margin-top: 5px;
+    background-color: #0ed8cf;
+    color: #081072;      
+
 }
 #Emppanel {
     min-height:16vh;
