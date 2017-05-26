@@ -30,7 +30,7 @@
         <div class="col-sm-2">
           <div class="panel-info">
             <div class="panel-heading" (click) = "showProjectModal(project.projectId); projectEdit.show();">
-              {{j}} {{project.Project_Name}} 
+              {{project.Project_Name}} 
             </div>
             <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']" >
               <ul class="list-group" >
