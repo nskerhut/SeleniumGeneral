@@ -1,4 +1,3 @@
-import { AssignedProject } from './assignedproject';
 import { Output } from '@angular/core';
 
 
@@ -18,7 +17,6 @@ export class Employee {
     Mobile_Phone_Number: string;
     Company_Email: string;
     Personal_Email: string;
-    assignedProject: AssignedProject[];
     allocatedHours: number = 0;
   
     constructor(
@@ -56,27 +54,5 @@ export class Employee {
         this.Personal_Email = Personal_Email;
         this.allocatedHours = allocatedHours;
         
-    }
-    
-    addProject(project: AssignedProject, allocation:number):void {
-        
-        this.allocatedHours = 0;
-        
-        project.allocatedHrs = allocation;
-        
-        if(this.assignedProject == null)
-            this.assignedProject = new Array<AssignedProject>();
-        
-        this.assignedProject.push(project);
-        
-        this.assignedProject.forEach(x => this.allocatedHours += x.allocatedHrs);
-    }
-    
-    removeProject(project: AssignedProject):void {
-        this.allocatedHours = 0;
-        
-        this.assignedProject = this.assignedProject.filter(x => x !== project);
-        
-        this.assignedProject.forEach(x => this.allocatedHours += x.allocatedHrs);
     }
 }

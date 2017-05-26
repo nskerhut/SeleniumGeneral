@@ -6,7 +6,7 @@ import { Project } from '../../model/project';
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DndModule } from 'ng2-dnd';
-import { AssignedProject } from '../../model/assignedproject';
+
 
 @Component( {
     selector: 'app-projects, demo-modal-static',

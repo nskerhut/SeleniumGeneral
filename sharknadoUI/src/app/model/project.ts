@@ -53,14 +53,6 @@ export class Project  implements OnInit  {
         this.employees = new Array<Employee>();
     }
 
+
     
-    public addEmployee(employee: Employee, allocation: number):void{
-        employee.TotalAllocation = allocation;
-        this.employees.push(employee);
-        
-    }
-    public removeEmployee(employee: Employee):void{
-        employee.TotalAllocation = 0;
-        this.employees = this.employees.filter(x => x != employee);
-    }
 }
