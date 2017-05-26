@@ -1,8 +1,8 @@
-import { Input, Output } from '@angular/core'
+import { OnInit } from '@angular/core'
 import { Employee } from './employee';
 
 
-export class Project {
+export class Project  implements OnInit  {
 
     projectId: number;
     verticalId: string;
@@ -14,8 +14,9 @@ export class Project {
     projectDescription: string;
     projectStatus: string;
     positionDescription: string;
-    @Input() employees: Employee[] = [];
-
+    employees: Employee[] = new Array<Employee>();
+    
+    
     constructor( projectId: number
         , projectName: string
         , employees: Employee[]
@@ -27,6 +28,7 @@ export class Project {
         , projectDescription?: string
         , projectStatus?: string
         , positionDescription?: string
+        , employeeAllocatedHrs?: number
     ) {
         this.projectId = projectId;
         this.Project_Name = projectName;
@@ -38,19 +40,27 @@ export class Project {
         this.projectDescription = projectDescription;
         this.projectStatus = projectStatus;
         this.positionDescription = positionDescription;
-        this.employees = employees;
+        
+        if(employees == null)
+            this.employees = new Array<Employee>();
+        else
+            this.employees = employees;
+        
+        
     }
 
     ngOnInit(): void {
         this.employees = new Array<Employee>();
     }
 
-    @Output()
-    public get getEmployees(): Employee[] {
-        return this.employees;
+    
+    public addEmployee(employee: Employee, allocation: number):void{
+        employee.TotalAllocation = allocation;
+        this.employees.push(employee);
+        
     }
-    public get getProjectId(): number {
-        return this.projectId;
+    public removeEmployee(employee: Employee):void{
+        employee.TotalAllocation = 0;
+        this.employees = this.employees.filter(x => x != employee);
     }
-
 }

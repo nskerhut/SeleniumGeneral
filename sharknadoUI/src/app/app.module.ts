@@ -32,6 +32,7 @@ import { Project } from './model/project'
 import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
 
+import { AssignedProject } from './model/assignedproject';
 
 const appRoutes: Routes = [
     {
