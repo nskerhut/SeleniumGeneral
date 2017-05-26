@@ -70,13 +70,23 @@ export class ProjectsComponent implements OnInit {
     moveEmployeeToEmployeeList( $event: any ) {
         let newEmployee: Employee = $event.dragData;
         let projectFrom: Project = this.projectFrom;
-
+        let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == newEmployee.Employee_Id);
+        
         if ( projectFrom != null ) {
-            projectFrom.employees = projectFrom.employees.filter( item => item !== newEmployee );
+            projectFrom.employees.filter(x => x.Employee_Id == newEmployee.Employee_Id).forEach(y => y.TotalAllocation = 0);
+            projectFrom.employees = projectFrom.employees.filter( item => item.Employee_Id != newEmployee.Employee_Id );
+            listEmployee.TotalAllocation = 0;
+            this.projectList
+            .filter(x => x.employees != null)
+            .forEach(x => 
+            {
+                    x.employees.filter(y => y.Employee_Id == newEmployee.Employee_Id)
+                    .forEach(y => listEmployee.TotalAllocation += y.TotalAllocation)
+            });
             console.log( `project From(%s) employee list`, projectFrom.projectId );
         }
 
-        newEmployee.TotalAllocation = 40 - newEmployee.TotalAllocation;
+        //newEmployee.TotalAllocation = 40 - newEmployee.TotalAllocation;
 
         this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
 
@@ -108,16 +118,8 @@ export class ProjectsComponent implements OnInit {
         //Update the Employee Allocation
         //TODO Set a real amount of time
         projectEmployee.TotalAllocation = 4;
-        
-        
-        /*if(newEmployee.assignedProject == null)
-            newEmployee.assignedProject = new Array<AssignedProject>();
-        newEmployee.assignedProject.forEach(x => newEmployee.TotalAllocation += x.allocatedHrs);*/
-        
         projectTo.employees.push(projectEmployee);
         
-        //Sort the employee list
-        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
         
         //Reset Allocation in employeeList;
         let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == masterEmployee.Employee_Id);
@@ -129,6 +131,9 @@ export class ProjectsComponent implements OnInit {
                     x.employees.filter(y => y.Employee_Id == masterEmployee.Employee_Id)
                     .forEach(y => listEmployee.TotalAllocation += y.TotalAllocation)
             });
+        
+        //Sort the employee list
+        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
         
         console.log( "employees list: %s", projectTo.employees );
 
