@@ -7,8 +7,7 @@ element {
     border-width:5px;  
     border-style:outset;
     background-color: darkgrey;
-    color: white;
-    text-align: center;
+     text-align: center;
     font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
@@ -22,8 +21,7 @@ element {
 .panel-info{
     padding: 10px;
     border-width:0px;  
-    border-style:outset;
-     color: #ffffff;
+    border-style:outset;   
 background-color: #081072;
 }
 .panel-heading{
@@ -43,8 +41,7 @@ border: 1px solid #0ed8cf;
 #Projpanel {
     height:15vh;
     overflow: scroll;
-    background-color: #ffffff;
-    border-radius: 0;
+     border-radius: 0;
     border: 1px solid lightskyblue;
     margin-bottom: 10px;   
 }
