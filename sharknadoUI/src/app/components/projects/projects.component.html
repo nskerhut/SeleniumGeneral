@@ -13,8 +13,9 @@
               <li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
               	<div>
               		<div>{{employee.First_Name}} {{employee.Last_Name}}</div> 
-              		<div>{{employee.allocatedHours}}</div>
               		<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
+              		<div>{{employee.allocatedHours}}</div>
+              		
               	</div>
               </li>
             </ul>

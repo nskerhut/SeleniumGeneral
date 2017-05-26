@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #081072;
+    background-color: #333;
 }
 ul.nav-bar{
   padding-left: 50px;
@@ -15,19 +15,20 @@ a.nav-name{
 }
 li.nav-item {
     float: left;
+    
 }
 
 li.nav-item a.nav-item{
     float: left;
     display: block;
     color: white;
-    text-align: center;
+     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
 li.nav-item a.nav-item:hover {
-    background-color: #111;
+ bakcground-color: #111;   
 }
 
 li.item-right{
