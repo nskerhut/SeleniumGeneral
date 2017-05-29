@@ -4,6 +4,8 @@ import { Http, Response, Headers, ResponseOptions, RequestOptions, RequestOption
 import { Observable } from 'rxjs/Rx';
 import { Employee } from '../model/employee';
 import { Project } from '../model/project';
+import { EmployeeProjectAssoc } from '../model/employee_project_assoc';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -100,6 +102,16 @@ export class ProjectService {
 
         return this.http.get( this.baseURL + 'employees/get/all' )
             .map(( ress: Response ) => <Array<Employee>>ress.json() )
+            .catch( this.handleError );
+    }
+    
+    public getAllocatedEmployees(): Observable<Array<EmployeeProjectAssoc>> {
+        let headers = new Headers( { "Content-Type": "application/json" } );
+        let options = new RequestOptions( { headers: headers } );
+        console.log( "Retrieving all employees." )
+
+        return this.http.get( this.baseURL + 'employees/get/allocated' )
+            .map(( ress: Response ) => <Array<EmployeeProjectAssoc>>ress.json() )
             .catch( this.handleError );
     }
 }

@@ -4,7 +4,9 @@ import { Project } from '../model/project';
 
 
 export class EmployeeProjectAssoc {
+
     employee: Employee;
+    
     @Input("Project")
     project: Project;
     Start_Date: Date;
