@@ -137,7 +137,7 @@
         <div class="form-group">
           <label for="fName11" class="col-lg-3 control-label">First name:</label>
           <div class="col-lg-8">
-            <input class="form-control" value= {{employee.First_Name}} type="text" name="fName11: id="fName11" [(ngModel)]="employee.First_Name" disabled />
+            <input class="form-control" value= {{employee.First_Name}} type="text" name="fName11" id="fName11" [(ngModel)]="employee.First_Name" disabled />
           </div>
         </div>
         <div class="form-group">
@@ -258,8 +258,9 @@
       		<li class = "projectDetailsMenuItem" id = "menuProjectDetails"><a type = "button"  (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Overview</h4></a></li>
       		<li class = "projectDetailsMenuItem" id = "menuContacts"><a type = "button"  (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
       		<li class = "projectDetailsMenuItem" id = "menuChargeCodes"><a type = "button"  (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
-      		<li class = "projectDetailsMenuItem" id = "menuEmployee"><a type = "button"  ><h4 class = "modal-title pull-left">Employees</h4></a></li>
-      	</ul>
+      		<li class = "projectDetailsMenuItem" id = "menuEmployees"><a type = "button"  (click) = "showEmployee()"><h4 class = "modal-title pull-left">Employees</h4></a></li>
+      		  
+      		  	</ul>
         <!--<h4 class="modal-title pull-left">Project Details</h4>-->
         <!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
         <!--<button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
@@ -459,31 +460,101 @@
 								</div>
 							</div>
 						</div>
-					
-
-		
 				</div>
+				<div class="modal-body" id = "EmployeeForm1111">
+						<li class = "pdlItem"><h5 id = "empForm">Employee Overview </h5></li>
+					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
 				
-				
-				
+        <div class="form-group">
+          <label for="fName111" class="col-lg-3 control-label">First name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" value= {{employee.First_Name}} type="text" name="fName111" id="fName111" [(ngModel)]="employee.First_Name" disabled />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lName111" class="col-lg-3 control-label">Last name:</label>
+          <div class="col-lg-8">
+            <input class="form-control" value= {{employee.Last_Name} type="text" name="lName111" id="lName11" [(ngModel)]="employee.Last_Name"  disabled />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dOb111" class="col-lg-3 control-label">Date of Birth:</label>
+          <div class="col-lg-8">
+            <input class="form-control" value= {{employee.Date_of_Birth}} type="text" name="dOb111" id="dOb111" [(ngModel)]="employee.Date_of_Birth" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="perNum111" class="col-md-3 control-label">Personnel Number:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Personnel_Number}} type="text" name="perNum111" id="perNum111" [(ngModel)]="employee.Personnel_Number"  disabled/>
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="wp111" class="col-md-3 control-label">Workday Position Id:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Workday_Position_Id}} type="text" name="wp111" id="wp111" [(ngModel)]="employee.Workday_Position_Id" disabled />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="seatLoc111" class="col-md-3 control-label">Seat Location:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Seat_Location}} type="text" name="seatLoc111" id="seatLoc111" [(ngModel)]="employee.Seat_Location" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dOh111" class="col-md-3 control-label">Date of Hire:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Hire_Date}} type="text" name="dOh111" id="dOh111" [(ngModel)]="employee.Hire_Date"  disabled/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tDate111" class="col-md-3 control-label">Termination Date:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Termination_Date}} type="text" name="tDate111" id="tDate111" [(ngModel)]="employee.Termination_Date"  disabled/>
+          </div>
+        </div>
+ 		<div class="form-group">
+          <label for="rptsTo111" class="col-md-3 control-label">Reports To:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Reports_To}} type="text" name="rptsTo111" id="rpts111" [(ngModel)]="employee.Reports_To"  disabled/>
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="shortName111" class="col-md-3 control-label">Shortname:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Shortname}} type="text" name="shortName111" id="shortName111" [(ngModel)]="employee.Shortname" disabled />
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="oPhone111" class="col-md-3 control-label">Office Phone:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Office_Phone_Number}} type="text" name="oPhone111" id="oPhone111" [(ngModel)]="employee.Office_Phone_Number" disabled />
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="mobNumber111" class="col-md-3 control-label">Mobile Number:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Mobile_Phone_Number}} type="text" name="mobNumber111" id="mobNumber111" [(ngModel)]="employee.Mobile_Phone_Number" />
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="compEmail111" class="col-md-3 control-label">Company Email:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Company_Email}} type="text" name="compEmail111" id="compEmail111" [(ngModel)]="employee.Company_Email"  disabled/>
+          </div>
+        </div>
+         <div class="form-group">
+          <label for="perEmail111" class="col-md-3 control-label">Personal Email:</label>
+          <div class="col-md-8">
+            <input class="form-control" value= {{employee.Personal_Email}} type="text" name="perEmail111" id="perEmail111" [(ngModel)]="employee.Personal_Email" />
+          </div>
+        </div>
+							</div>
 			
-					<!-- 
-						This is the Charge code tab in the project details 
-					
-						Needs to be designed based on the get_charge_code stored procedure in the prjservices schema
-						
-						Allow for multiple charge codes to be viewed and clicked from a list box and auto fill text fields to view info.
-						
-						allow to add new charge codes in this place
-						
-						
-						Perhaps use a split screen for the different sections.
-					
-					 -->
-
+				
 						<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
-        <button type="button" class="btn btn-primary" (click) = "submitChanges()" id = "projectDetailsSaveButton">Save changes</button>
+
       </div>
 		</div>
   </div>
@@ -662,3 +733,4 @@
 
 		 <!--
 	</body>-->
+
