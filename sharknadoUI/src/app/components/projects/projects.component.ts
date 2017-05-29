@@ -168,14 +168,19 @@ export class ProjectsComponent implements OnInit {
     }
     public getAllocatedEmployees() {
         console.log( "getting list of allocated employees" );
-        /*return this.projectService.getAllocatedEmployees().subscribe( ress => {
+        return this.projectService.getAllocatedEmployees().subscribe( ress => {
             ress.forEach(x => {
-                this.projectList.find(y => y.projectId == 0 )
-                    .employees.push(x);
+                console.log("Placing " + x.employee.First_Name + " in " + x.project.Project_Name);
+                
+                this.projectList.filter(y => y.projectId == x.project.projectId )
+                    .forEach(z => {
+                        console.log("adding " + x.employee.First_Name + " to " + z.projectId)
+                        z.employees.push(x.employee)
+                    });
             })
         
         } );
-        */
+        
         
     }
     public getAssignedForEachProject() {
