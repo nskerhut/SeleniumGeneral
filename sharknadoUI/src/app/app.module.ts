@@ -31,6 +31,7 @@ import { Employee } from './model/employee'
 import { Project } from './model/project'
 import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import { EmployeeHandleComponent } from './components/employee-handle/employee-handle.component';
 
 
 const appRoutes: Routes = [
@@ -97,6 +98,7 @@ const appRoutes: Routes = [
     AboutComponent,
     EmployeeComponent,
     ProjectsComponent,
+    EmployeeHandleComponent,
 
   ],
   imports: [
