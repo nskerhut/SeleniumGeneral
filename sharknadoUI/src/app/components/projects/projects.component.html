@@ -1,361 +1,403 @@
-
 <div>
-<!-- Employee Panel -->
- <h2>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h2>
-    <div class="row">
-      <div class="col-sm-2">
-        <div class="panel-success">
-          <div class="panel-heading">
-            Available Employees
-          </div>
-          <div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
-            <ul class="list-group" >
-              <li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-              	<div>
-              		<div>{{employee.First_Name}} {{employee.Last_Name}}</div> 
-              		<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
-              		<div>{{employee.allocatedHours}}</div>
-              		
-              	</div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
-
-<!-- Project Panels -->
-<div class="row">
-  <div *ngFor="let project of projectList; let j = index;">
-    <div>
-        <!--wrap each project in container-->
-        <div class="col-sm-2">
-          <div class="panel-info">
-            <div class="panel-heading" (click) = "showProjectModal(project.projectId); projectEdit.show();">
-              {{project.Project_Name}} 
-            </div>
-            <div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']" >
-              <ul class="list-group" >
-                <li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true" [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
-                	<div>{{employee.First_Name}} {{employee.Last_Name}}</div>
-                	<div>{{employee.allocatedHours}}</div>
-                	<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!--end wrap project in container-->
-    </div>
-  </div>
-</div>
-      
-    
-
-
- 
-<div class="modal fade bs-example-modal-lg" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-label="Create New Project" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Add New Project</h4>
-       
-      </div>
-      <div class="modal-body">
-	
-				<h5>Create a new project form.</h5>
-					<form class="" method="post" action="#">
-						
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Project Name:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input [(ngModel)]="name" type="text" class="form-control" name="name" id="name"  placeholder="Enter a Name for the Project"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="charge" class="cols-sm-2 control-label">Project Charge Code:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="charge" id="charge"  placeholder="Enter the Charge Code"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="manager" class="cols-sm-2 control-label">Project Manager:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="manager" id="manager"  placeholder="Enter the Manager for this Project"/>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="Email" id="Email"  placeholder="Enter Project POC Email"/>
-								</div>
-							</div>
-						</div>
-
-						
-						
-					</form>
+	<!-- Employee Panel -->
+	<h2>Projects <button id="AddProj" type="button" class="btn" (click)="staticModal.show()">New Project</button></h2>
+	<div class="row">
+		<div class="col-sm-2">
+			<div class="panel-success">
+				<div class="panel-heading">
+					Available Employees
 				</div>
-				<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal.hide()">Close</button>
-        <button type="button" (click)=addProject(names,chargecode,manager) class="btn btn-primary">Add Project</button>
-      </div>
+				<div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
+					<ul class="list-group">
+						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
+						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
+							<div>
+								<div>{{employee.First_Name}} {{employee.Last_Name}}</div>
+								<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
+								<div>{{employee.allocatedHours}}</div>
+
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-  </div>
-</div>
 
 
 
-<div class="modal fade bs-example-modal-lg" bsModal #staticModal1="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-label="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">{{Employee_ID}}</h4>
-       
-      </div>
-      <div class="modal-body">
-	
-				<h3>Personal info</h3>
-      <div class="form-horizontal" role="form">
-        <div class="form-group">
-          <label for="fName11" class="col-lg-3 control-label">First name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value= {{employee.First_Name}} type="text" name="fName11" id="fName11" [(ngModel)]="employee.First_Name" disabled />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="lName11" class="col-lg-3 control-label">Last name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value= {{employee.Last_Name} type="text" name="lName11" id="lName11" [(ngModel)]="employee.Last_Name"  disabled />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="dOb11" class="col-lg-3 control-label">Date of Birth:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value= {{employee.Date_of_Birth}} type="text" name="dOb11" id="dOb11" [(ngModel)]="employee.Date_of_Birth" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="perNum11" class="col-md-3 control-label">Personnel Number:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Personnel_Number}} type="text" name="perNum11" id="perNum11" [(ngModel)]="employee.Personnel_Number"  disabled/>
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="wp11" class="col-md-3 control-label">Workday Position Id:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Workday_Position_Id}} type="text" name="wp11" id="wp11" [(ngModel)]="employee.Workday_Position_Id" disabled />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="seatLoc11" class="col-md-3 control-label">Seat Location:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Seat_Location}} type="text" name="seatLoc11" id="seatLoc11" [(ngModel)]="employee.Seat_Location" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="dOh11" class="col-md-3 control-label">Date of Hire:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Hire_Date}} type="text" name="dOh11" id="dOh11" [(ngModel)]="employee.Hire_Date"  disabled/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="tDate11" class="col-md-3 control-label">Termination Date:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Termination_Date}} type="text" name="tDate11" id="tDate11" [(ngModel)]="employee.Termination_Date"  disabled/>
-          </div>
-        </div>
- 		<div class="form-group">
-          <label for="rptsTo11" class="col-md-3 control-label">Reports To:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Reports_To}} type="text" name="rptsTo11" id="rpts11" [(ngModel)]="employee.Reports_To"  disabled/>
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="shortName11" class="col-md-3 control-label">Shortname:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Shortname}} type="text" name="shortName11" id="shortName11" [(ngModel)]="employee.Shortname" disabled />
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="oPhone11" class="col-md-3 control-label">Office Phone:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Office_Phone_Number}} type="text" name="oPhone11" id="oPhone11" [(ngModel)]="employee.Office_Phone_Number" disabled />
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="mobNumber11" class="col-md-3 control-label">Mobile Number:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Mobile_Phone_Number}} type="text" name="mobNumber11" id="mobNumber11" [(ngModel)]="employee.Mobile_Phone_Number" />
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="compEmail11" class="col-md-3 control-label">Company Email:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Company_Email}} type="text" name="compEmail11" id="compEmail11" [(ngModel)]="employee.Company_Email"  disabled/>
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="perEmail11" class="col-md-3 control-label">Personal Email:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Personal_Email}} type="text" name="perEmail11" id="perEmail11" [(ngModel)]="employee.Personal_Email" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-3 control-label"></label>
-          <div class="col-md-8">
-            
-            
-             <div class="form-group">
-        <div class="col-lg-10 col-lg-offset top bottom">
- 
-              <button (click)="updateEmployee(
+		<!-- Project Panels -->
+		<div class="row">
+			<div *ngFor="let project of projectList; let j = index;">
+				<div>
+					<!--wrap each project in container-->
+					<div class="col-sm-2">
+						<div class="panel-info">
+							<div class="panel-heading" (click)="showProjectModal(project.projectId); projectEdit.show();">
+								{{project.Project_Name}}
+							</div>
+							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']">
+								<ul class="list-group">
+									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
+									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
+										<div>{{employee.First_Name}} {{employee.Last_Name}}</div>
+										<div>{{employee.allocatedHours}}</div>
+										<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!--end wrap project in container-->
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<div class="modal fade bs-example-modal-lg" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+			 role="dialog" aria-label="Create New Project" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title pull-left">Add New Project</h4>
+
+						</div>
+						<div class="modal-body">
+
+							<h5>Create a new project form.</h5>
+							<form class="" method="post" action="#">
+
+								<div class="form-group">
+									<label for="name" class="cols-sm-2 control-label">Project Name:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input [(ngModel)]="name" type="text" class="form-control" name="name" id="name" placeholder="Enter a Name for the Project"
+											/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="charge" class="cols-sm-2 control-label">Project Charge Code:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="charge" id="charge" placeholder="Enter the Charge Code" />
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="manager" class="cols-sm-2 control-label">Project Manager:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="manager" id="manager" placeholder="Enter the Manager for this Project" />
+										</div>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="Email" id="Email" placeholder="Enter Project POC Email" />
+										</div>
+									</div>
+								</div>
+
+
+
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal.hide()">Close</button>
+							<button type="button" (click)=addProject(names,chargecode,manager) class="btn btn-primary">Add Project</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="modal fade bs-example-modal-lg" bsModal #staticModal1="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+			 role="dialog" aria-label="mySmallModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title pull-left">{{Employee_ID}}</h4>
+
+						</div>
+						<div class="modal-body">
+
+							<h3>Personal info</h3>
+							<div class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="fName11" class="col-lg-3 control-label">First name:</label>
+									<div class="col-lg-8">
+										<input class="form-control" value= {{employee.First_Name}} type="text" name="fName11" id="fName11" [(ngModel)]="employee.First_Name"
+										 disabled />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="lName11" class="col-lg-3 control-label">Last name:</label>
+									<div class="col-lg-8">
+										<input class="form-control" value= {{employee.Last_Name} type="text" name="lName11" id="lName11" [(ngModel)]="employee.Last_Name"
+										 disabled />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="dOb11" class="col-lg-3 control-label">Date of Birth:</label>
+									<div class="col-lg-8">
+										<input class="form-control" value= {{employee.Date_of_Birth}} type="text" name="dOb11" id="dOb11" [(ngModel)]="employee.Date_of_Birth"
+										/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="perNum11" class="col-md-3 control-label">Personnel Number:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Personnel_Number}} type="text" name="perNum11" id="perNum11" [(ngModel)]="employee.Personnel_Number"
+										 disabled/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="wp11" class="col-md-3 control-label">Workday Position Id:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Workday_Position_Id}} type="text" name="wp11" id="wp11" [(ngModel)]="employee.Workday_Position_Id"
+										 disabled />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="seatLoc11" class="col-md-3 control-label">Seat Location:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Seat_Location}} type="text" name="seatLoc11" id="seatLoc11" [(ngModel)]="employee.Seat_Location"
+										/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="dOh11" class="col-md-3 control-label">Date of Hire:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Hire_Date}} type="text" name="dOh11" id="dOh11" [(ngModel)]="employee.Hire_Date"
+										 disabled/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="tDate11" class="col-md-3 control-label">Termination Date:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Termination_Date}} type="text" name="tDate11" id="tDate11" [(ngModel)]="employee.Termination_Date"
+										 disabled/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="rptsTo11" class="col-md-3 control-label">Reports To:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Reports_To}} type="text" name="rptsTo11" id="rpts11" [(ngModel)]="employee.Reports_To"
+										 disabled/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="shortName11" class="col-md-3 control-label">Shortname:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Shortname}} type="text" name="shortName11" id="shortName11" [(ngModel)]="employee.Shortname"
+										 disabled />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="oPhone11" class="col-md-3 control-label">Office Phone:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Office_Phone_Number}} type="text" name="oPhone11" id="oPhone11" [(ngModel)]="employee.Office_Phone_Number"
+										 disabled />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="mobNumber11" class="col-md-3 control-label">Mobile Number:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Mobile_Phone_Number}} type="text" name="mobNumber11" id="mobNumber11" [(ngModel)]="employee.Mobile_Phone_Number"
+										/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="compEmail11" class="col-md-3 control-label">Company Email:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Company_Email}} type="text" name="compEmail11" id="compEmail11" [(ngModel)]="employee.Company_Email"
+										 disabled/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="perEmail11" class="col-md-3 control-label">Personal Email:</label>
+									<div class="col-md-8">
+										<input class="form-control" value= {{employee.Personal_Email}} type="text" name="perEmail11" id="perEmail11" [(ngModel)]="employee.Personal_Email"
+										/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label"></label>
+									<div class="col-md-8">
+
+
+										<div class="form-group">
+											<div class="col-lg-10 col-lg-offset top bottom">
+
+												<button (click)="updateEmployee(
 
                 this.employee.Date_of_Birth,
                 this.employee.Seat_Location,
                 this.employee.Office_Phone_Number,
                 this.employee.Mobile_Phone_Number,
                 this.employee.Personal_Email)" type="submit" class="btn btn-yes">Submit</button>
-            </div>
-          </div>  
-          </div>
-        </div>
-    </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal1.hide()">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
 				</div>
-				<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal1.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-		</div>
-  </div>
-</div>
+			</div>
 
 
 
-<div class="modal fade bs-example-modal-lg" bsModal #projectEdit="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-label="Project Overview" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-      	<ul id = "projectDetailsMenu">
-      		<li class = "projectDetailsMenuItem" id = "menuProjectDetails"><a type = "button"  (click) = "normalizeProjectForm()"><h4 class = "modal-title pull-left">Project Overview</h4></a></li>
-      		<li class = "projectDetailsMenuItem" id = "menuContacts"><a type = "button"  (click) = "showContacts()"><h4 class = "modal-title pull-left">Contacts</h4></a></li>
-      		<li class = "projectDetailsMenuItem" id = "menuChargeCodes"><a type = "button"  (click) = "showChargeCodes()"><h4 class = "modal-title pull-left">Charge Codes</h4></a></li>
-      		<li class = "projectDetailsMenuItem" id = "menuEmployees"><a type = "button"  (click) = "showEmployee()"><h4 class = "modal-title pull-left">Employees</h4></a></li>
-      		  
-      		  	</ul>
-        <!--<h4 class="modal-title pull-left">Project Details</h4>-->
-        <!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
-        <!--<button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
+			<div class="modal fade bs-example-modal-lg" bsModal #projectEdit="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+			 role="dialog" aria-label="Project Overview" aria-hidden="true">
+				<div class="modal-dialog modal-sm">
+					<div class="modal-content">
+						<div class="modal-header">
+							<ul id="projectDetailsMenu">
+								<li class="projectDetailsMenuItem" id="menuProjectDetails">
+									<a type="button" (click)="normalizeProjectForm()">
+										<h4 class="modal-title pull-left">Project Overview</h4>
+									</a>
+								</li>
+								<li class="projectDetailsMenuItem" id="menuContacts">
+									<a type="button" (click)="showContacts()">
+										<h4 class="modal-title pull-left">Contacts</h4>
+									</a>
+								</li>
+								<li class="projectDetailsMenuItem" id="menuChargeCodes">
+									<a type="button" (click)="showChargeCodes()">
+										<h4 class="modal-title pull-left">Charge Codes</h4>
+									</a>
+								</li>
+								<li class="projectDetailsMenuItem" id="menuEmployees">
+									<a type="button" (click)="showEmployee()">
+										<h4 class="modal-title pull-left">Employees</h4>
+									</a>
+								</li>
+
+							</ul>
+							<!--<h4 class="modal-title pull-left">Project Details</h4>-->
+							<!-- The following button is the 'x' button that was located at top right corner and now replaced with a close button -->
+							<!--<button type="button" class="close pull-right" aria-label="Close" (click)="projectEdit.hide()" (click) = "setFieldReadOnly()">
           <span aria-hidden="true">&times;</span>
         </button>-->
-      </div>
-      <div class="modal-body" id = "projectDetailsForm">
-					<!-- 
+						</div>
+						<div class="modal-body" id="projectDetailsForm">
+							<!-- 
 					Needs to finish designing based on get_project stored procedure in prjservices schema
 					needs addition textfields and typescript to finish this section.
 					
 					 -->
-					<li class = "pdlItem"><h5 id = "projDetailsHead">Project Overview</h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				
-					<form class="" method="post" action="#">
-						
-						<div class="form-group">
-							<label for="pName11" class="cols-sm-2 control-label">Project Name:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="pName11" id="pName11"  [readonly] = "true" [placeholder]="currentproject?.Project_Name"/>
-									
+							<li class="pdlItem">
+								<h5 id="projDetailsHead">Project Overview</h5>
+							</li>
+							<li class="pdlItem"><a type="button" (click)="enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
+
+							<form class="" method="post" action="#">
+
+								<div class="form-group">
+									<label for="pName11" class="cols-sm-2 control-label">Project Name:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="pName11" id="pName11" [readonly]="true" [placeholder]="currentproject?.Project_Name"
+											/>
+
+										</div>
+									</div>
 								</div>
-							</div>
+
+								<div class="form-group">
+									<label for="agency" class="cols-sm-2 control-label">Agency:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="agency" id="agency" [readonly]="true" [placeholder]="currentproject?.agency"
+											/>
+
+										</div>
+									</div>
+									<aside style="float: right;">
+										<label for="agencyAbbr" class="cols-sm-2 control-label">Agency Abbr.</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i class = "fa fa-users fa" aria-hidden = "true"></i></span>
+												<input type="text" class="form-control" name="agencyAbbr" id="agencyAbbr" [readonly]="true" [placeholder]="currentproject?.agencyAbbr"
+												/>
+											</div>
+										</div>
+
+									</aside>
+								</div>
+
+								<div class="form-group">
+									<label for="projectdesc" class="cols-sm-2 control-label">Project Description:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="projectdesc" id="projectdesc" [readonly]="true" [placeholder]="currentproject?.projectDescription"
+											/>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<label for="projStatus" class="cols-sm-2 control-label">Project Status:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="projStatus" id="projStatus" [readonly]="true" [placeholder]="currentproject?.projectStatus"
+											/>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="projCode" class="cols-sm-2 control-label">Project Chargecode:</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="datalist-group-addon" id="projectchargecodes"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+											<input type="text" class="form-control" name="projCode" id="projCode" [readonly]="true" [placeholder]="currentproject?.projectChargeCode"
+											/>
+										</div>
+									</div>
+								</div>
+								<!-- This is the save button that does nothing until further coding -->
+
+								<div class="form-group ">
+									<a target="_blank" type="button" id="SaveFormbutton" class="btn btn-primary btn-lg btn-block login-button" (click)="submitChanges()">Save</a>
+								</div>
+
+							</form>
 						</div>
 
-						<div class="form-group">
-							<label for="agency" class="cols-sm-2 control-label">Agency:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="agency" id="agency"  [readonly]="true"[placeholder]="currentproject?.agency"/>
 
-								</div>
-							</div>
-							<aside style = "float: right;">
-							<label for="agencyAbbr" class = "cols-sm-2 control-label">Agency Abbr.</label>
-							<div class = "cols-sm-10">
-								<div class = "input-group">
-									<span class = "input-group-addon"><i class = "fa fa-users fa" aria-hidden = "true"></i></span>
-									<input type = "text" class = "form-control" name = "agencyAbbr" id = "agencyAbbr" [readonly] = "true"[placeholder]="currentproject?.agencyAbbr"/>
-								</div>
-							</div>
+						<div class="modal-body" id="projectContactForm">
+							<li class="pdlItem">
+								<h5 id="ContactDetailsHead">Contact Overview</h5>
+							</li>
+							<li class="pdlItem"><a type="button" (click)="enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
 
-							</aside>
-						</div>
 
-						<div class="form-group">
-							<label for="projectdesc" class="cols-sm-2 control-label">Project Description:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="projectdesc" id="projectdesc" [readonly]="true"[placeholder]="currentproject?.projectDescription"/>
-								</div>
-							</div>
-						</div>
-						
-						
-						<div class="form-group">
-							<label for="projStatus" class="cols-sm-2 control-label">Project Status:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="projStatus" id="projStatus"  [readonly]="true"[placeholder]="currentproject?.projectStatus"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="projCode" class="cols-sm-2 control-label">Project Chargecode:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="datalist-group-addon" id = "projectchargecodes"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-<input type="text" class="form-control" name="projCode" id="projCode"  [readonly]="true"[placeholder]="currentproject?.projectChargeCode"/>				
-				</div>
-						</div>
-					</div>
-						<!-- This is the save button that does nothing until further coding -->
-						
-						<div class="form-group ">
-							<a target="_blank" type="button" id="SaveFormbutton" class="btn btn-primary btn-lg btn-block login-button"(click)="submitChanges()">Save</a>
-						</div>
-						
-					</form>
-				</div>
-				
-				
-				<div class="modal-body" id = "projectContactForm">
-						<li class = "pdlItem"><h5 id = "ContactDetailsHead">Contact Overview</h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				
-			
-					<!-- 
+							<!-- 
 						This is the contact tab in the project details.  It needs to be designed based on the get_contacts stored
 						procedure in prjservices schema.
 						
@@ -367,206 +409,246 @@
 					
 					
 					 -->
-				
-							
-						<div class="form-group">
-							<label for="first_Name" class="cols-sm-2 control-label">Contact First Name:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="first_Name" id="first_Name"  [readonly]="true" />
+
+
+							<div class="form-group">
+								<label for="first_Name" class="cols-sm-2 control-label">Contact First Name:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="first_Name" id="first_Name" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="last_Name" class="cols-sm-2 control-label">Contact Last Name:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="last_Name" id="last_Name" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="Position" class="cols-sm-2 control-label">Contact Position:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="Position" id="Position" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="prfContactMethod" class="cols-sm-2 control-label">Contact Preferred Method:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="prfContactMethod" id="prfContactMethod" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="modal-body" id="projectChargeCodeForm">
+							<li class="pdlItem">
+								<h5 id="ChargeCodeDetailsHead">Charge Code Overview</h5>
+							</li>
+							<li class="pdlItem"><a type="button" (click)="enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
+
+
+							<div class="form-group">
+								<label for="prjChargeCode" class="cols-sm-2 control-label">Project Charge Code:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="prjChargeCode" id="prjChargeCode" [readonly]="true" [placeholder]="currentproject?.projectCode"
+										/>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="Description" class="cols-sm-2 control-label">Charge Code Description:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="Description" id="Description" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="chrgeCodeSdate" class="cols-sm-2 control-label">Charge Code Start Date:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="chrgeCodeSdate" id="chrgeCodeSdate" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+								<label for="chrgeCodeEDate" class="cols-sm-2 control-label">Charge Code End Date:</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+										<input type="text" class="form-control" name="chrgeCodeEDate" id="chrgeCodeEDate" [readonly]="true" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-body" id="EmployeeForm1111">
+							<li class="pdlItem">
+								<h5 id="empForm">Employee Overview </h5>
+							</li>
+							<li class="pdlItem"><a type="button" (click)="enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
+
+							<div class="form-group">
+								<label for="fName111" class="col-lg-3 control-label">First name:</label>
+								<div class="col-lg-8">
+									<input class="form-control" value= {{employee.First_Name}} type="text" name="fName111" id="fName111" [(ngModel)]="employee.First_Name"
+									 disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="lName111" class="col-lg-3 control-label">Last name:</label>
+								<div class="col-lg-8">
+									<input class="form-control" value = {{employee.Last_Name} type="text" name="lName111" id="lName11" [(ngModel)]="employee.Last_Name"
+									 disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="dOb111" class="col-lg-3 control-label">Date of Birth:</label>
+								<div class="col-lg-8">
+									<input class="form-control" value = {{employee.Date_of_Birth}} type="text" name="dOb111" id="dOb111" [(ngModel)]="employee.Date_of_Birth"
+									/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="perNum111" class="col-md-3 control-label">Personnel Number:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Personnel_Number}} type="text" name="perNum111" id="perNum111" [(ngModel)]="employee.Personnel_Number"
+									 disabled/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="wp111" class="col-md-3 control-label">Workday Position Id:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Workday_Position_Id}} type="text" name="wp111" id="wp111" [(ngModel)]="employee.Workday_Position_Id"
+									 disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="seatLoc111" class="col-md-3 control-label">Seat Location:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Seat_Location}} type="text" name="seatLoc111" id="seatLoc111" [(ngModel)]="employee.Seat_Location"
+									/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="dOh111" class="col-md-3 control-label">Date of Hire:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Hire_Date}} type="text" name="dOh111" id="dOh111" [(ngModel)]="employee.Hire_Date"
+									 disabled/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="tDate111" class="col-md-3 control-label">Termination Date:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Termination_Date}} type="text" name="tDate111" id="tDate111" [(ngModel)]="employee.Termination_Date"
+									 disabled/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="rptsTo111" class="col-md-3 control-label">Reports To:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Reports_To}} type="text" name="rptsTo111" id="rpts111" [(ngModel)]="employee.Reports_To"
+									 disabled/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="shortName111" class="col-md-3 control-label">Shortname:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Shortname}} type="text" name="shortName111" id="shortName111" [(ngModel)]="employee.Shortname"
+									 disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="oPhone111" class="col-md-3 control-label">Office Phone:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Office_Phone_Number}} type="text" name="oPhone111" id="oPhone111" [(ngModel)]="employee.Office_Phone_Number"
+									 disabled />
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="mobNumber111" class="col-md-3 control-label">Mobile Number:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Mobile_Phone_Number}} type="text" name="mobNumber111" id="mobNumber111" [(ngModel)]="employee.Mobile_Phone_Number"
+									/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="compEmail111" class="col-md-3 control-label">Company Email:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Company_Email}} type="text" name="compEmail111" id="compEmail111" [(ngModel)]="employee.Company_Email"
+									 disabled/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="perEmail111" class="col-md-3 control-label">Personal Email:</label>
+								<div class="col-md-8">
+									<input class="form-control" value= {{employee.Personal_Email}} type="text" name="perEmail111" id="perEmail111" [(ngModel)]="employee.Personal_Email"
+									/>
 								</div>
 							</div>
 						</div>
 
-							
-						<div class="form-group">
-							<label for="last_Name" class="cols-sm-2 control-label">Contact Last Name:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="last_Name" id="last_Name"  [readonly]="true" />
-								</div>
-							</div>
-						</div>
-					
-				
-						<div class="form-group">
-							<label for="Position" class="cols-sm-2 control-label">Contact Position:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="Position" id="Position"  [readonly]="true" />
-								</div>
-							</div>
-						</div>
-					
-						<div class="form-group">
-							<label for="prfContactMethod" class="cols-sm-2 control-label">Contact Preferred Method:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="prfContactMethod" id="prfContactMethod"  [readonly]="true" />
-								</div>
-							</div>
-						</div>
-					
-				</div>
-				
-				<div class="modal-body" id = "projectChargeCodeForm">
-		<li class = "pdlItem"><h5 id = "ChargeCodeDetailsHead">Charge Code Overview</h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				
-			
-						<div class="form-group">
-							<label for="prjChargeCode" class="cols-sm-2 control-label">Project Charge Code:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="prjChargeCode" id="prjChargeCode"  [readonly]="true"[placeholder]="currentproject?.projectCode"/>
-								</div>
-							</div>
-						</div>
-					
 
-						<div class="form-group">
-							<label for="Description" class="cols-sm-2 control-label">Charge Code Description:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="Description" id="Description"  [readonly]="true" />
-								</div>
-							</div>
-						</div>
-					
-
-						<div class="form-group">
-							<label for="chrgeCodeSdate" class="cols-sm-2 control-label">Charge Code Start Date:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chrgeCodeSdate" id="chrgeCodeSdate"  [readonly]="true" />
-								</div>
-							</div>
-						</div>
-					
-
-						<div class="form-group">
-							<label for="chrgeCodeEDate" class="cols-sm-2 control-label">Charge Code End Date:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="chrgeCodeEDate" id="chrgeCodeEDate"  [readonly]="true" />
-								</div>
-							</div>
-						</div>
-				</div>
-				<div class="modal-body" id = "EmployeeForm1111">
-						<li class = "pdlItem"><h5 id = "empForm">Employee Overview </h5></li>
-					<li class = "pdlItem"><a type = "button" (click) = "enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
-				
-        <div class="form-group">
-          <label for="fName111" class="col-lg-3 control-label">First name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value= {{employee.First_Name}} type="text" name="fName111" id="fName111" [(ngModel)]="employee.First_Name" disabled />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="lName111" class="col-lg-3 control-label">Last name:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value= {{employee.Last_Name} type="text" name="lName111" id="lName11" [(ngModel)]="employee.Last_Name"  disabled />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="dOb111" class="col-lg-3 control-label">Date of Birth:</label>
-          <div class="col-lg-8">
-            <input class="form-control" value= {{employee.Date_of_Birth}} type="text" name="dOb111" id="dOb111" [(ngModel)]="employee.Date_of_Birth" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="perNum111" class="col-md-3 control-label">Personnel Number:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Personnel_Number}} type="text" name="perNum111" id="perNum111" [(ngModel)]="employee.Personnel_Number"  disabled/>
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="wp111" class="col-md-3 control-label">Workday Position Id:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Workday_Position_Id}} type="text" name="wp111" id="wp111" [(ngModel)]="employee.Workday_Position_Id" disabled />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="seatLoc111" class="col-md-3 control-label">Seat Location:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Seat_Location}} type="text" name="seatLoc111" id="seatLoc111" [(ngModel)]="employee.Seat_Location" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="dOh111" class="col-md-3 control-label">Date of Hire:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Hire_Date}} type="text" name="dOh111" id="dOh111" [(ngModel)]="employee.Hire_Date"  disabled/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="tDate111" class="col-md-3 control-label">Termination Date:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Termination_Date}} type="text" name="tDate111" id="tDate111" [(ngModel)]="employee.Termination_Date"  disabled/>
-          </div>
-        </div>
- 		<div class="form-group">
-          <label for="rptsTo111" class="col-md-3 control-label">Reports To:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Reports_To}} type="text" name="rptsTo111" id="rpts111" [(ngModel)]="employee.Reports_To"  disabled/>
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="shortName111" class="col-md-3 control-label">Shortname:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Shortname}} type="text" name="shortName111" id="shortName111" [(ngModel)]="employee.Shortname" disabled />
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="oPhone111" class="col-md-3 control-label">Office Phone:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Office_Phone_Number}} type="text" name="oPhone111" id="oPhone111" [(ngModel)]="employee.Office_Phone_Number" disabled />
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="mobNumber111" class="col-md-3 control-label">Mobile Number:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Mobile_Phone_Number}} type="text" name="mobNumber111" id="mobNumber111" [(ngModel)]="employee.Mobile_Phone_Number" />
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="compEmail111" class="col-md-3 control-label">Company Email:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Company_Email}} type="text" name="compEmail111" id="compEmail111" [(ngModel)]="employee.Company_Email"  disabled/>
-          </div>
-        </div>
-         <div class="form-group">
-          <label for="perEmail111" class="col-md-3 control-label">Personal Email:</label>
-          <div class="col-md-8">
-            <input class="form-control" value= {{employee.Personal_Email}} type="text" name="perEmail111" id="perEmail111" [(ngModel)]="employee.Personal_Email" />
-          </div>
-        </div>
-							</div>
-			
-				
 						<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click) = "normalizeProjectForm()">Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click)="normalizeProjectForm()">Close</button>
 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="modal fade bs-example-modal-lg" bsModal #allocatedHours="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-label="allocatedHrsLbl" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">{{Employee_ID}}</h4>
+       
+      </div>
+      <div class="modal-body">
+	
+				<h3></h3>
+      
+				</div>
+				<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="allocatedHours.hide()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
 		</div>
   </div>
 </div>
-    </div>
-</div>
 
-</div>
+</div>-->
 
 
- 
-	<!--<body>
+
+<!--<body>
 		<div class="container">
 			<div class="row main">
 				<div class="main-login main-center">
@@ -733,4 +815,3 @@
 
 		 <!--
 	</body>-->
-
