@@ -272,13 +272,16 @@ export class ProjectsComponent implements OnInit {
 
         //Remove "Contacts" Tab
         document.getElementById( "projectContactForm" ).style.display = "none";
+   
+            //Remove "employees" Tab
+        document.getElementById( "EmployeeForm1111" ).style.display = "none";
+   
     }
 
     public showEmployee() {
-        this.removeElements();
-
-        document.getElementById( "menuEmployee" ).style.border = "2px solid white";
-        document.getElementById( "menuEmployee" ).style.backgroundColor = "#b6e3fd";
+        
+        document.getElementById( "menuEmployees" ).style.border = "2px solid white";
+        document.getElementById( "menuEmployees" ).style.backgroundColor = "#b6e3fd";
 
         document.getElementById( "menuProjectDetails" ).style.border = "none";
         document.getElementById( "menuProjectDetails" ).style.backgroundColor = "lightskyblue";
@@ -288,9 +291,11 @@ export class ProjectsComponent implements OnInit {
 
         document.getElementById( "menuChargeCodes" ).style.border = "none";
         document.getElementById( "menuChargeCodes" ).style.backgroundColor = "lightskyblue";
-
+this.removeElements();
+this.projectDetailsForm = "EmployeeForm1111";
+        document.getElementById( "EmployeeForm1111" ).style.display = "block";
         //remove
-        document.getElementById( "projectChargeCodeForm2" ).style.display = "block";
+        //document.getElementById( "projectChargeCodeForm2" ).style.display = "block";
     }
 
     public showContacts() {
@@ -303,8 +308,8 @@ export class ProjectsComponent implements OnInit {
         document.getElementById( "menuProjectDetails" ).style.border = "none";
         document.getElementById( "menuProjectDetails" ).style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuEmployee" ).style.border = "none";
-        document.getElementById( "menuEmployee" ).style.backgroundColor = "lightskyblue";
+        document.getElementById( "menuEmployees").style.border = "none";
+        document.getElementById( "menuEmployees" ).style.backgroundColor = "lightskyblue";
         this.removeElements();
         this.projectDetailsForm = "projectContactForm";
         document.getElementById( "projectContactForm" ).style.display = "block";
@@ -326,8 +331,8 @@ export class ProjectsComponent implements OnInit {
         document.getElementById( "menuContacts" ).style.border = "none";
         document.getElementById( "menuContacts" ).style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuEmployee" ).style.border = "none";
-        document.getElementById( "menuEmployee" ).style.backgroundColor = "lightskyblue";
+        document.getElementById( "menuEmployees" ).style.border = "none";
+        document.getElementById( "menuEmployees" ).style.backgroundColor = "lightskyblue";
 
         this.removeElements();
         this.projectDetailsForm = "projectChargeCodeForm";
@@ -353,8 +358,8 @@ export class ProjectsComponent implements OnInit {
         document.getElementById( "menuContacts" ).style.border = "none";
         document.getElementById( "menuContacts" ).style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuEmployee" ).style.border = "none";
-        document.getElementById( "menuEmployee" ).style.backgroundColor = "lightskyblue";
+        document.getElementById( "menuEmployees" ).style.border = "none";
+        document.getElementById( "menuEmployees" ).style.backgroundColor = "lightskyblue";
 
         document.getElementById( "projectDetailsForm" ).style.display = "block";
 
