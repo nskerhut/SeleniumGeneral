@@ -1,3 +1,6 @@
-<p>
-  employee-handle works!
-</p>
+<div class="handle">
+	<span title="edit employee" class="edit-glyphicon glyphicon-cog" (click)="onEditClick()"></span>
+	<div class="name-block">{{employee.First_Name}} {{employee.Last_Name}}</div>
+	<div class="allocation-block">{{employee.allocatedHours}}</div>
+
+</div>

@@ -6,7 +6,7 @@ import { Project } from '../../model/project';
 import { EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DndModule } from 'ng2-dnd';
-
+import { EmployeeHandleComponent } from '../employee-handle/employee-handle.component';
 
 @Component( {
     selector: 'app-projects, demo-modal-static',
