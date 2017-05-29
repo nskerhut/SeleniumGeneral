@@ -108,19 +108,24 @@ export class ProjectsComponent implements OnInit {
         let projectTo: Project = project;
         let projectFrom: Project = this.projectFrom;
 
+        if(projectTo.employees.filter(x => x.Employee_Id == projectEmployee.Employee_Id).length > 0)
+            return;
+        
         console.log( "adding %s to %s", projectEmployee.First_Name, project.Project_Name );
         
         //Remove from previous project, employee list is not a project.
         if ( this.projectFrom != null ) {
             masterEmployee.allocatedHours = 0;
-            this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id != projectEmployee.Employee_Id );
+            this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id !== projectEmployee.Employee_Id );
             console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
         }
         
         //Update the Employee Allocation
         //TODO Set a real amount of time
         projectEmployee.allocatedHours = 4;
-        projectTo.employees.push(projectEmployee);
+        
+        
+            projectTo.employees.push(projectEmployee);
         
         
         //Reset Allocation in employeeList;
@@ -158,10 +163,21 @@ export class ProjectsComponent implements OnInit {
         return this.projectService.getAllProjects().subscribe( ress => {
             this.projectList = ress;
             this.projectList.forEach(x =>{ if(x.employees == null) x.employees = new Array<Employee>()});
-	    this.getAssignedForEachProject();
+	    //this.getAssignedForEachProject();
         } );
     }
-
+    public getAllocatedEmployees() {
+        console.log( "getting list of allocated employees" );
+        /*return this.projectService.getAllocatedEmployees().subscribe( ress => {
+            ress.forEach(x => {
+                this.projectList.find(y => y.projectId == 0 )
+                    .employees.push(x);
+            })
+        
+        } );
+        */
+        
+    }
     public getAssignedForEachProject() {
         this.projectList.forEach((proj, index) => {
             this.getAllAssignedEmployees(proj.projectId, index);
@@ -187,6 +203,7 @@ export class ProjectsComponent implements OnInit {
     ngOnInit() {
         this.getAllEmployees();
         this.getListOfProject();
+        this.getAllocatedEmployees();
     }
     public enableForm() {
         //Enables fields in project details form.
