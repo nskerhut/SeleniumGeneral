@@ -1,25 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,900|Raleway:800');
 
-body{
+body  {
   margin: 0;
   padding: 0;
   border: none;
   outline: none;
 }
 
-.center{
+.center {
   text-align: center;
 }
-.left{
+
+.left {
   display: inline-block;
   text-align: left;
   padding-bottom: 5%;
 }
 
-.spacing{
+.spacing {
     letter-spacing: 5px;
 }
+
 #wrapper {
 	/* Center wrapper perfectly */
 	width: 300px;
@@ -27,94 +29,87 @@ body{
 	margin: 15% auto;
 }
 
-.buttons{
+.buttons {
   padding-top: 5%;
   padding-bottom: 10%;
 }
-.form-item{
+
+.form-item {
   padding: 5px 5px;
 
 }
 
-.input{
+.input {
 padding: 10px;
 width: 200px;
 font-size: 12px;
 }
-.btn{
+
+.btn {
   display: inline-block;
   font-size: 16px;
-
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   padding: 12px 24px;
   border-radius: 2px;
 }
-.btn-yes{
 
+.btn-yes {
   background-color: #0ed8cf;
   color: #081072;
-  border: 2px solid #555555;
-
 }
+
 .btn-yes:hover {
-  background-color: #555555;
-  color: white;
+  background-color: #081072;
+  color: #0ed8cf;
 }
-.btn-no{
 
+.btn-no {
   background-color: white;
   color: rgb(255, 69, 69);
   border: 2px solid rgb(255, 69, 69);
-
 }
+
 .btn-no:hover {
   background-color: rgb(255, 69, 69);
   color: white;
 }
 
-
-
 .login-form {
 	width: 300px;
 	margin: 0 auto;
 	position: relative;
-
 	background: #f3f3f3;
 	border: 1px solid #fff;
 	border-radius: 5px;
-
 	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-
 }
-.log-header{
+
+.log-header {
   padding: 10% 0%;
 	text-shadow: 0 1px 3px rgba(0,0,0,0.5)
 }
 
-input#username{
+input#username {
  background-image: url('/assets/image/user.png');
  background-repeat: no-repeat;
  text-indent: 20px;
  background-size: 15px;
  background-position:6px 8.5px;
-
 }
 
-input#username:focus{
+input#username:focus {
  background-image:none;
 }
 
-input#password{
+input#password {
  background-image: url('/assets/image/lock.png');
  background-repeat: no-repeat;
  text-indent: 20px;
  background-size: 15px;
  background-position:6px 8.5px;
-
 }
 
-input#password:focus{
+input#password:focus {
  background-image:none;
-
 }

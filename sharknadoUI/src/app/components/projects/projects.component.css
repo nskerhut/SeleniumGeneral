@@ -1,8 +1,4 @@
-
-/*DnDCSS*/
-element {
-}
-#AddProj{
+#AddProj {
     padding: 10px;
     border-width:5px;  
     border-style:outset;
@@ -14,56 +10,63 @@ element {
     cursor: pointer;
     border-radius: 8px;
 }
-.panel-success {
-    border-color: #3c9a5f;
 
+.panel-success {
+    border: none;
 }
-.panel-info{
+
+.panel-success .panel-heading {
+    background-color: #0ed8cf;
+    color: #081072;
+}
+
+.panel-info {
     padding: 10px;
     border-width:0px;  
     border-style:outset;
-    border-color: lightskyblue;
-    
+    border: none;
 }
-.panel-heading{
-    padding: 10px;
-      margin-top: 5px;
-    background-color: #0ed8cf;
-    color: #081072;      
 
+.panel-heading {
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #081072;
+    color: white;      
+    word-wrap: break-word;
 }
+
 #Emppanel {
     min-height:16vh;
     max-height: Auto;
     overflow: scroll;
     background-color: #ffffff;
     border-radius: 0;
-    border: 1px solid #3c9a5f;
+    border: 1px solid #0ed8cf;
 }
+
 #Projpanel {
     height:15vh;
     overflow: scroll;
     background-color: #ffffff;
     border-radius: 0;
-    border: 1px solid lightskyblue;
+    border: 1px solid #081072;
     margin-bottom: 10px;   
 }
 
-.list-group-item:active{ 
-    background-color: lightskyblue;
-}
 .edit-employee {
 	float:right;
 }    
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 .glyphicon {
     position: relative;
     vertical-align: middle;
-    float:right;
+    float: right;
     top: 1px;
     display: inline-block;
     font-family: 'Glyphicons Halflings';
@@ -74,12 +77,7 @@ element {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 /*-----------------------------------------*/
-
-
-
 
 /*Add new project form*/
 
@@ -89,29 +87,26 @@ element {
     -webkit-overflow-scrolling: touch;
 }
 
-.main{
- 	margin:50px 15px;
-     
+.main {
+ 	margin:50px 15px; 
 }
 
-.modal-content
-{
+.modal-content {
     margin-left: -65%;
     width: 227%;
     background-color: white;
 }
 
-hr{
+hr {
 	width: 10%;
 	color: #fff;
 }
 
-.form-group{
+.form-group {
 	margin-bottom: 5px;
-    
 }
 
-label{
+label {
 	margin-bottom: 5px;
 }
 
@@ -120,7 +115,6 @@ input::-webkit-input-placeholder {
     font-size: 11px;
     padding-top: 3px;
 }
-
 
 .form-control {
     height: auto!important;
@@ -142,30 +136,38 @@ padding: 8px 12px !important;
     box-shadow: 0 1px #fff inset, 0 1px #ddd;
     background: #f5f5f5;
 }
-.projectDetailsList{
+
+.projectDetailsList {
 	list-style-type: none; 
 }
-.pdlItem{
+
+.pdlItem {
 	display: inline;
 }
 
-#projectDetailsMenu{
+#projectDetailsMenu {
 	list-style-type: none;
 	margin:0;
 	/*padding:0;*/
 	overflow: hidden;
-	background-color: lightskyblue;
+	background-color: #081072;
 	cursor: pointer;
 	padding: 10px;
-    border-width:5px;  
-    border-style:outset;
     margin-top: 5px;
-    border-color: #00bada;
+    border-color: none;
 }
-.projectDetailsMenuItem{
+
+.projectDetailsMenuItem a {
+    background-color: #081072;
+    color: white;
+    border-bottom: none;
+}
+
+.projectDetailsMenuItem {
 	float: left;
 }
-.projectDetailsMenuItem a{
+
+.projectDetailsMenuItem a {
 	display: inline-block;
 	text-align: center;
 	padding: 14px 16px;
@@ -176,34 +178,42 @@ padding: 8px 12px !important;
 	background-color: #b6e3fd;
 	border: 2px solid white;
 }*/
-.none{
+
+.none {
 	display: none;
 }
-#projectContactForm{
+
+#projectContactForm {
 	display: none;
 }
-#projectChargeCodeForm{
+
+#projectChargeCodeForm {
 	display: none;
 }
-#projectDetailsHead{
+
+#projectDetailsHead {
 	margin-left: 0;
 	padding-left: 0;
 }
-.calendar{
+
+.calendar {
 	margin-right: 555px;
 }
-#splitRightSide{
+
+#splitRightSide {
 	border-left: 1px solid black;
 	width: 300px;
 	height: 400px;
 	margin-top: 0;
 }
-#splitLeftSide{
+
+#splitLeftSide {
 	border-right: 1px solid black;
 	width: 300px;
 	height: 400px;
 }
-#chargecode2:hover{
+
+#chargecode2:hover {
 	cursor: auto;
 }
 
@@ -211,5 +221,3 @@ padding: 8px 12px !important;
     height: 300px;
     width: 300px;
 }
-
-

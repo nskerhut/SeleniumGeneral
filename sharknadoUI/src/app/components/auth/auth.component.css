@@ -1,11 +1,12 @@
-.form-item{
+.form-item {
   padding-top: 30px;
 }
-.dropdown{
+
+.dropdown {
   text-align: center;
 }
 
-select{
+select {
 text-indent:50px;
 font-size: 9pt;
 -webkit-appearance: none;
@@ -13,34 +14,31 @@ font-size: 9pt;
 appearance: none;
 padding: 10px 0;
 width: 100%;
-
-
 }
-select#auth{
+
+select#auth {
  background-image: url('/assets/image/dropdown.png');
  background-repeat: no-repeat;
-
  background-size: 15px;
  background-position:10px 10px;
-
 }
-input#token{
+
+input#token {
   text-align: center;
 }
+
 select#auth:focus {
 
  background-image:none;
 }
 
-.btn:hover{
+.btn:hover {
   background-color: white;
   border-radius:25px;
   color: black;
 }
 
-
-
-.btn-select{
+.btn-select {
   display: inline-block;
   -webkit-transition-duration: 1s;
   transition-duration: 1s;
@@ -50,6 +48,7 @@ select#auth:focus {
   border: 2px solid #555555;
 
 }
+
 .btn-select:hover {
   background-color: white;
   color: black;
