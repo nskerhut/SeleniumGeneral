@@ -1,3 +1,16 @@
 small{
-	color: #0ed8cf;
+	color: #081072;
+}
+h1{
+	color: #081072;
+}
+.page-header{
+	color: #081072;
+	border-bottom: solid #0ed8cf;
+	
+}
+footer{
+	border-top: solid #0ed8cf;
+	font-size: .82em;
+	
 }
