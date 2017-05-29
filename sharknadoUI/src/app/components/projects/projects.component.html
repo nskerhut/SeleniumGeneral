@@ -13,7 +13,7 @@
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
 							<div>
 								<div>{{employee.First_Name}} {{employee.Last_Name}}</div>
-								<span class="glyphicon glyphicon-menu-hamburger" (click)="setEmployee(employee); staticModal1.show()"></span>
+								<span class="glyphicon glyphicon-cog" (click)="setEmployee(employee); staticModal1.show()"></span>
 								<div>{{employee.allocatedHours}}</div>
 
 							</div>
@@ -41,7 +41,7 @@
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
 										<div>{{employee.First_Name}} {{employee.Last_Name}}</div>
 										<div>{{employee.allocatedHours}}</div>
-										<span class="glyphicon glyphicon-menu-hamburger">{{employee.Employee_ID}}</span>
+										<span class="glyphicon glyphicon-cog">{{employee.Employee_ID}}</span>
 									</li>
 								</ul>
 							</div>
