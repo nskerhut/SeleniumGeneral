@@ -29,6 +29,7 @@ element {
     padding: 10px;
       margin-top: 5px;
     background-color: #0ed8cf;
+word-wrap: break-word;
     color: #081072;      
 
 }
