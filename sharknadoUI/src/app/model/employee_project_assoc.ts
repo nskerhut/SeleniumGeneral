@@ -1,11 +1,9 @@
-import { Output, Input } from '@angular/core';
 import { Employee } from '../model/employee';
 import { Project } from '../model/project';
 
 
 export class EmployeeProjectAssoc {
     employee: Employee;
-    @Input("Project")
     project: Project;
     Start_Date: Date;
     End_Date: Date;
