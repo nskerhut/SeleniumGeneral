@@ -1,16 +1,17 @@
-small{
+small {
 	color: #081072;
 }
-h1{
+
+h1 {
 	color: #081072;
 }
-.page-header{
+
+.page-header {
 	color: #081072;
 	border-bottom: solid #0ed8cf;
-	
 }
-footer{
+
+footer {
 	border-top: solid #0ed8cf;
 	font-size: .82em;
-	
 }

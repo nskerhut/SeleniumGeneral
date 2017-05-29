@@ -182,13 +182,19 @@ export class ProjectsComponent implements OnInit {
 
 
     }
-    public getAllAssignedEmployees( pid: number, index: number ) {
-        return this.projectService.getAssignedEmployeesToProjectId( pid ).subscribe( ress => {
+    public getAssignedForEachProject() {
+        this.projectList.forEach((proj, index) => {
+            this.getAllAssignedEmployees(proj.projectId, index);
+        });
+    }
+
+    public getAllAssignedEmployees(pid: number, index: number) {
+        return this.projectService.getAssignedEmployeesToProjectId(pid).subscribe(ress => {
             this.assignedEmployees = ress;
             this.projectList[index].employees = this.assignedEmployees;
-            console.log( "project list updated", this.projectList );
-        } );
-    }
+            console.log("project list updated", this.projectList);
+    });
+}
 
     constructor(
         private projectService: ProjectService,

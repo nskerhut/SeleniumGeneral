@@ -1,29 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,900|Raleway:800');
 
-body{
+body {
   margin: 0;
   padding: 0;
   border: none;
   outline: none;
 }
-.off{
+
+.off {
   margin-left: 145px;
 }
 
-.top{
+.top {
   padding-top: 1%;
 }
-.bottom{
+
+.bottom {
   padding-bottom: 1%;
 }
-.spacing{
-  letter-spacing: 3pt;
-  
-  
+
+.spacing {
+  letter-spacing: 3pt; 
 }
-.navbar{
+
+.navbar {
 	background-color: #081072;
-	
-	
+}
+
+.alert-info {
+  background-color: #0ed8cf;
+  color: #081072;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #0ed8cf;
+  color: #081072;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #081072;
+  color: #0ed8cf;
+}
+
+.btn-default {
+  background-color: #e1e6ec;
+  color: #081072;
+  border: none;
+}
+
+.btn-default:hover {
+  background-color: #081072;
+  color: white;
+  border: none;
 }
