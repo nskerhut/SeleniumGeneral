@@ -159,15 +159,17 @@ export class ProjectsComponent implements OnInit {
         console.log( "getting list of projects" )
 
         return this.projectService.getAllProjects().subscribe( ress => {
+            this.getAllocatedEmployees();
             this.projectList = ress;
             this.projectList.forEach( x => { if ( x.employees == null ) x.employees = new Array<Employee>() } );
+            
         } );
     }
     public getAllocatedEmployees() {
         console.log( "getting list of allocated employees" );
         return this.projectService.getAllocatedEmployees().subscribe( ress => {
             ress.forEach( x => {
-                console.log( "Placing " + x.employee.First_Name + " in " + x.project.Project_Name );
+                console.log( "Placing " + x.employee.First_Name + " in " + x.project.projectId );
 
                 this.projectList.filter( y => y.projectId == x.project.projectId )
                     .forEach( z => {
@@ -199,7 +201,7 @@ export class ProjectsComponent implements OnInit {
     ngOnInit() {
         this.getAllEmployees();
         this.getListOfProject();
-        this.getAllocatedEmployees();
+        //this.getAllocatedEmployees();
     }
     public enableForm() {
         //Enables fields in project details form.
