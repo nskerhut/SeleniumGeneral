@@ -3,7 +3,7 @@ import { Employee } from '../model/employee';
 import { Project } from '../model/project';
 
 
-export class EEmployeeProjectAssoc {
+export class EmployeeProjectAssoc {
     Employee: Employee;
     Project: Project;
     Start_Date: Date;
