@@ -7,6 +7,7 @@ import { EventEmitter, Input, Output } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DndModule } from 'ng2-dnd';
 import { EmployeeHandleComponent } from '../employee-handle/employee-handle.component';
+import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 
 @Component( {
     selector: 'app-projects, demo-modal-static',
@@ -22,6 +23,7 @@ export class ProjectsComponent implements OnInit {
 
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
+    allocatedEmployees:EmployeeProjectAssoc[];
     public currentproject: Project;
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
@@ -165,9 +167,13 @@ export class ProjectsComponent implements OnInit {
             
         } );
     }
+    
+    
     public getAllocatedEmployees() {
         console.log( "getting list of allocated employees" );
         return this.projectService.getAllocatedEmployees().subscribe( ress => {
+            this.allocatedEmployees = ress;
+            
             ress.forEach( x => {
                 console.log( "Placing " + x.employee.First_Name + " in " + x.project.projectId );
 
@@ -209,61 +215,7 @@ export class ProjectsComponent implements OnInit {
         this.getListOfProject();
         //this.getAllocatedEmployees();
     }
-    public enableForm() {
-        //Enables fields in project details form.
-
-        //if statement required to determine which form id is active
-
-
-
-        //if(document.getElementById("projectDetailsForm").style.display == "block"){
-        if ( this.projectDetailsForm == "projectDetailsForm" ) {
-            var name2 = <HTMLInputElement>document.getElementById( "name2" );
-            var chargecode = <HTMLInputElement>document.getElementById( "chargecode2" );
-            var manager = <HTMLInputElement>document.getElementById( "manager2" );
-            var email = <HTMLInputElement>document.getElementById( "email2" );
-
-            if ( name2.readOnly == true ) {
-                name2.readOnly = false;
-                //chargecode.readOnly=false;
-                chargecode.disabled = false;
-                manager.readOnly = false;
-                email.readOnly = false;
-            } else {
-                name2.readOnly = true;
-                chargecode.readOnly = true;
-                manager.readOnly = true;
-                email.readOnly = true;
-            }
-        }
-        else if ( this.projectDetailsForm == "projectContactForm" ) {
-            var contactName = <HTMLInputElement>document.getElementById( "contactName" );
-            var contactPosition = <HTMLInputElement>document.getElementById( "contactPosition" );
-            var preferredContact = <HTMLInputElement>document.getElementById( "preferredContact" );
-            var altContact = <HTMLInputElement>document.getElementById( "altContact" );
-
-            if ( contactName.readOnly == true ) {
-                contactName.readOnly = false;
-                contactPosition.readOnly = false;
-                preferredContact.readOnly = false;
-                altContact.readOnly = false;
-            } else {
-                contactName.readOnly = true;
-                contactPosition.readOnly = true;
-                preferredContact.readOnly = true;
-                altContact.readOnly = true;
-            }
-        }
-        else if ( this.projectDetailsForm == "projectChargeCodeForm" ) {
-
-        }
-        else {
-            console.log( "Error @ projects.component.ts on line 112.  Broken pencil icon" );
-        }
-
-
-    }
-    public setFieldReadOnly() {
+       public setFieldReadOnly() {
         //projectDetailsForm
         var name2 = <HTMLInputElement>document.getElementById( "name2" );
         var chargecode = <HTMLInputElement>document.getElementById( "chargecode2" );
@@ -424,6 +376,10 @@ export class ProjectsComponent implements OnInit {
     public showProjectModal( projectId: number ) {
         this.projectService.getProjectById( projectId ).subscribe( ress => {
             this.currentproject = ress;
+            this.currentproject.employees = Array<Employee>();
+            this.allocatedEmployees
+                .filter(x => x.project.projectId == this.currentproject.projectId)
+                .forEach(y => this.currentproject.employees.push(y.employee));
             console.log( "Received Project %s", this.currentproject.Project_Name );
         } );
     }
