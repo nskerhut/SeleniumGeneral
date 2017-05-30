@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { Employee } from '../model/employee';
 import { Project } from '../model/project';
 import { EmployeeProjectAssoc } from '../model/employee_project_assoc';
+import { ChargeCode } from '../model/chargecode';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -59,6 +60,16 @@ export class ProjectService {
             .map(( ress: Response ) => <Array<Project>>ress.json() )
             .catch( this.handleError );
     }
+     public getChargeCode (project_Id:number): Observable <Array<ChargeCode>> {
+           	let headers = new Headers({ "Content-Type": "application/json"});
+		let options = new RequestOptions({headers: headers});
+       console.log("Retrieving Charge Code List.")
+       return this.http.post(this.baseURL+'charge_code/get_charge_code'
+               ,JSON.stringify({"projectId": project_Id}),options)
+               
+       .map((ress: Response) => <Array<ChargeCode>> ress.json())
+       .catch(this.handleError);
+   }
 
     public getAssignedEmployeesToProjectId( project_Id: number ): Observable<Array<Employee>> {
         let headers = new Headers( { "Content-Type": "application/json" } );
