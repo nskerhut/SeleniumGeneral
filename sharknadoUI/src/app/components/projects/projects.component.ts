@@ -8,6 +8,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DndModule } from 'ng2-dnd';
 import { EmployeeHandleComponent } from '../employee-handle/employee-handle.component';
 import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
+import { ChargeCode } from '../../model/chargecode';
+
 
 @Component( {
     selector: 'app-projects, demo-modal-static',
@@ -18,6 +20,7 @@ import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 export class ProjectsComponent implements OnInit {
     contactList: Array<string> = ["", "one", "two", "three", "four", "Add New Charge Code"];
     projectDetailsForm = "projectDetailsForm";
+    chargeCode: ChargeCode;
 
     projectFrom: Project;
 
@@ -156,6 +159,12 @@ export class ProjectsComponent implements OnInit {
         } );
 
     }
+    public getAllChargeCode(projectId:number) {
+        console.log( "getting all chargecode info" )
+        return this.projectService.getChargeCode(projectId).subscribe( ress => {
+            this.chargeCode = ress;
+            console.log( "charge code list ", this.chargeCode );
+  } );}
 
     public getListOfProject() {
         console.log( "getting list of projects" )
