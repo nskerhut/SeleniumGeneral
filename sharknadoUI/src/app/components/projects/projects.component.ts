@@ -74,8 +74,18 @@ export class ProjectsComponent implements OnInit {
     public setEmployee( employee: Employee ): void {
         this.employee = employee;
     }
-    moveEmployeeToEmployeeList( $event: any ) {
+    removeEmployeeFromProjectMenu($event:any){
+        let epa:EmployeeProjectAssoc = $event;
+        this.dragStart(epa.project, epa.employee);
+        this.moveEmployeeToEmployeeList(epa.employee);
+        
+    }
+    
+    moveEmployeeToEmployeeListDrop( $event: any ) {
         let newEmployee: Employee = $event.dragData;
+        this.moveEmployeeToEmployeeList(newEmployee);
+    }
+    private moveEmployeeToEmployeeList (newEmployee: Employee){
         let projectFrom: Project = this.projectFrom;
         let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == newEmployee.Employee_Id );
 

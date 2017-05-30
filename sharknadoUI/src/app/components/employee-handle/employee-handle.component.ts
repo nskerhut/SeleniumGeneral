@@ -3,6 +3,8 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, OnChanges  }
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { Employee } from '../../model/employee';
 import { Project } from '../../model/project';
+import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
+
 import { ContextMenuService } from 'ngx-contextmenu';
 
 @Component({
@@ -21,6 +23,13 @@ export class EmployeeHandleComponent implements OnInit {
     
     @Output()
     editClick = new EventEmitter<Employee>();
+    
+    @Output()
+    addEmployeeToProject = new EventEmitter<Employee>();
+    @Output()
+    removeEmployeeFromProject = new EventEmitter<EmployeeProjectAssoc>();
+    @Output()
+    modifyEmployeeTime = new EventEmitter<Employee>();
     
     @Input()
     context: string;
@@ -63,11 +72,18 @@ export class EmployeeHandleComponent implements OnInit {
    }
    
    private onAddToProject($event:any ) {
-       alert("Add to project placeholder!");
+       //alert("Add to project placeholder!");
+       this.addEmployeeToProject.emit(this.employee);
    }
    
    private onRemoveFromProject() {
-       alert("Remove from project placeholder!");
+       if(this.project != null){
+           let epa:EmployeeProjectAssoc = new EmployeeProjectAssoc(this.employee,this.project);
+           
+           this.removeEmployeeFromProject.emit(epa);
+           
+           //alert("Remove from project placeholder!");
+       }
    }
    
    private onModifyProject() {
