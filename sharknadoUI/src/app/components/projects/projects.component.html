@@ -28,7 +28,7 @@
 					<!--wrap each project in container-->
 					<div class="col-sm-2">
 						<div class="panel-info">
-							<div class="panel-heading" (click)="showProjectModal(project.projectId); projectEdit.show();">
+							<div class="panel-heading" (click)="showProjectModal(project.projectId); projectEdit.show(); normalizeProjectForm();">
 								{{project.Project_Name}}
 							</div>
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']">
@@ -522,7 +522,7 @@
 
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click)="normalizeProjectForm()">Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" >Close</button>
 
 						</div>
 					</div>
