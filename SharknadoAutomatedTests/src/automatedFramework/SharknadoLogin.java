@@ -1,6 +1,8 @@
 package automatedFramework;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class SharknadoLogin {
@@ -17,11 +19,15 @@ public class SharknadoLogin {
 		}
 		else if(browser == "firefox")
 		{
-			
+			System.setProperty("webdriver.gecko.driver", "C:\\Program Files\\Java\\seleniumDrivers\\geckodriver.exe");
+			driver = new FirefoxDriver();
+			return driver;
 		}
 		else if(browser == "chrome")
 		{
-			
+			System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Java\\seleniumDrivers\\chromedriver.exe");
+			driver = new ChromeDriver();
+			return driver;
 		}
 		else 
 		{

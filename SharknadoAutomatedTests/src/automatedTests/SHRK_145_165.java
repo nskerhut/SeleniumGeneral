@@ -33,13 +33,15 @@ public class SHRK_145_165
 		
 		//WebElement projBobYorel = driver.findElement(By.xpath("//div[@class = 'panel-info' and contains(.,'bob') ]//div[text() = 'Yorel Baker']"));
 		//WebElement avaEmployees = driver.findElement(By.xpath("//li[@class = 'list-group-item']"));
-		Builder.moveToElement(avaYorel).clickAndHold().moveToElement(projBob).release().build().perform();
-
+		Action test = Builder.dragAndDrop(driver.findElement(By.xpath("//li[@class = 'list-group-item']//div[text() = 'Yorel Baker']")), driver.findElement(By.xpath("//div[@class = 'panel-info' and contains(.,'bob') ]/div[@id = 'Projpanel']"))).build();
+		
+		test.perform();
+		
 		SharknadoLogin.sleep(3000);
 		
 		//dragEmployee.dragAndDrop(projBobYorel, avaEmployees).perform();
 		
-		driver.quit();
+		//driver.quit();
 		
 	
 	}
