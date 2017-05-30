@@ -6,8 +6,8 @@ import { Employee } from '../model/employee';
 import { Project } from '../model/project';
 import { EmployeeProjectAssoc } from '../model/employee_project_assoc';
 import { ChargeCode } from '../model/chargecode';
-
-import 'rxjs/add/operator/map';
+import {Contact} from '../model/contact';
+ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 
@@ -69,6 +69,18 @@ export class ProjectService {
                
        .map((ress: Response) => <Array<ChargeCode>> ress.json())
        .catch(this.handleError);
+   }
+
+   public getContact (project_Id:number): Observable <Array<Contact>> {
+           	let headers = new Headers({ "Content-Type": "application/json"});
+		let options = new RequestOptions({headers: headers});
+       console.log("Retrieving Contact List.")
+       return this.http.post(this.baseURL+'contact/project/get'
+               ,JSON.stringify({"projectId": project_Id}),options)
+               
+       .map((ress: Response) => <Array<Contact>> ress.json())
+       .catch(this.handleError);
+
    }
 
     public getAssignedEmployeesToProjectId( project_Id: number ): Observable<Array<Employee>> {

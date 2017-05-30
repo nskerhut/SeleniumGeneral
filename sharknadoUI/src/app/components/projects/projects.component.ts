@@ -9,6 +9,7 @@ import { DndModule } from 'ng2-dnd';
 import { EmployeeHandleComponent } from '../employee-handle/employee-handle.component';
 import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 import { ChargeCode } from '../../model/chargecode';
+import { Contact } from '../../model/contact';
 
 
 @Component( {
@@ -22,6 +23,11 @@ export class ProjectsComponent implements OnInit {
     projectDetailsForm = "projectDetailsForm";
     _chargeCode: ChargeCode [];
 
+
+    _contact: Contact [];
+
+
+
     projectFrom: Project;
     
     unassignedEmployeeList: Array<Employee> = [];
@@ -30,7 +36,7 @@ export class ProjectsComponent implements OnInit {
     public currentproject: Project;
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
-
+    
 
     addProject( name: string, manager: string, charge_code: string ) {
         let employees = new Array<Employee>();
@@ -157,8 +163,16 @@ export class ProjectsComponent implements OnInit {
             console.log( "employees ", this.unassignedEmployeeList );
 
         } );
-
     }
+
+      public getContacts(projectId:number) {
+        console.log( "getting all contacts info" )
+        return this.projectService.getContact(projectId).subscribe( ress => {
+            this._contact = ress;
+            console.log( "contacts", this._contact );
+  } );}
+
+
     public getAllChargeCode(projectId:number) {
         console.log( "getting all chargecode info" )
         return this.projectService.getChargeCode(projectId).subscribe( ress => {
