@@ -3,7 +3,7 @@ import { Project } from './project';
 export class ChargeCode {
    chargeCodeID?:number;
    chargeCode?:string;
-   chargeCodeDescr?: string;
+   chargeCodeDescription?: string;
    chargeCodeStartDate? : any;
    chargeCodeEndDate?: any;
 
@@ -11,12 +11,12 @@ export class ChargeCode {
     constructor(
     chargeCodeID?:number,
    chargeCode?:string,
-   chargeCodeDescr?: string,
+   chargeCodeDescription?: string,
    chargeCodeStartDate?: any,
    chargeCodeEndDate?: any, ) {
 
        this.chargeCodeID = chargeCodeID;
        this.chargeCode = chargeCode;
-       this.chargeCodeDescr = chargeCodeDescr
+       this.chargeCodeDescription = chargeCodeDescription
        this.chargeCodeStartDate = chargeCodeStartDate;
        this.chargeCodeEndDate = chargeCodeEndDate; }}

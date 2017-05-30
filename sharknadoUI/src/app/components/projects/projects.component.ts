@@ -20,10 +20,10 @@ import { ChargeCode } from '../../model/chargecode';
 export class ProjectsComponent implements OnInit {
     contactList: Array<string> = ["", "one", "two", "three", "four", "Add New Charge Code"];
     projectDetailsForm = "projectDetailsForm";
-    chargeCode: ChargeCode;
+    _chargeCode: ChargeCode [];
 
     projectFrom: Project;
-
+    
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
     allocatedEmployees:EmployeeProjectAssoc[];
@@ -162,8 +162,8 @@ export class ProjectsComponent implements OnInit {
     public getAllChargeCode(projectId:number) {
         console.log( "getting all chargecode info" )
         return this.projectService.getChargeCode(projectId).subscribe( ress => {
-            this.chargeCode = ress;
-            console.log( "charge code list ", this.chargeCode );
+            this._chargeCode = ress;
+            console.log( "charge code list ", this._chargeCode );
   } );}
 
     public getListOfProject() {
@@ -223,6 +223,7 @@ export class ProjectsComponent implements OnInit {
         this.getAllEmployees();
         this.getListOfProject();
         //this.getAllocatedEmployees();
+  
     }
        public setFieldReadOnly() {
         //projectDetailsForm
