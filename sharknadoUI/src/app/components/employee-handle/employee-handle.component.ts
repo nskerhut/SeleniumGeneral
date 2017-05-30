@@ -14,6 +14,10 @@ export class EmployeeHandleComponent implements OnInit {
 
     @Input()
     employee: Employee;
+    @Input() 
+    projectList: Project[];
+    
+    selectedProject: Project;
     
     @Output()
     editClick = new EventEmitter<Employee>();
@@ -36,6 +40,9 @@ export class EmployeeHandleComponent implements OnInit {
           this.isProject = true;
       else
           this.isProject = false;
+      
+      if(this.projectList == null)
+         this.projectList = new Array<Project>()
   }
   ngOnChanges(){
   }
@@ -55,7 +62,7 @@ export class EmployeeHandleComponent implements OnInit {
        $event.stopPropagation();
    }
    
-   private onAddToProject() {
+   private onAddToProject($event:any ) {
        alert("Add to project placeholder!");
    }
    

@@ -6,7 +6,13 @@
 </div>
  
 <context-menu #basicMenu>
-	<ng-template contextMenuItem (execute)="onAddToProject()" [visible]="!isProject">Add to Project</ng-template>
+	<ng-template contextMenuItem  [visible]="!isProject"(execute)="onAddToProject($event)">Add to Project 
+<!-- 	<select [(ngModel)]="selectedProject">
+		<option *ngFor="let p of projectList" [value]="p"> 
+			{{p.Project_Name}} 
+		</option>
+	</select> -->
+	</ng-template>
 	<ng-template contextMenuItem [visible]="isProject" (execute)="onRemoveFromProject()">Remove from project</ng-template>
 	<ng-template contextMenuItem (execute)="onModifyProject()"> Modify Time Allocation</ng-template> 
 </context-menu> 

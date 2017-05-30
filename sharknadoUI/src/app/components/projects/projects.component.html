@@ -11,7 +11,7 @@
 					<ul class="list-group">
 						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-						 	<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"></employee-handle> 
+						 	<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [projectList]="projectList"></employee-handle> 
 							
 						</li>
 					</ul>
