@@ -11,6 +11,11 @@
     border-radius: 8px;
 }
 
+#AddProj:hover {
+    background-color: #081072;
+    color: #0ed8cf;
+}
+
 .panel-success {
     border: none;
 }
