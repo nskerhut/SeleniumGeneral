@@ -1,7 +1,13 @@
 <div class="handle">
-	<span title="employee menu" class="menu-glyphicon glyphicon-menu-hamburger" ></span>
+	<span title="employee menu" class="menu-glyphicon glyphicon-menu-hamburger" (click)="onMenuClick($event, employee)"  ></span>
 	<span title="edit employee" class="edit-glyphicon glyphicon-cog" (click)="onEditClick()"></span>
 	<div class="name-block">{{employee.First_Name}} {{employee.Last_Name}}</div>
 	<div class="allocation-block">{{employee.allocatedHours}}</div>
-
 </div>
+ 
+<context-menu #basicMenu>
+	<ng-template contextMenuItem (execute)="onAddToProject()" [visible]="!isProject">Add to Project</ng-template>
+	<ng-template contextMenuItem [visible]="isProject" (execute)="onRemoveFromProject()">Remove from project</ng-template>
+	<ng-template contextMenuItem (execute)="onModifyProject()"> Modify Time Allocation</ng-template> 
+</context-menu> 
+

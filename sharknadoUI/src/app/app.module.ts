@@ -33,7 +33,6 @@ import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { EmployeeHandleComponent } from './components/employee-handle/employee-handle.component';
 import { ContextMenuModule } from 'ngx-contextmenu';
-import { EmployeeContextMenuComponent } from './components/employee-context-menu/employee-context-menu.component';
 
 const appRoutes: Routes = [
     {
@@ -100,7 +99,6 @@ const appRoutes: Routes = [
     EmployeeComponent,
     ProjectsComponent,
     EmployeeHandleComponent,
-    EmployeeContextMenuComponent,
 
   ],
   imports: [
