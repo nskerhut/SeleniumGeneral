@@ -20,7 +20,6 @@
 		</div>
 
 
-
 		<!-- Project Panels -->
 		<div class="row">
 			<div *ngFor="let project of projectList; let j = index;">
@@ -28,14 +27,14 @@
 					<!--wrap each project in container-->
 					<div class="col-sm-2">
 						<div class="panel-info">
-							<div class="panel-heading" (click)="showProjectModal(project.projectId); projectEdit.show(); getAllChargeCode(project.projectId)">
+							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); projectEdit.show(); normalizeProjectForm();">
 								{{project.Project_Name}}
 							</div>
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']">
 								<ul class="list-group">
 									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
-										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"></employee-handle> 
+										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"></employee-handle> 
 									</li>
 								</ul>
 							</div>
@@ -517,7 +516,7 @@
 
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" (click)="normalizeProjectForm()">Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" >Close</button>
 
 						</div>
 					</div>

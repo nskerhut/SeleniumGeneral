@@ -6,6 +6,20 @@
 .handle {
 	line-height:1;
 	padding:5px;
+	
+}
+.menu-glyphicon {
+	position:absolute;
+	float:left;
+	height:100%;
+	top:50%;
+	left:3%;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 .edit-glyphicon {
 	position:absolute;
@@ -25,8 +39,9 @@
 	display: block;
 	vertical-align:center;
 	word-wrap:break-word;
+	padding-left:5px;
 }
 .allocation-block {
 	display: block;
-	
+	padding-left:10px;
 }

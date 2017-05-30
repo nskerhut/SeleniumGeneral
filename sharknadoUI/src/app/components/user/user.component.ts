@@ -3,7 +3,7 @@ import { UserService } from './../../service/user.service';
 import {EventEmitter, Input, Output} from '@angular/core';
 import {  LoginComponent  } from '../login/login.component'
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { NgUploaderOptions } from 'ngx-uploader';
+import { UploadOutput, UploadInput, UploadFile, humanizeBytes } from 'ngx-uploader';
 
 @Component({
   selector: 'app-user',

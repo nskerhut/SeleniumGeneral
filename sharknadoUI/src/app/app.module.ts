@@ -25,14 +25,14 @@ import { ProjectService } from './service/projectservice.service';
 import { EmployeeComponent } from './components/employee/employee.component';
 import {Ng2DragDropModule} from "ng2-drag-drop";
 import { Component, NgZone, Inject } from '@angular/core';
-import { NgUploaderOptions } from 'ngx-uploader';
+
 import { ProjectsComponent } from './components/projects/projects.component';
 import { Employee } from './model/employee'
 import { Project } from './model/project'
 import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { EmployeeHandleComponent } from './components/employee-handle/employee-handle.component';
-
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 const appRoutes: Routes = [
     {
@@ -110,8 +110,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     ModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
-    
+    RouterModule.forRoot(appRoutes),
+    ContextMenuModule
   ],
   providers: [
               UserService, 
