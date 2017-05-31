@@ -29,8 +29,8 @@ export class EmployeeProjectAssoc {
         Is_Assigned?: number,
         allocatedHrs?: number) {
 
-        this.employee = employee;
-        this.project = project;
+        this.employee = Employee;
+        this.project = Project;
         this.Start_Date = Start_Date;
         this.End_Date = End_Date;
         this.Position_Description = Position_Description;
