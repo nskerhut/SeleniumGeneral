@@ -11,15 +11,9 @@
 					<ul class="list-group">
 						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-<<<<<<< HEAD
 							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"></employee-handle>
-
-=======
 						 	<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" 
-						 	(removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"
-						 	 ></employee-handle> 
-							
->>>>>>> f2fa050d317e0ba767e06fd6e6eba3091da29627
+						 	(removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"></employee-handle> 
 						</li>
 					</ul>
 				</div>
@@ -37,23 +31,19 @@
 							<div class="panel-heading" (click)="showProjectModal(project.projectId);">
 								{{project.Project_Name}}
 							</div>
-<<<<<<< HEAD
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="populateAllocatedHrs($event, project); allocatedHours.show()"
 							 [dropZones]="['employees-zone']">
 								<ul class="list-group">
 									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
 										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"></employee-handle>
-=======
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event, project);" [dropZones]="['employees-zone']">
 								<ul class="list-group">
 									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
 										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"
 											(addEmployeeToProject)="addEmployeeToProject($event,project)"
-											(removeEmployeeFromProject)="removeEmployeeFromProjectMenu($event)"
-										></employee-handle> 
->>>>>>> f2fa050d317e0ba767e06fd6e6eba3091da29627
+											(removeEmployeeFromProject)="removeEmployeeFromProjectMenu($event)"></employee-handle> 
 									</li>
 								</ul>
 							</div>
@@ -550,9 +540,8 @@
 
 </div>
 
-<button (click)="myModal.show()">open my modal</button>
-
-<allocated-hours-modal [currentEmployee]="employee" [currentProject]="currentProject"></allocated-hours-modal>
+<button type="button" (click)="allocatedHours.show();">Add</button>
+<add-modal #allocatedHours></add-modal>
 
 
 <!--<body>

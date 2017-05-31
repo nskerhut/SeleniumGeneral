@@ -38,9 +38,6 @@ export class ProjectsComponent implements OnInit {
     @ViewChild('projectEdit') public projectEdit : ModalDirective;
     @ViewChild('allocatedHours') public allocatedHours: ModalDirective;
 
-
-
-
     addProject( name: string, manager: string, charge_code: string ) {
         let employees = new Array<Employee>();
         // this.projectList.push(newProject);

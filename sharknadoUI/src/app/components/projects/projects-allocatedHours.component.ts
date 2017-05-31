@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 import { Employee } from '../../model/employee';
 import { Project } from '../../model/project';
@@ -13,6 +14,7 @@ import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 
 export class AllocatedHours {
 
+    @ViewChild('allocatedHours') public allocatedHours: ModalDirective;
     @Input()
     currentEmployee: Employee;
 
