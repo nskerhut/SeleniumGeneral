@@ -32,7 +32,7 @@
 							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); getContacts(project.projectId); projectEdit.show(); normalizeProjectForm();">
 								{{project.Project_Name}}
 							</div>
-							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event,project)" [dropZones]="['employees-zone']">
+							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="populateAllocatedHrs($event, project); allocatedHours.show()" [dropZones]="['employees-zone']">
 								<ul class="list-group">
 									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
