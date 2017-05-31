@@ -10,7 +10,7 @@ import { EmployeeHandleComponent } from '../employee-handle/employee-handle.comp
 import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 import { ChargeCode } from '../../model/chargecode';
 import { Contact } from '../../model/contact';
-import { AllocatedHours } from './projects-allocatedHours.component';
+import { AllocatedHours } from '../projects-allocatedHours/projects-allocatedHours.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
@@ -36,7 +36,7 @@ export class ProjectsComponent implements OnInit {
     assignedEmployees: Array<Employee> = [];
 
     @ViewChild('projectEdit') public projectEdit : ModalDirective;
-    @ViewChild('allocatedHours') public allocatedHours: ModalDirective;
+    @ViewChild('allocatedHours') public allocatedHours: AllocatedHours;
 
     addProject( name: string, manager: string, charge_code: string ) {
         let employees = new Array<Employee>();
@@ -123,6 +123,15 @@ export class ProjectsComponent implements OnInit {
             return;
 
         console.log( "adding %s to %s", projectEmployee.First_Name, project.Project_Name );
+        this.allocatedHours.show();
+        this.allocatedHours.currentEmployee = masterEmployee;
+        if (projectTo == null) {
+            this.allocatedHours.currentProjects = this.projectList;
+        }
+        else {
+            this.allocatedHours.currentProject = projectTo;
+        }
+        /// Split into new function call from modal save event.
 
         //Remove from previous project, employee list is not a project.
         if ( this.projectFrom != null ) {
@@ -456,6 +465,11 @@ export class ProjectsComponent implements OnInit {
     checkEmployeeHours(currentHours: number, newHours: number): boolean
     {
         return (currentHours + newHours) > 40;
+    }
+
+    recieveAllocatedHours(event){
+        let empProjModel = event;
+        console.log("This is what we recieved %s", empProjModel.employee.First_Name);
     }
 
 

@@ -20,23 +20,26 @@ export class EmployeeProjectAssoc {
     constructor(
         Employee: Employee,
         Project: Project,
-        Start_Date?: Date,
-        End_Date?: Date,
-        Position_Description?: string,
-        Labor_Category?: string,
-        Labor_Category_Certified_By?: string,
-        Is_Assigned?: number,
-        allocatedHrs?: number) {
+         Start_Date?: Date,
+         End_Date?: Date,
+         Position_Description?: string,
+         Labor_Category?: string,
+         Labor_Category_Certified_By?: string,
+         Is_Assigned?: number,
+         allocatedHrs?: number
+     ) {
 
         this.employee = Employee;
         this.project = Project;
-        this.Start_Date = Start_Date;
-        this.End_Date = End_Date;
-        this.Position_Description = Position_Description;
-        this.Labor_Category = Labor_Category;
-        this.Labor_Category_Certified_By = Labor_Category_Certified_By;
-        this.Is_Assigned = Is_Assigned;
-        this.allocatedHrs = allocatedHrs;
+         this.Start_Date = Start_Date;
+         this.End_Date = End_Date;
+         this.Position_Description = Position_Description;
+         this.Labor_Category = Labor_Category;
+         this.Labor_Category_Certified_By = Labor_Category_Certified_By;
+         this.Is_Assigned = Is_Assigned;
+         this.allocatedHrs = allocatedHrs;
+        
+        
 
     }
 }
