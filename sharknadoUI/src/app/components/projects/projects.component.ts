@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { ProjectService } from './../../service/projectservice.service';
 import { EmployeeService } from './../../service/employeeservice.service';
 import { Employee } from '../../model/employee';
@@ -10,7 +10,7 @@ import { EmployeeHandleComponent } from '../employee-handle/employee-handle.comp
 import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 import { ChargeCode } from '../../model/chargecode';
 import { Contact } from '../../model/contact';
-
+import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 @Component( {
     selector: 'app-projects, demo-modal-static',
@@ -40,6 +40,7 @@ export class ProjectsComponent implements OnInit {
     selectedHours: number = 0;
     currentEmployeeSelection: Employee = new Employee;
 
+    @ViewChild('projectEdit') public projectEdit : ModalDirective;
 
     addProject( name: string, manager: string, charge_code: string ) {
         let employees = new Array<Employee>();
@@ -255,10 +256,10 @@ export class ProjectsComponent implements OnInit {
     }
        public setFieldReadOnly() {
         //projectDetailsForm
-        var name2 = <HTMLInputElement>document.getElementById( "name2" );
+        /*var name2 = <HTMLInputElement>document.getElementById( "name2" );
         var chargecode = <HTMLInputElement>document.getElementById( "chargecode2" );
         var manager = <HTMLInputElement>document.getElementById( "manager2" );
-        var email = <HTMLInputElement>document.getElementById( "email2" );
+        var email = <HTMLInputElement>document.getElementById( "email2" );*/
 
         //projectContactForm        
         //projectChargeCodeForm
@@ -266,12 +267,12 @@ export class ProjectsComponent implements OnInit {
 
 
 
-        if ( name2.readOnly == false ) {
+        /*if ( name2.readOnly == false ) {
             name2.readOnly = true;
             chargecode.readOnly = true;
             manager.readOnly = true;
             email.readOnly = true;
-        }
+        }*/
 
     }
     public removeElements() {
@@ -374,7 +375,7 @@ export class ProjectsComponent implements OnInit {
 
         document.getElementById( "projectDetailsForm" ).style.display = "block";
 
-        var name2 = <HTMLInputElement>document.getElementById( "name2" );
+        /*var name2 = <HTMLInputElement>document.getElementById( "name2" );
         var chargecode = <HTMLInputElement>document.getElementById( "chargecode2" );
         var manager = <HTMLInputElement>document.getElementById( "manager2" );
         var email = <HTMLInputElement>document.getElementById( "email2" );
@@ -385,7 +386,7 @@ export class ProjectsComponent implements OnInit {
             manager.readOnly = true;
             email.readOnly = true;
         }
-
+*/
     }
     public projDetailsGetChargeCode( chargeCode ) {
 
@@ -410,8 +411,9 @@ export class ProjectsComponent implements OnInit {
         console.log( this.contactList.length );
         return this.contactList.length;
     }
-
+    
     public showProjectModal( projectId: number ) {
+        this.projectEdit.show();
         this.projectService.getProjectById( projectId ).subscribe( ress => {
             this.currentproject = ress;
             this.currentproject.employees = Array<Employee>();
@@ -420,6 +422,9 @@ export class ProjectsComponent implements OnInit {
                 .forEach(y => this.currentproject.employees.push(y.employee));
             console.log( "Received Project %s", this.currentproject.Project_Name );
         } );
+        this.getAllChargeCode(projectId);
+        this.getContacts(projectId);
+        this.normalizeProjectForm();
     }
 
     public populateAllocatedHrs($event: any, project: Project)

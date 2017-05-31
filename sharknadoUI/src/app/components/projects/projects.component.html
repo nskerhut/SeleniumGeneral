@@ -29,7 +29,7 @@
 					<!--wrap each project in container-->
 					<div class="col-sm-2">
 						<div class="panel-info">
-							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); getContacts(project.projectId); projectEdit.show(); normalizeProjectForm();">
+							<div class="panel-heading" (click)="showProjectModal(project.projectId);">
 								{{project.Project_Name}}
 							</div>
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event, project);" [dropZones]="['employees-zone']">
