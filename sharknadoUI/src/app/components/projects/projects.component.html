@@ -7,12 +7,19 @@
 				<div class="panel-heading">
 					Available Employees
 				</div>
-				<div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
+				<div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeListDrop($event)" [dropZones]="['employees-zone']">
 					<ul class="list-group">
 						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
+<<<<<<< HEAD
 							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"></employee-handle>
 
+=======
+						 	<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" 
+						 	(removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"
+						 	 ></employee-handle> 
+							
+>>>>>>> f2fa050d317e0ba767e06fd6e6eba3091da29627
 						</li>
 					</ul>
 				</div>
@@ -27,15 +34,26 @@
 					<!--wrap each project in container-->
 					<div class="col-sm-2">
 						<div class="panel-info">
-							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); getContacts(project.projectId); projectEdit.show(); normalizeProjectForm();">
+							<div class="panel-heading" (click)="showProjectModal(project.projectId);">
 								{{project.Project_Name}}
 							</div>
+<<<<<<< HEAD
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="populateAllocatedHrs($event, project); allocatedHours.show()"
 							 [dropZones]="['employees-zone']">
 								<ul class="list-group">
 									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
 										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"></employee-handle>
+=======
+							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event, project);" [dropZones]="['employees-zone']">
+								<ul class="list-group">
+									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
+									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
+										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"
+											(addEmployeeToProject)="addEmployeeToProject($event,project)"
+											(removeEmployeeFromProject)="removeEmployeeFromProjectMenu($event)"
+										></employee-handle> 
+>>>>>>> f2fa050d317e0ba767e06fd6e6eba3091da29627
 									</li>
 								</ul>
 							</div>

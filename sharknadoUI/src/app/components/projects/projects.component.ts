@@ -12,6 +12,7 @@ import { ChargeCode } from '../../model/chargecode';
 import { Contact } from '../../model/contact';
 import { AllocatedHours } from './projects-allocatedHours.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 
 @Component( {
@@ -33,6 +34,9 @@ export class ProjectsComponent implements OnInit {
     public currentproject: Project;
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
+
+    @ViewChild('projectEdit') public projectEdit : ModalDirective;
+    @ViewChild('allocatedHours') public allocatedHours: ModalDirective;
 
 
 
