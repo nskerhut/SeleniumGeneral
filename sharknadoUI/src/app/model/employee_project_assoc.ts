@@ -18,8 +18,9 @@ export class EmployeeProjectAssoc {
     allocatedHrs: number;
 
     constructor(
-        employee?: Employee,
-        project?: Project,
+        Employee: Employee,
+        Project: Project,
+        Allocated_Hours: number,
         Start_Date?: Date,
         End_Date?: Date,
         Position_Description?: string,
