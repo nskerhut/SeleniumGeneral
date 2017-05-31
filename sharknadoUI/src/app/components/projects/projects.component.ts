@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from './../../service/projectservice.service';
 import { EmployeeService } from './../../service/employeeservice.service';
 import { Employee } from '../../model/employee';
