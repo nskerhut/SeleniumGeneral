@@ -1,0 +1,24 @@
+<modal class="modal fade bs-example-modal-lg" bsModal #allocatedHours="bs-modal" [config]="{backdrop: 'static'}" tabindex="-1"
+	 role="dialog" aria-label="allocatedHrsLbl" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<modal-header class="modal-header">
+					<h3 class="modal-title pull-left">Project: {{ currentProject.Project_Name }}</h3>
+
+				</modal-header>
+				<modal-body class="modal-body">
+
+					<h4> Employee: {{ currentEmployee.Last_Name }}, {{ currentEmployee.First_Name }}</h4>
+
+					Hours to allocate to this employee: <select [(ngModel)]="selectedHours">
+															<option *ngFor="let hours of hoursArray">{{hours}}</option>
+														</select>
+
+				</modal-body>
+				<modal-footer class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="allocatedHours.hide()">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</modal-footer>
+			</div>
+		</div>
+	</modal>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProjectService } from './../../service/projectservice.service';
 import { EmployeeService } from './../../service/employeeservice.service';
 import { Employee } from '../../model/employee';
@@ -10,6 +10,8 @@ import { EmployeeHandleComponent } from '../employee-handle/employee-handle.comp
 import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
 import { ChargeCode } from '../../model/chargecode';
 import { Contact } from '../../model/contact';
+import { AllocatedHours } from './projects-allocatedHours.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @Component( {
@@ -22,12 +24,7 @@ export class ProjectsComponent implements OnInit {
     contactList: Array<string> = ["", "one", "two", "three", "four", "Add New Charge Code"];
     projectDetailsForm = "projectDetailsForm";
     _chargeCode: ChargeCode [];
-
-
     _contact: Contact [];
-
-
-
     projectFrom: Project;
     
     unassignedEmployeeList: Array<Employee> = [];
@@ -36,9 +33,8 @@ export class ProjectsComponent implements OnInit {
     public currentproject: Project;
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
-    hoursArray: number[] = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
-    selectedHours: number = 0;
-    currentEmployeeSelection: Employee = new Employee;
+
+
 
 
     addProject( name: string, manager: string, charge_code: string ) {
@@ -410,15 +406,6 @@ export class ProjectsComponent implements OnInit {
                 .forEach(y => this.currentproject.employees.push(y.employee));
             console.log( "Received Project %s", this.currentproject.Project_Name );
         } );
-    }
-
-    public populateAllocatedHrs($event: any, project: Project)
-    {
-        this.currentEmployeeSelection = $event.dragData;
-        document.getElementById("projectTitleHd").innerHTML = "Project Name: " + project.Project_Name;
-        document.getElementById("employeeToAddHd").innerHTML = "Employee: " + this.currentEmployeeSelection.First_Name + " " + this.currentEmployeeSelection.Last_Name;
-        document.getElementById("HdnEmployeeID").nodeValue = this.currentEmployeeSelection.Employee_Id.toString();
-        document.getElementById("HdnProjectID").nodeValue = project.projectId.toString();
     }
 
     // addEmployeeToProjectTest(allocatedHrs: number) {

@@ -29,6 +29,7 @@ import { Component, NgZone, Inject } from '@angular/core';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { Employee } from './model/employee'
 import { Project } from './model/project'
+import { AllocatedHours } from './components/projects/projects-allocatedHours.component';
 import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { EmployeeHandleComponent } from './components/employee-handle/employee-handle.component';
@@ -99,7 +100,7 @@ const appRoutes: Routes = [
     EmployeeComponent,
     ProjectsComponent,
     EmployeeHandleComponent,
-
+    AllocatedHours
   ],
   imports: [
     FlashMessagesModule,

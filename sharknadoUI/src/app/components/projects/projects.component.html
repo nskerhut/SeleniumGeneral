@@ -11,8 +11,8 @@
 					<ul class="list-group">
 						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-						 	<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"></employee-handle> 
-							
+							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"></employee-handle>
+
 						</li>
 					</ul>
 				</div>
@@ -30,11 +30,12 @@
 							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); getContacts(project.projectId); projectEdit.show(); normalizeProjectForm();">
 								{{project.Project_Name}}
 							</div>
-							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="populateAllocatedHrs($event, project); allocatedHours.show()" [dropZones]="['employees-zone']">
+							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="populateAllocatedHrs($event, project); allocatedHours.show()"
+							 [dropZones]="['employees-zone']">
 								<ul class="list-group">
 									<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 									 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
-										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"></employee-handle> 
+										<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project"></employee-handle>
 									</li>
 								</ul>
 							</div>
@@ -409,7 +410,8 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="first_Name" id="first_Name" [readonly]="true" [(ngModel)]="item.contactFirstName" />
+										<input type="text" class="form-control" name="first_Name" id="first_Name" [readonly]="true" [(ngModel)]="item.contactFirstName"
+										/>
 									</div>
 								</div>
 							</div>
@@ -420,7 +422,8 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="last_Name" id="last_Name" [readonly]="true" [(ngModel)]="item.contactLastName" />
+										<input type="text" class="form-control" name="last_Name" id="last_Name" [readonly]="true" [(ngModel)]="item.contactLastName"
+										/>
 									</div>
 								</div>
 							</div>
@@ -431,7 +434,8 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="Position" id="Position" [readonly]="true" [(ngModel)]="item.contactPosition" />
+										<input type="text" class="form-control" name="Position" id="Position" [readonly]="true" [(ngModel)]="item.contactPosition"
+										/>
 									</div>
 								</div>
 							</div>
@@ -468,7 +472,8 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="Description" id="Description" [readonly]="true" [(ngModel)]="item.chargeCodeDescription"/>
+										<input type="text" class="form-control" name="Description" id="Description" [readonly]="true" [(ngModel)]="item.chargeCodeDescription"
+										/>
 									</div>
 								</div>
 							</div>
@@ -478,7 +483,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="chrgeCodeSdate" id="chrgeCodeSdate" [readonly]="true"  />
+										<input type="text" class="form-control" name="chrgeCodeSdate" id="chrgeCodeSdate" [readonly]="true" />
 									</div>
 								</div>
 							</div>
@@ -499,24 +504,24 @@
 								<h5 id="empForm">Employee Overview </h5>
 							</li>
 							<li class="pdlItem"><a type="button" (click)="enableForm()"><!--<li class = "pdlItem">--><span class = "glyphicon glyphicon-pencil"></span></a></li>
-  <table>
-  <tr>
-  <th>Employee</th>
-  <th>Position</th>
-  <th>Allocated Hours</th>
-  </tr>
-  <tr *ngFor="let employee1 of currentproject?.employees" >
-					
-										<td>{{employee1.First_Name}} {{employee1.Last_Name}}</td>
-							<td>{{employee.Position_Description}}</td>
-										<td>{{employee1.allocatedHours}}</td>
-									</tr>
-									</table>						
-									</div>
+							<table>
+								<tr>
+									<th>Employee</th>
+									<th>Position</th>
+									<th>Allocated Hours</th>
+								</tr>
+								<tr *ngFor="let employee1 of currentproject?.employees">
+
+									<td>{{employee1.First_Name}} {{employee1.Last_Name}}</td>
+									<td>{{employee.Position_Description}}</td>
+									<td>{{employee1.allocatedHours}}</td>
+								</tr>
+							</table>
+						</div>
 
 
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()" >Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="projectEdit.hide()">Close</button>
 
 						</div>
 					</div>
@@ -525,29 +530,11 @@
 		</div>
 	</div>
 
-	<!--<div class="modal fade bs-example-modal-lg" bsModal #allocatedHours="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog" aria-label="allocatedHrsLbl" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">{{Employee_ID}}</h4>
-       
-      </div>
-      <div class="modal-body">
-	
-				<h3></h3>
-      
-				</div>
-				<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="allocatedHours.hide()">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-		</div>
-  </div>
 </div>
 
-</div>-->
+<button (click)="myModal.show()">open my modal</button>
 
+<allocated-hours-modal [currentEmployee]="employee" [currentProject]="currentProject"></allocated-hours-modal>
 
 
 <!--<body>
