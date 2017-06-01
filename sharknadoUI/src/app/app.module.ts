@@ -32,6 +32,8 @@ import { Project } from './model/project'
 import { AllocatedHours } from './components/projects-allocatedHours/projects-allocatedHours.component';
 import {DndModule} from 'ng2-dnd';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import { FilterPipe } from './pipe/filter-pipe.pipe';
+
 import { EmployeeHandleComponent } from './components/employee-handle/employee-handle.component';
 import { ContextMenuModule } from 'ngx-contextmenu';
 
@@ -99,6 +101,7 @@ const appRoutes: Routes = [
     AboutComponent,
     EmployeeComponent,
     ProjectsComponent,
+    FilterPipe,
     EmployeeHandleComponent,
     AllocatedHours
   ],
