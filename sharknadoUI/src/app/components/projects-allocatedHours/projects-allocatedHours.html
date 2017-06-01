@@ -6,19 +6,18 @@
 					<h3 *ngIf="currentProject != null" class="modal-title pull-left">Project: {{ currentProject?.Project_Name }}</h3>
 					<div *ngIf="currentProject == null" class="modal-title pull-left"><h3>Project:</h3>
 						<select [(ngModel)]="currentProject">
-							<option *ngFor="let project of currentProjects" [ngValue]="project" >{{project.Project_Name}}</option>
+							<option *ngFor="let project of currentProjects">{{project.Project_Name}}</option>
 						</select>
 					</div>
 				</div>
 				<div class="modal-body">
 
-					<h4> <label id="employeeNameLbl" for="employeeNameValue">Employee:</label> <span id="employeeNameValue">{{ currentEmployee?.Last_Name }}, {{ currentEmployee?.First_Name }}</span></h4>
+					<h4> Employee: {{ currentEmployee?.Last_Name }}, {{ currentEmployee?.First_Name }}</h4>
 
-					<label for="selectedHrsInput" id="selectedHrsLbl" >Hours to allocate to this employee:</label> 
-					<select id="selectedHrsInput" [(ngModel)]="selectedHours">
+					Hours to allocate to this employee: <select [(ngModel)]="selectedHours">
 															<option *ngFor="let hours of hoursArray">{{hours}}</option>
 														</select>
-				<div *ngIf="IsOverAllocated()" class="text-warning">Employee is overallocated</div>
+				<div *ngIf="(+selectedHours + +currentEmployee?.allocatedHours) > 40 "><span class="text-warning">Employee is overallocated</span></div>
 
 				</div>
 				<div class="modal-footer">
