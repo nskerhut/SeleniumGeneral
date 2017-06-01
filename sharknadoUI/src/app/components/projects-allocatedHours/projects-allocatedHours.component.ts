@@ -12,7 +12,7 @@ import { EmployeeProjectAssoc } from '../../model/employee_project_assoc';
     styleUrls: ['./projects-allocatedHours.css']
 })
 
-export class AllocatedHours implements OnInit {
+export class AllocatedHours {
 
     @ViewChild('allocatedHours') private allocatedHours: ModalDirective;
 
@@ -23,21 +23,18 @@ export class AllocatedHours implements OnInit {
     currentProject: Project;
 
     @Output()
-    modifyAllocatedHours: EventEmitter<EmployeeProjectAssoc> = new EventEmitter<EmployeeProjectAssoc>();
+    modifyAllocatedHours: EventEmitter<EmployeeProjectAssoc> =  new EventEmitter<EmployeeProjectAssoc>();
 
-    hoursArray: number[] = [4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
+    hoursArray: number[] = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
 
     currentProjects: Project[];
 
-    selectedHours: number = 4;
+    selectedHours: number = 0;
 
     //  public populateAllocatedHrs($event: any, project: Project)
     // {
 
     // }
-    ngOnInit() {
-        this.selectedHours = 4;
-    }
     public show() {
         this.allocatedHours.show();
     }

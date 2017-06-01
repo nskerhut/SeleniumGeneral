@@ -96,19 +96,6 @@ export class ProjectService {
 
     }
 
-     public getProjectsByEmployeeTest( employee: Employee): Observable<Array<EmployeeProjectAssoc>> {
-        let headers = new Headers( { "Content-Type": "application/json" } );
-        let options = new RequestOptions( { headers: headers } );
-        console.log( "Retrieving projects for : ", employee.First_Name );
-
-        return this.http.post( this.baseURL + 'employees/projects/get'
-            , JSON.stringify( { "employee" : employee} ),
-            options )
-            .map(( ress: Response ) => <Array<EmployeeProjectAssoc>>ress.json() )
-            .catch( this.handleError );
-
-    }
-
     private handleError( error: any ): Promise<Object> {
         console.log( "error: ", error );
         return Promise.reject( error.message || error );
