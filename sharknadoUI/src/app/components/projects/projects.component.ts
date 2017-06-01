@@ -15,30 +15,30 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { ModalDirective } from 'ngx-bootstrap/modal/modal.component';
 
 
-@Component( {
+@Component({
     selector: 'app-projects, demo-modal-static',
     templateUrl: './projects.component.html',
     styleUrls: ['./projects.component.css']/*,
   providers: [Project]*/
-} )
+})
 export class ProjectsComponent implements OnInit {
     contactList: Array<string> = ["", "one", "two", "three", "four", "Add New Charge Code"];
     projectDetailsForm = "projectDetailsForm";
-    _chargeCode: ChargeCode [];
-    _contact: Contact [];
+    _chargeCode: ChargeCode[];
+    _contact: Contact[];
     projectFrom: Project;
-    
+
     unassignedEmployeeList: Array<Employee> = [];
     projectList: Array<Project> = [];
-    allocatedEmployees:EmployeeProjectAssoc[];
+    allocatedEmployees: EmployeeProjectAssoc[];
     public currentproject: Project;
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
 
-    @ViewChild('projectEdit') public projectEdit : ModalDirective;
+    @ViewChild('projectEdit') public projectEdit: ModalDirective;
     @ViewChild('allocatedHours') public allocatedHours: AllocatedHours;
 
-    addProject( name: string, manager: string, charge_code: string ) {
+    addProject(name: string, manager: string, charge_code: string) {
         let employees = new Array<Employee>();
         // this.projectList.push(newProject);
         var obj = {
@@ -54,75 +54,74 @@ export class ProjectsComponent implements OnInit {
             positionDescription: <string>null,
             employees: employees
         };
-        this.projectList.push( <Project>obj );
-        this.projectService.addProject( name, manager, charge_code ).subscribe( ress => { console.log( "project added" ); } );
+        this.projectList.push(<Project>obj);
+        this.projectService.addProject(name, manager, charge_code).subscribe(ress => { console.log("project added"); });
 
 
 
 
     }
-    compareEmployee( a: Employee, b: Employee ): number {
+    compareEmployee(a: Employee, b: Employee): number {
 
-        if ( a.allocatedHours > b.allocatedHours )
+        if (a.allocatedHours > b.allocatedHours)
             return 1;
-        else if ( a.allocatedHours < b.allocatedHours )
+        else if (a.allocatedHours < b.allocatedHours)
             return -1;
         else {
-            if ( a.Last_Name > b.Last_Name )
+            if (a.Last_Name > b.Last_Name)
                 return 1;
-            else if ( a.Last_Name < b.Last_Name )
+            else if (a.Last_Name < b.Last_Name)
                 return -1;
             else
                 return 0;
         }
 
     }
-    public setEmployee( employee: Employee ): void {
+    public setEmployee(employee: Employee): void {
         this.employee = employee;
     }
-    moveEmployeeToEmployeeList( $event: any ) {
+    moveEmployeeToEmployeeList($event: any) {
         let newEmployee: Employee = $event.dragData;
         let projectFrom: Project = this.projectFrom;
         let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == newEmployee.Employee_Id);
-        
-        if ( projectFrom != null ) {
+
+        if (projectFrom != null) {
             projectFrom.employees.filter(x => x.Employee_Id == newEmployee.Employee_Id).forEach(y => y.allocatedHours = 0);
-            projectFrom.employees = projectFrom.employees.filter( item => item.Employee_Id != newEmployee.Employee_Id );
+            projectFrom.employees = projectFrom.employees.filter(item => item.Employee_Id != newEmployee.Employee_Id);
             listEmployee.allocatedHours = 0;
             this.projectList
-            .filter(x => x.employees != null)
-            .forEach(x => 
-            {
+                .filter(x => x.employees != null)
+                .forEach(x => {
                     x.employees.filter(y => y.Employee_Id == newEmployee.Employee_Id)
-                    .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
-            });
-            console.log( `project From(%s) employee list`, projectFrom.projectId );
+                        .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
+                });
+            console.log(`project From(%s) employee list`, projectFrom.projectId);
         }
 
-        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
+        this.unassignedEmployeeList = this.unassignedEmployeeList.sort(this.compareEmployee)
 
 
     }
 
-    dragStart( p: Project, e: Employee ) {
-        if ( p != null ) {
-            console.log( "removing %s from %s", e.First_Name, p.Project_Name )
+    dragStart(p: Project, e: Employee) {
+        if (p != null) {
+            console.log("removing %s from %s", e.First_Name, p.Project_Name)
             this.projectFrom = p;
 
         }
     }
-    addEmployeeToProject( $event: any, project: Project ) {
+    addEmployeeToProject($event: any, project: Project) {
 
         let masterEmployee: Employee = $event.dragData;
-        let projectEmployee: Employee = JSON.parse( JSON.stringify( masterEmployee ) ); //Deep Copy
+        let projectEmployee: Employee = JSON.parse(JSON.stringify(masterEmployee)); //Deep Copy
 
         let projectTo: Project = project;
         let projectFrom: Project = this.projectFrom;
 
-        if ( projectTo.employees.filter( x => x.Employee_Id == projectEmployee.Employee_Id ).length > 0 )
+        if (projectTo.employees.filter(x => x.Employee_Id == projectEmployee.Employee_Id).length > 0)
             return;
 
-        console.log( "adding %s to %s", projectEmployee.First_Name, project.Project_Name );
+        console.log("adding %s to %s", projectEmployee.First_Name, project.Project_Name);
         this.allocatedHours.show();
         this.allocatedHours.currentEmployee = masterEmployee;
         if (projectTo == null) {
@@ -134,90 +133,92 @@ export class ProjectsComponent implements OnInit {
         /// Split into new function call from modal save event.
 
         //Remove from previous project, employee list is not a project.
-        if ( this.projectFrom != null ) {
-            masterEmployee.allocatedHours = 0;
-            this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id !== projectEmployee.Employee_Id );
-            console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
-        }
+        // if ( this.projectFrom != null ) {
+        //     masterEmployee.allocatedHours = 0;
+        //     this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id !== projectEmployee.Employee_Id );
+        //     console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
+        // }
 
-        //Update the Employee Allocation
-        //TODO Set a real amount of time
-        projectEmployee.allocatedHours = 4;
-
-
-        projectTo.employees.push( projectEmployee );
+        // //Update the Employee Allocation
+        // //TODO Set a real amount of time
+        // projectEmployee.allocatedHours = 4;
 
 
-        //Reset Allocation in employeeList;
-        let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == masterEmployee.Employee_Id );
-        listEmployee.allocatedHours = 0;
-        this.projectList
-            .filter( x => x.employees != null )
-            .forEach( x => {
-                x.employees.filter( y => y.Employee_Id == masterEmployee.Employee_Id )
-                    .forEach( y => listEmployee.allocatedHours += y.allocatedHours )
-            } );
+        // projectTo.employees.push( projectEmployee );
 
-        //Sort the employee list
-        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
 
-        console.log( "employees list: %s", projectTo.employees );
+        // //Reset Allocation in employeeList;
+        // let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == masterEmployee.Employee_Id );
+        // listEmployee.allocatedHours = 0;
+        // this.projectList
+        //     .filter( x => x.employees != null )
+        //     .forEach( x => {
+        //         x.employees.filter( y => y.Employee_Id == masterEmployee.Employee_Id )
+        //             .forEach( y => listEmployee.allocatedHours += y.allocatedHours )
+        //     } );
+
+        // //Sort the employee list
+        // this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
+
+        // console.log( "employees list: %s", projectTo.employees );
 
     }
 
     public getAllEmployees() {
-        console.log( "getting all employees." )
-        return this.projectService.getAllEmployees().subscribe( ress => {
-            this.unassignedEmployeeList = ress.sort( this.compareEmployee );
+        console.log("getting all employees.")
+        return this.projectService.getAllEmployees().subscribe(ress => {
+            this.unassignedEmployeeList = ress.sort(this.compareEmployee);
 
-            console.log( "employees ", this.unassignedEmployeeList );
+            console.log("employees ", this.unassignedEmployeeList);
 
-        } );
+        });
     }
 
-      public getContacts(projectId:number) {
-        console.log( "getting all contacts info" )
-        return this.projectService.getContact(projectId).subscribe( ress => {
+    public getContacts(projectId: number) {
+        console.log("getting all contacts info")
+        return this.projectService.getContact(projectId).subscribe(ress => {
             this._contact = ress;
-            console.log( "contacts", this._contact );
-  } );}
+            console.log("contacts", this._contact);
+        });
+    }
 
 
-    public getAllChargeCode(projectId:number) {
-        console.log( "getting all chargecode info" )
-        return this.projectService.getChargeCode(projectId).subscribe( ress => {
+    public getAllChargeCode(projectId: number) {
+        console.log("getting all chargecode info")
+        return this.projectService.getChargeCode(projectId).subscribe(ress => {
             this._chargeCode = ress;
-            console.log( "charge code list ", this._chargeCode );
-  } );}
+            console.log("charge code list ", this._chargeCode);
+        });
+    }
 
     public getListOfProject() {
-        console.log( "getting list of projects" )
+        console.log("getting list of projects")
 
-        return this.projectService.getAllProjects().subscribe( ress => {
+        return this.projectService.getAllProjects().subscribe(ress => {
             this.getAllocatedEmployees();
             this.projectList = ress;
-            this.projectList.forEach( x => { if ( x.employees == null ) x.employees = new Array<Employee>() } );
-            
-        } );
+            this.projectList.forEach(x => { if (x.employees == null) x.employees = new Array<Employee>() });
+
+        });
     }
-    
-    
+
+
     public getAllocatedEmployees() {
-        console.log( "getting list of allocated employees" );
-        return this.projectService.getAllocatedEmployees().subscribe( ress => {
+        console.log("getting list of allocated employees");
+        return this.projectService.getAllocatedEmployees().subscribe(ress => {
             this.allocatedEmployees = ress;
-            
-            ress.forEach( x => {
-                console.log( "Placing " + x.employee.First_Name + " in " + x.project.projectId );
 
-                this.projectList.filter( y => y.projectId == x.project.projectId )
-                    .forEach( z => {
-                        console.log( "adding " + x.employee.First_Name + " to " + z.projectId )
-                        z.employees.push( x.employee )
-                    } );
-            } )
+            ress.forEach(x => {
+                console.log("Placing " + x.employee.First_Name + " in " + x.project.projectId);
 
-        } );
+                this.projectList.filter(y => y.projectId == x.project.projectId)
+                    .forEach(z => {
+                        console.log("adding " + x.employee.First_Name + " to " + z.projectId)
+                        z.employees.push(x.employee)
+                    });
+            })
+
+        });
 
 
     }
@@ -232,14 +233,14 @@ export class ProjectsComponent implements OnInit {
             this.assignedEmployees = ress;
             this.projectList[index].employees = this.assignedEmployees;
             console.log("project list updated", this.projectList);
-    });
-}
+        });
+    }
 
     constructor(
         private projectService: ProjectService,
         private employeeService: EmployeeService,
         private router: Router,
-        private route: ActivatedRoute ) {
+        private route: ActivatedRoute) {
         this.projectService = projectService;
     }
 
@@ -247,14 +248,14 @@ export class ProjectsComponent implements OnInit {
         this.getAllEmployees();
         this.getListOfProject();
         //this.getAllocatedEmployees();
-  
+
     }
-       public setFieldReadOnly() {
+    public setFieldReadOnly() {
         //projectDetailsForm
-        var name2 = <HTMLInputElement>document.getElementById( "name2" );
-        var chargecode = <HTMLInputElement>document.getElementById( "chargecode2" );
-        var manager = <HTMLInputElement>document.getElementById( "manager2" );
-        var email = <HTMLInputElement>document.getElementById( "email2" );
+        var name2 = <HTMLInputElement>document.getElementById("name2");
+        var chargecode = <HTMLInputElement>document.getElementById("chargecode2");
+        var manager = <HTMLInputElement>document.getElementById("manager2");
+        var email = <HTMLInputElement>document.getElementById("email2");
 
         //projectContactForm        
         //projectChargeCodeForm
@@ -262,7 +263,7 @@ export class ProjectsComponent implements OnInit {
 
 
 
-        if ( name2.readOnly == false ) {
+        if (name2.readOnly == false) {
             name2.readOnly = true;
             chargecode.readOnly = true;
             manager.readOnly = true;
@@ -272,54 +273,54 @@ export class ProjectsComponent implements OnInit {
     }
     public removeElements() {
         //Remove "Project Details" Tab
-        document.getElementById( "projectDetailsForm" ).style.display = "none";
+        document.getElementById("projectDetailsForm").style.display = "none";
 
         //Remove "Charge Codes" Tab
-        document.getElementById( "projectChargeCodeForm" ).style.display = "none";
+        document.getElementById("projectChargeCodeForm").style.display = "none";
 
         //Remove "Contacts" Tab
-        document.getElementById( "projectContactForm" ).style.display = "none";
+        document.getElementById("projectContactForm").style.display = "none";
 
         //Remove "employees" Tab
-        document.getElementById( "EmployeeForm1111" ).style.display = "none";
+        document.getElementById("EmployeeForm1111").style.display = "none";
 
     }
 
     public showEmployee() {
 
-        document.getElementById( "menuEmployees" ).style.border = "2px solid white";
-        document.getElementById( "menuEmployees" ).style.backgroundColor = "#b6e3fd";
+        document.getElementById("menuEmployees").style.border = "2px solid white";
+        document.getElementById("menuEmployees").style.backgroundColor = "#b6e3fd";
 
-        document.getElementById( "menuProjectDetails" ).style.border = "none";
-        document.getElementById( "menuProjectDetails" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuProjectDetails").style.border = "none";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuContacts" ).style.border = "none";
-        document.getElementById( "menuContacts" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuContacts").style.border = "none";
+        document.getElementById("menuContacts").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuChargeCodes" ).style.border = "none";
-        document.getElementById( "menuChargeCodes" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuChargeCodes").style.border = "none";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
         this.removeElements();
         this.projectDetailsForm = "EmployeeForm1111";
-        document.getElementById( "EmployeeForm1111" ).style.display = "block";
+        document.getElementById("EmployeeForm1111").style.display = "block";
         //remove
         //document.getElementById( "projectChargeCodeForm2" ).style.display = "block";
     }
 
     public showContacts() {
-        document.getElementById( "menuContacts" ).style.border = "2px solid white";
-        document.getElementById( "menuContacts" ).style.backgroundColor = "#b6e3fd";
+        document.getElementById("menuContacts").style.border = "2px solid white";
+        document.getElementById("menuContacts").style.backgroundColor = "#b6e3fd";
 
-        document.getElementById( "menuChargeCodes" ).style.border = "none";
-        document.getElementById( "menuChargeCodes" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuChargeCodes").style.border = "none";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuProjectDetails" ).style.border = "none";
-        document.getElementById( "menuProjectDetails" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuProjectDetails").style.border = "none";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuEmployees" ).style.border = "none";
-        document.getElementById( "menuEmployees" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuEmployees").style.border = "none";
+        document.getElementById("menuEmployees").style.backgroundColor = "lightskyblue";
         this.removeElements();
         this.projectDetailsForm = "projectContactForm";
-        document.getElementById( "projectContactForm" ).style.display = "block";
+        document.getElementById("projectContactForm").style.display = "block";
 
 
         //also need to get the values for charge codes and make sure they are set to a variable
@@ -329,22 +330,22 @@ export class ProjectsComponent implements OnInit {
 
     }
     public showChargeCodes() {
-        document.getElementById( "menuChargeCodes" ).style.border = "2px solid white";
-        document.getElementById( "menuChargeCodes" ).style.backgroundColor = "#b6e3fd";
+        document.getElementById("menuChargeCodes").style.border = "2px solid white";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "#b6e3fd";
 
-        document.getElementById( "menuProjectDetails" ).style.border = "none";
-        document.getElementById( "menuProjectDetails" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuProjectDetails").style.border = "none";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuContacts" ).style.border = "none";
-        document.getElementById( "menuContacts" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuContacts").style.border = "none";
+        document.getElementById("menuContacts").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuEmployees" ).style.border = "none";
-        document.getElementById( "menuEmployees" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuEmployees").style.border = "none";
+        document.getElementById("menuEmployees").style.backgroundColor = "lightskyblue";
 
         this.removeElements();
         this.projectDetailsForm = "projectChargeCodeForm";
 
-        document.getElementById( "projectChargeCodeForm" ).style.display = "block";
+        document.getElementById("projectChargeCodeForm").style.display = "block";
     }
     public submitChanges() {
         this.normalizeProjectForm();
@@ -356,26 +357,26 @@ export class ProjectsComponent implements OnInit {
 
         this.removeElements();
 
-        document.getElementById( "menuProjectDetails" ).style.border = "2px solid white";
-        document.getElementById( "menuProjectDetails" ).style.backgroundColor = "#b6e3fd";
+        document.getElementById("menuProjectDetails").style.border = "2px solid white";
+        document.getElementById("menuProjectDetails").style.backgroundColor = "#b6e3fd";
 
-        document.getElementById( "menuChargeCodes" ).style.border = "none";
-        document.getElementById( "menuChargeCodes" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuChargeCodes").style.border = "none";
+        document.getElementById("menuChargeCodes").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuContacts" ).style.border = "none";
-        document.getElementById( "menuContacts" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuContacts").style.border = "none";
+        document.getElementById("menuContacts").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "menuEmployees" ).style.border = "none";
-        document.getElementById( "menuEmployees" ).style.backgroundColor = "lightskyblue";
+        document.getElementById("menuEmployees").style.border = "none";
+        document.getElementById("menuEmployees").style.backgroundColor = "lightskyblue";
 
-        document.getElementById( "projectDetailsForm" ).style.display = "block";
+        document.getElementById("projectDetailsForm").style.display = "block";
 
-        var name2 = <HTMLInputElement>document.getElementById( "name2" );
-        var chargecode = <HTMLInputElement>document.getElementById( "chargecode2" );
-        var manager = <HTMLInputElement>document.getElementById( "manager2" );
-        var email = <HTMLInputElement>document.getElementById( "email2" );
+        var name2 = <HTMLInputElement>document.getElementById("name2");
+        var chargecode = <HTMLInputElement>document.getElementById("chargecode2");
+        var manager = <HTMLInputElement>document.getElementById("manager2");
+        var email = <HTMLInputElement>document.getElementById("email2");
 
-        if ( name2.readOnly == false ) {
+        if (name2.readOnly == false) {
             name2.readOnly = true;
             chargecode.readOnly = true;
             manager.readOnly = true;
@@ -383,9 +384,9 @@ export class ProjectsComponent implements OnInit {
         }
 
     }
-    public projDetailsGetChargeCode( chargeCode ) {
+    public projDetailsGetChargeCode(chargeCode) {
 
-        if ( chargeCode == "Add New Charge Code" ) {
+        if (chargeCode == "Add New Charge Code") {
             this.removeElements();
             this.showChargeCodes();
             //At this point (once the charge codes tab is finished) enable new charge code.
@@ -402,20 +403,20 @@ export class ProjectsComponent implements OnInit {
 
     }
     public getSize() {
-        alert( "funrun" );
-        console.log( this.contactList.length );
+        alert("funrun");
+        console.log(this.contactList.length);
         return this.contactList.length;
     }
 
-    public showProjectModal( projectId: number ) {
-        this.projectService.getProjectById( projectId ).subscribe( ress => {
+    public showProjectModal(projectId: number) {
+        this.projectService.getProjectById(projectId).subscribe(ress => {
             this.currentproject = ress;
             this.currentproject.employees = Array<Employee>();
             this.allocatedEmployees
                 .filter(x => x.project.projectId == this.currentproject.projectId)
                 .forEach(y => this.currentproject.employees.push(y.employee));
-            console.log( "Received Project %s", this.currentproject.Project_Name );
-        } );
+            console.log("Received Project %s", this.currentproject.Project_Name);
+        });
     }
 
     // addEmployeeToProjectTest(allocatedHrs: number) {
@@ -429,20 +430,20 @@ export class ProjectsComponent implements OnInit {
     //     let projectFrom: Project = this.projectFrom;
 
     //     console.log( "adding %s to %s", projectEmployee.First_Name, projectTo.Project_Name );
-        
+
     //     //Remove from previous project, employee list is not a project.
     //     if ( this.projectFrom != null ) {
     //         masterEmployee.allocatedHours = 0;
     //         this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id != projectEmployee.Employee_Id );
     //         console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
     //     }
-        
+
     //     //Update the Employee Allocation
     //     //TODO Set a real amount of time
     //     projectEmployee.allocatedHours = 4;
     //     projectTo.employees.push(projectEmployee);
-        
-        
+
+
     //     //Reset Allocation in employeeList;
     //     let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == masterEmployee.Employee_Id);
     //     listEmployee.allocatedHours = 0;
@@ -453,7 +454,7 @@ export class ProjectsComponent implements OnInit {
     //                 x.employees.filter(y => y.Employee_Id == masterEmployee.Employee_Id)
     //                 .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
     //         });
-        
+
     //     //Sort the employee list
     //     this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
 
@@ -462,14 +463,50 @@ export class ProjectsComponent implements OnInit {
 
     // }
 
-    checkEmployeeHours(currentHours: number, newHours: number): boolean
-    {
+    checkEmployeeHours(currentHours: number, newHours: number): boolean {
         return (currentHours + newHours) > 40;
     }
 
-    recieveAllocatedHours(event){
+    recieveAllocatedHours(event) {
         let empProjModel = event;
         console.log("This is what we recieved %s", empProjModel.employee.First_Name);
+
+        let masterEmployee = empProjModel.employee;
+        let projectEmployee: Employee = JSON.parse(JSON.stringify(masterEmployee)); //Deep Copy
+
+        let projectTo: Project = empProjModel.project;
+        let projectFrom: Project = this.projectFrom;
+
+        if (this.projectFrom != null) {
+            masterEmployee.allocatedHours = 0;
+            this.projectFrom.employees = this.projectFrom.employees.filter(item => item.Employee_Id !== projectEmployee.Employee_Id);
+            console.log(`project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId);
+        }
+
+        //Update the Employee Allocation
+        //TODO Set a real amount of time
+        projectEmployee.allocatedHours = empProjModel.allocatedHrs;
+        if (projectEmployee.allocatedHours > 0) {
+            
+            projectTo.employees.push(projectEmployee);
+
+
+            //Reset Allocation in employeeList;
+            let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == masterEmployee.Employee_Id);
+            listEmployee.allocatedHours = 0;
+            this.projectList
+                .filter(x => x.employees != null)
+                .forEach(x => {
+                    x.employees.filter(y => y.Employee_Id == masterEmployee.Employee_Id)
+                        .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
+                });
+
+            //Sort the employee list
+            this.unassignedEmployeeList = this.unassignedEmployeeList.sort(this.compareEmployee)
+
+        }
+        console.log("employees list: %s", projectTo.employees);
+
     }
 
 
