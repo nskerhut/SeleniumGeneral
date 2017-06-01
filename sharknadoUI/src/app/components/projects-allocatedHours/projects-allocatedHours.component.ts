@@ -50,7 +50,7 @@ export class AllocatedHours {
     private onModifyAllocatedHours() {
 
         let currentEmployeeProjectAssoc = new EmployeeProjectAssoc(this.currentEmployee, this.currentProject)
-        currentEmployeeProjectAssoc.allocatedHrs = this.selectedHours;
+        currentEmployeeProjectAssoc.allocatedHrs = this.selectedHours as number;
         this.modifyAllocatedHours.emit(currentEmployeeProjectAssoc);
         console.log("Sent out this model %s with these hours %s", currentEmployeeProjectAssoc.employee.First_Name, currentEmployeeProjectAssoc.allocatedHrs.toString());
     }
