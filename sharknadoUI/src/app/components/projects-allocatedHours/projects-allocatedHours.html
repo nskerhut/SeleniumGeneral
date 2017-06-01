@@ -12,9 +12,10 @@
 				</div>
 				<div class="modal-body">
 
-					<h4> Employee: {{ currentEmployee?.Last_Name }}, {{ currentEmployee?.First_Name }}</h4>
+					<h4> <label id="employeeNameLbl" for="employeeNameValue">Employee:</label> <span id="employeeNameValue">{{ currentEmployee?.Last_Name }}, {{ currentEmployee?.First_Name }}</span></h4>
 
-					Hours to allocate to this employee: <select [(ngModel)]="selectedHours">
+					<label for="selectedHrsInput" id="selectedHrsLbl" >Hours to allocate to this employee:</label> 
+					<select id="selectedHrsInput" [(ngModel)]="selectedHours">
 															<option *ngFor="let hours of hoursArray">{{hours}}</option>
 														</select>
 				<div *ngIf="IsOverAllocated()" class="text-warning">Employee is overallocated</div>
