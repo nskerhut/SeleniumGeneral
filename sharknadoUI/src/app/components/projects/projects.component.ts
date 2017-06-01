@@ -80,8 +80,12 @@ export class ProjectsComponent implements OnInit {
     public setEmployee(employee: Employee): void {
         this.employee = employee;
     }
-    moveEmployeeToEmployeeList($event: any) {
+    private moveEmployeeToEmployeeListDrop( $event: any ) {
         let newEmployee: Employee = $event.dragData;
+        this.moveEmployeeToEmployeeList(newEmployee);
+    }
+    
+    private moveEmployeeToEmployeeList (newEmployee: Employee){
         let projectFrom: Project = this.projectFrom;
         let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == newEmployee.Employee_Id);
 
@@ -484,7 +488,6 @@ export class ProjectsComponent implements OnInit {
         }
 
         //Update the Employee Allocation
-        //TODO Set a real amount of time
         projectEmployee.allocatedHours = empProjModel.allocatedHrs;
         if (projectEmployee.allocatedHours > 0) {
             
@@ -508,6 +511,10 @@ export class ProjectsComponent implements OnInit {
         console.log("employees list: %s", projectTo.employees);
 
     }
-
-
+    private removeEmployeeFromProjectMenu($event:any){
+        let epa:EmployeeProjectAssoc = $event as EmployeeProjectAssoc;
+        this.dragStart(epa.project, epa.employee);
+        this.moveEmployeeToEmployeeList(epa.employee);
+        
+    }
 }
