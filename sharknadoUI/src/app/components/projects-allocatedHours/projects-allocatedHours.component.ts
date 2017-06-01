@@ -27,6 +27,7 @@ export class AllocatedHours {
 
     hoursArray: number[] = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
 
+    @Input()
     currentProjects: Project[];
 
     selectedHours: number = 0;
