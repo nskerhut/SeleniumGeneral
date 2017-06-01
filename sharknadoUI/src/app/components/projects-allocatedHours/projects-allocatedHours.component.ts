@@ -53,6 +53,10 @@ export class AllocatedHours {
         this.modifyAllocatedHours.emit(currentEmployeeProjectAssoc);
         console.log("Sent out this model %s with these hours %s", currentEmployeeProjectAssoc.employee.First_Name, currentEmployeeProjectAssoc.allocatedHrs.toString());
     }
-
+	private isOverAllocated() :boolean {
+		if(this.currentEmployee == null)
+			return false;
+		return this.selectedHours + this.currentEmployee.allocatedHours > 40 
+	}
 
 }

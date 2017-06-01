@@ -127,6 +127,15 @@ export class ProjectService {
             .map(( ress: Response ) => <Array<Employee>>ress.json() )
             .catch( this.handleError );
     }
+    public getAllEmployeesInfo(): Observable<Array<Employee>> {
+        let headers = new Headers( { "Content-Type": "application/json" } );
+        let options = new RequestOptions( { headers: headers } );
+        console.log( "Retrieving all employees." )
+
+        return this.http.get( this.baseURL + 'employees/get/all/info' )
+            .map(( ress: Response ) => <Array<Employee>>ress.json() )
+            .catch( this.handleError );
+    }
     
     public getAllocatedEmployees(): Observable<Array<EmployeeProjectAssoc>> {
         let headers = new Headers( { "Content-Type": "application/json" } );

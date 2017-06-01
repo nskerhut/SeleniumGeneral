@@ -176,12 +176,13 @@ export class ProjectsComponent implements OnInit {
     }
 
     public getAllEmployees() {
-        console.log("getting all employees.")
-        return this.projectService.getAllEmployees().subscribe(ress => {
-            this.unassignedEmployeeList = ress.sort(this.compareEmployee);
+        console.log( "getting all employees." )
+        return this.projectService.getAllEmployeesInfo().subscribe( ress => {
+            this.unassignedEmployeeList = ress.sort( this.compareEmployee );
 
-            console.log("employees ", this.unassignedEmployeeList);
 
+            console.log( "employees ", this.unassignedEmployeeList );
+        
         });
     }
 
