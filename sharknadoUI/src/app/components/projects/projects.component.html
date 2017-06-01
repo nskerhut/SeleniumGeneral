@@ -7,11 +7,13 @@
 				<div class="panel-heading">
 					Available Employees
 				</div>
-				<div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeList($event)" [dropZones]="['employees-zone']">
+				<div id="Emppanel" class="body" dnd-droppable (onDropSuccess)="moveEmployeeToEmployeeListDrop($event)" [dropZones]="['employees-zone']">
 					<ul class="list-group">
 						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" (removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"></employee-handle>
+							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"
+							(addEmployeeToProject)="addEmployeeToProjectContext( employee)"
+							 (removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"></employee-handle>
 						</li>
 					</ul>
 				</div>
@@ -33,7 +35,8 @@
 											<ul class="list-group">
 												<li *ngFor="let employee of project.employees; let m = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 												 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(project,employee)">
-													<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project" (addEmployeeToProject)="addEmployeeToProject($event,project)"
+													<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" [project]="project" 
+													(addEmployeeToProject)="addEmployeeToProjectContext( employee)"
 													 (removeEmployeeFromProject)="removeEmployeeFromProjectMenu($event, project)"></employee-handle>
 												</li>
 											</ul>
@@ -633,7 +636,7 @@
 				</div>
 			</div>
 
-	<allocated-hours-modal (modifyAllocatedHours)="recieveAllocatedHours($event)" #allocatedHours>
+	<allocated-hours-modal (modifyAllocatedHours)="recieveAllocatedHours($event)" [currentProjects]="projectList" #allocatedHours>
 		</allocated-hours-modal>
 
 
