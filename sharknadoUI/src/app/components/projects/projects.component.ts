@@ -34,6 +34,7 @@ export class ProjectsComponent implements OnInit {
     public currentproject: Project;
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
+    employeeProjectAssociations: EmployeeProjectAssoc[];
 
     @ViewChild('projectEdit') public projectEdit: ModalDirective;
     @ViewChild('allocatedHours') public allocatedHours: AllocatedHours;
@@ -507,6 +508,26 @@ export class ProjectsComponent implements OnInit {
         }
         console.log("employees list: %s", projectTo.employees);
 
+    }
+
+    showAssociatedProjects(){
+        this.projectService.getProjectsByEmployeeTest(this.employee);
+        document.getElementById("employeeOverviewFrm").style.display = "none";
+        document.getElementById("associatedProjectsView").style.display = "block";
+        
+    }
+
+    showEmployeeOverView(){
+         document.getElementById("associatedProjectsView").style.display = "none";
+        document.getElementById("employeeOverviewFrm").style.display = "block";
+    }
+
+    public getAllProjectsByEmployeeTest(employee: Employee) {
+        console.log("getting all projects by employee: %s %s", employee.First_Name, employee.Last_Name);
+        return this.projectService.getProjectsByEmployeeTest(employee).subscribe(ress => {
+            this.employeeProjectAssociations = ress;
+
+        });
     }
 
 

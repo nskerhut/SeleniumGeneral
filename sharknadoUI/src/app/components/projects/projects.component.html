@@ -123,12 +123,23 @@
 						<div class="modal-content">
 							<div class="modal-header">
 								<h4 class="modal-title pull-left">{{Employee_ID}}</h4>
+								<ul id="projectDetailsMenu">
+									<li class="projectDetailsMenuItem" id="menuProjectDetails">
+										<a type="button" (click)="showEmployeeOverView()">
+											<h4 class="modal-title pull-left">Employee Overview</h4>
+										</a>
+									</li>
+									<li class="projectDetailsMenuItem" id="menuContacts">
+										<a type="button" (click)="showAssociatedProjects()">
+											<h4 class="modal-title pull-left">Assoc. Projects</h4>
+										</a>
+									</li></ul>
 
 							</div>
 							<div class="modal-body">
 
 								<h3>Personal info</h3>
-								<div class="form-horizontal" role="form">
+								<div class="form-horizontal" id="employeeOverviewFrm" role="form">
 									<div class="form-group">
 										<label for="fName11" class="col-lg-3 control-label">First name:</label>
 										<div class="col-lg-8">
@@ -247,6 +258,100 @@
 										</div>
 									</div>
 								</div>
+								<div class="modal-body" id="associatedProjectsView">
+								<div class="form-group">
+									<div *ngFor="let empProjAssoc of employeeProjectAssociations; let i = index">
+										<div class="panel-heading">
+											{{empProjAssoc.project.Project_Name}}
+										</div>
+										<div id="Projpanel" class="body">
+											<ul class="list-group">
+												<li>{{ empProjAssoc.project.Project_Name }} <i>({{ empProjAssoc.project.projectAbbr }})</i></li>
+												<li>{{ empProjAssoc.Start_Date }}</li>
+												<li>{{ empProjAssoc.project.End_Date }}</li>
+												<li>{{ empProjAssoc.project.Position_Description }}</li>
+												<li>{{ empProjAssoc.project.Labor_Category }}</li>
+												<li>{{ empProjAssoc.project.Labor_Category_CertifiedBy }}</li>
+												<li>{{ empProjAssoc.AllocatedHrs }}</li>
+											</ul>
+										</div>
+										</div>
+									</div>
+									<!--<div class="modal-body" id="associatedProjectsView">
+									<div class="form-group">
+									<div>
+										<div class="panel-heading">
+											Test Name
+										</div>
+										<div id="Projpanel" class="body">
+											<ul class="list-group">
+												<li>TestProject <i>(TP.)</i></li>
+												<li>TestName</li>
+												<li>TestDat}</li>
+												<li>Testing</li>
+												<li>More Tests</li>
+												<li>Even More Tests</li>
+												<li>Moar tests!</li>
+											</ul>
+										</div>
+										</div>
+									</div>-->
+										<!--<label for="agency" class="cols-sm-2 control-label">Agency:</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+												<input type="text" class="form-control" name="agency" id="agency" [readonly]="true" [placeholder]="currentproject?.agency"
+												/>
+
+											</div>
+										</div>
+										<aside style="float: right;">
+											<label for="agencyAbbr" class="cols-sm-2 control-label">Agency Abbr.</label>
+											<div class="cols-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon"><i class = "fa fa-users fa" aria-hidden = "true"></i></span>
+													<input type="text" class="form-control" name="agencyAbbr" id="agencyAbbr" [readonly]="true" [placeholder]="currentproject?.agencyAbbr"
+													/>
+												</div>
+											</div>
+
+										</aside>
+									</div>
+
+									<div class="form-group">
+										<label for="projectdesc" class="cols-sm-2 control-label">Project Description:</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+												<input type="text" class="form-control" name="projectdesc" id="projectdesc" [readonly]="true" [placeholder]="currentproject?.projectDescription"
+												/>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+										<label for="projStatus" class="cols-sm-2 control-label">Project Status:</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+												<input type="text" class="form-control" name="projStatus" id="projStatus" [readonly]="true" [placeholder]="currentproject?.projectStatus"
+												/>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="projCode" class="cols-sm-2 control-label">Project Chargecode:</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="datalist-group-addon" id="projectchargecodes"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+												<input type="text" class="form-control" name="projCode" id="projCode" [readonly]="true" [placeholder]="currentproject?.projectChargeCode"
+												/>
+											</div>
+										</div>
+									</div>-->
+							</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal1.hide()">Close</button>
