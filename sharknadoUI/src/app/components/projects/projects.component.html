@@ -19,7 +19,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
 		<!-- Project Panels -->
 		<div class="row">
@@ -28,7 +27,7 @@
 					<!--wrap each project in container-->
 					<div class="col-sm-2">
 						<div class="panel-info">
-							<div class="panel-heading" (click)="showProjectModal(project.projectId);">
+							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); getContacts(project.projectId); projectEdit.show(); normalizeProjectForm();">
 								{{project.Project_Name}}
 							</div>
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event, project);" [dropZones]="['employees-zone']">
@@ -46,6 +45,7 @@
 					</div>
 				</div>
 		</div>
+	</div>
 
 
 
@@ -79,7 +79,7 @@
 										<div class="cols-sm-10">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-												<input type="text" class="form-control" name="charge" id="charge" placeholder="Enter the Charge Code" />
+												<input [(ngModel)]="charge_code" type="text" class="form-control" name="charge" id="charge" placeholder="Enter the Charge Code" />
 											</div>
 										</div>
 									</div>
@@ -89,29 +89,17 @@
 										<div class="cols-sm-10">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-												<input type="text" class="form-control" name="manager" id="manager" placeholder="Enter the Manager for this Project" />
+												<input [(ngModel)]="manager" type="text" class="form-control" name="manager" id="manager" placeholder="Enter the Manager for this Project" />
 											</div>
 										</div>
 									</div>
-
-
-									<div class="form-group">
-										<label for="Email" class="cols-sm-2 control-label">Project Contact Email:</label>
-										<div class="cols-sm-10">
-											<div class="input-group">
-												<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-												<input type="text" class="form-control" name="Email" id="Email" placeholder="Enter Project POC Email" />
-											</div>
-										</div>
-									</div>
-
 
 
 								</form>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="bs-modal" (click)="staticModal.hide()">Close</button>
-								<button type="button" (click)=addProject(names,chargecode,manager) class="btn btn-primary">Add Project</button>
+								<button type="button" (click)=addProject(name,manager,charge_code) class="btn btn-primary">Add Project</button>
 							</div>
 						</div>
 					</div>
