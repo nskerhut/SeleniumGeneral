@@ -80,8 +80,12 @@ export class ProjectsComponent implements OnInit {
     public setEmployee( employee: Employee ): void {
         this.employee = employee;
     }
-    moveEmployeeToEmployeeList( $event: any ) {
+    private moveEmployeeToEmployeeListDrop( $event: any ) {
         let newEmployee: Employee = $event.dragData;
+        this.moveEmployeeToEmployeeList(newEmployee);
+    }
+    
+    private moveEmployeeToEmployeeList (newEmployee: Employee){
         let projectFrom: Project = this.projectFrom;
         let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == newEmployee.Employee_Id);
         
@@ -118,7 +122,7 @@ export class ProjectsComponent implements OnInit {
         
         this.allocatedHours.currentEmployee = masterEmployee;
         
-
+        this.allocatedHours.show();
     }
     addEmployeeToProjectContext(employee: Employee){
         console.log("add employee to project by context");
@@ -383,52 +387,13 @@ export class ProjectsComponent implements OnInit {
         this.getContacts(projectId);
         this.normalizeProjectForm();
     }
-
-    // addEmployeeToProjectTest(allocatedHrs: number) {
-
-    //     let employeeID: number = +document.getElementById("HdnEmployeeID").nodeValue;
-    //     let masterEmployee: Employee = this.unassignedEmployeeList[employeeID];
-    //     let projectEmployee: Employee = JSON.parse(JSON.stringify(masterEmployee)); //Deep Copy
-
-    //     let projectId: number = +document.getElementById("HdnProjectID").nodeValue;
-    //     let projectTo: Project = this.projectList[projectId];
-    //     let projectFrom: Project = this.projectFrom;
-
-    //     console.log( "adding %s to %s", projectEmployee.First_Name, projectTo.Project_Name );
+    private removeEmployeeFromProjectMenu($event:any){
+        let epa:EmployeeProjectAssoc = $event as EmployeeProjectAssoc;
+        this.dragStart(epa.project, epa.employee);
+        this.moveEmployeeToEmployeeList(epa.employee);
         
-    //     //Remove from previous project, employee list is not a project.
-    //     if ( this.projectFrom != null ) {
-    //         masterEmployee.allocatedHours = 0;
-    //         this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id != projectEmployee.Employee_Id );
-    //         console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
-    //     }
-        
-    //     //Update the Employee Allocation
-    //     //TODO Set a real amount of time
-    //     projectEmployee.allocatedHours = 4;
-    //     projectTo.employees.push(projectEmployee);
-        
-        
-    //     //Reset Allocation in employeeList;
-    //     let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == masterEmployee.Employee_Id);
-    //     listEmployee.allocatedHours = 0;
-    //     this.projectList
-    //         .filter(x => x.employees != null)
-    //         .forEach(x => 
-    //         {
-    //                 x.employees.filter(y => y.Employee_Id == masterEmployee.Employee_Id)
-    //                 .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
-    //         });
-        
-    //     //Sort the employee list
-    //     this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
-
-    //     let employeeProjAssoc: EmployeeProjectAssoc = new EmployeeProjectAssoc(masterEmployee, projectTo, allocatedHrs);
-    //     this.projectService.addEmployeeToProjectTest(employeeProjAssoc);
-
-    // }
-
-    checkEmployeeHours(currentHours: number, newHours: number): boolean
+    }
+       checkEmployeeHours(currentHours: number, newHours: number): boolean
     {
         return (currentHours + newHours) > 40;
     }
