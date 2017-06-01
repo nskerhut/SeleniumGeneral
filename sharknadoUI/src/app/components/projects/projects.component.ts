@@ -370,6 +370,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     public showProjectModal( projectId: number ) {
+        this.projectEdit.show();
         this.projectService.getProjectById( projectId ).subscribe( ress => {
             this.currentproject = ress;
             this.currentproject.employees = Array<Employee>();
@@ -378,6 +379,9 @@ export class ProjectsComponent implements OnInit {
                 .forEach(y => this.currentproject.employees.push(y.employee));
             console.log( "Received Project %s", this.currentproject.Project_Name );
         } );
+        this.getAllChargeCode(projectId);
+        this.getContacts(projectId);
+        this.normalizeProjectForm();
     }
 
     // addEmployeeToProjectTest(allocatedHrs: number) {
