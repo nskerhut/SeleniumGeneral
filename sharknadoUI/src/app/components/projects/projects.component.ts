@@ -114,17 +114,11 @@ export class ProjectsComponent implements OnInit {
     addEmployeeToProject( $event: any, project: Project ) {
 
         let masterEmployee: Employee = $event.dragData;
-        let projectEmployee: Employee = JSON.parse( JSON.stringify( masterEmployee ) ); //Deep Copy
-
-        let projectTo: Project = project;
-
         this.allocatedHours.show();
         this.allocatedHours.currentEmployee = masterEmployee;
-        this.allocatedHours.currentProject = projectTo;
-    }
-     
+        this.allocatedHours.currentProject = project;
 
-    
+    }
 
     public getAllEmployees() {
         console.log( "getting all employees." )
@@ -459,21 +453,26 @@ export class ProjectsComponent implements OnInit {
 
 
         //Reset Allocation in employeeList;
-        let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == masterEmployee.Employee_Id );
+        this.recalculateEmployeeListAllocations(masterEmployee);
+
+
+        console.log( "employees list: %s", projectTo.employees );
+        console.log("This is what we recieved %s", empProjModel.employee.First_Name);
+    }
+    
+    private recalculateEmployeeListAllocations(employee:Employee){
+        let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == employee.Employee_Id );
         listEmployee.allocatedHours = 0;
         this.projectList
             .filter( x => x.employees != null )
             .forEach( x => {
-                x.employees.filter( y => y.Employee_Id == masterEmployee.Employee_Id )
+                x.employees.filter( y => y.Employee_Id == employee.Employee_Id )
                     .forEach( y => listEmployee.allocatedHours += y.allocatedHours )
             } );
 
         //Sort the employee list
         this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
 
-        console.log( "employees list: %s", projectTo.employees );
-        console.log("This is what we recieved %s", empProjModel.employee.First_Name);
     }
-
 
 }

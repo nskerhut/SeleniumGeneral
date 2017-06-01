@@ -25,7 +25,7 @@ export class AllocatedHours {
     @Output()
     modifyAllocatedHours: EventEmitter<EmployeeProjectAssoc> =  new EventEmitter<EmployeeProjectAssoc>();
 
-    hoursArray: number[] = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
+    hoursArray: number[] = [4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
 
     currentProjects: Project[];
 
@@ -41,6 +41,7 @@ export class AllocatedHours {
 
     public hide() {
         this.allocatedHours.hide();
+        this.selectedHours = 4;
     }
 
     ngOnChanges() {
