@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { UserService } from './../../service/user.service';
+import { EmployeeService } from './../../service/employeeservice.service';
+import { Employee } from '../../model/employee';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import {Observable} from 'rxjs/Rx';
 
 
 @Component({
@@ -15,10 +18,17 @@ export class NavComponent implements OnInit {
   adminBool: boolean = true;
   stringBool: string;
   id: any;
+  //Employee Search Stuff
+  allEmployees: any;
+  numberOfEmployees: number; 
+  limit: number;
+  page: number =1;
+  filter: Employee = new Employee();
 
   constructor(
     private flashMessagesService: FlashMessagesService,
     private userService: UserService,
+    private employeeService: EmployeeService,
     private router : Router,
     private route:ActivatedRoute
   ) {
@@ -28,9 +38,17 @@ export class NavComponent implements OnInit {
     this.userService.adminEvent.subscribe(value => {this.adminBool = !value;})
     this.userService.managerEvent.subscribe(value => {this.managerBool =!value;})
 
+    this.employeeService = employeeService;
    }
   ngOnInit() {
+    this.employeeService.getAllEmployees().subscribe(
+      (allEmployees: Employee[]) => {
+        this.allEmployees = allEmployees;
+        this.numberOfEmployees = this.allEmployees.length;
+        this.limit = this.allEmployees.length;
+      });
   }
+
   public logout(){
     this.loginBool = true;
     this.managerBool = true;
