@@ -11,7 +11,9 @@
 					<ul class="list-group">
 						<li *ngFor="let employee of unassignedEmployeeList let i = index;" class="list-group-item" dnd-draggable [dragEnabled]="true"
 						 [dragData]="employee" [dropZones]="['employees-zone']" (onDragStart)="dragStart(null, employee)">
-							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()" (removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"></employee-handle>
+							<employee-handle [employee]="employee" (editClick)="setEmployee(employee); staticModal1.show()"
+							(addEmployeeToProject)="addEmployeeToProjectContext(employee)" 
+							(removeEmployeeFromProject)="moveEmployeeToEmployeeList($event)"></employee-handle>
 						</li>
 					</ul>
 				</div>
@@ -528,7 +530,7 @@
 				</div>
 			</div>
 
-	<allocated-hours-modal (modifyAllocatedHours)="recieveAllocatedHours($event)" #allocatedHours>
+	<allocated-hours-modal (modifyAllocatedHours)="recieveAllocatedHours($event)" [currentProjects]="projectList" #allocatedHours>
 		</allocated-hours-modal>
 
 

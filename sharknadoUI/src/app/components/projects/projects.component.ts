@@ -114,6 +114,13 @@ export class ProjectsComponent implements OnInit {
 
         }
     }
+    addEmployeeToProjectContext(employee: Employee){
+        console.log("add employee to project by context");
+        this.allocatedHours.show();
+        this.allocatedHours.currentEmployee = employee;
+        this.allocatedHours.currentProject = null;
+    }
+    
     addEmployeeToProject($event: any, project: Project) {
 
         let masterEmployee: Employee = $event.dragData;
