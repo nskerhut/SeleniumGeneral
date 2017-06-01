@@ -40,6 +40,11 @@
     word-wrap: break-word;
 }
 
+.panel-heading:hover {
+    background-color: #0ed8cf;
+    color: #081072;
+}
+
 #Emppanel {
     min-height:16vh;
     max-height: Auto;
