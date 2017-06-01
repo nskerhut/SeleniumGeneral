@@ -6,7 +6,7 @@
 					<h3 *ngIf="currentProject != null" class="modal-title pull-left">Project: {{ currentProject?.Project_Name }}</h3>
 					<div *ngIf="currentProject == null" class="modal-title pull-left"><h3>Project:</h3>
 						<select [(ngModel)]="currentProject">
-							<option *ngFor="let project of currentProjects">{{project.Project_Name}}</option>
+							<option *ngFor="let project of currentProjects" [ngValue]="project" >{{project.Project_Name}}</option>
 						</select>
 					</div>
 				</div>

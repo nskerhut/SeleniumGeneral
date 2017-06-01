@@ -114,12 +114,19 @@ export class ProjectsComponent implements OnInit {
     addEmployeeToProject( $event: any, project: Project ) {
 
         let masterEmployee: Employee = $event.dragData;
-        this.allocatedHours.show();
-        this.allocatedHours.currentEmployee = masterEmployee;
         this.allocatedHours.currentProject = project;
+        
+        this.allocatedHours.currentEmployee = masterEmployee;
+        
 
     }
-
+    addEmployeeToProjectContext(employee: Employee){
+        console.log("add employee to project by context");
+        
+        this.allocatedHours.currentProject = null;
+        this.allocatedHours.currentEmployee = employee;
+        this.allocatedHours.show();
+    }
     public getAllEmployees() {
         console.log( "getting all employees." )
         return this.projectService.getAllEmployees().subscribe( ress => {
@@ -444,10 +451,14 @@ export class ProjectsComponent implements OnInit {
             console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
         }
 
+        
+        
         //Update the Employee Allocation
         projectEmployee.allocatedHours = empProjModel.allocatedHrs as number;
 
-
+        if(projectTo.employees== null)
+            projectTo.employees = new Array<Employee>();
+        
         projectTo.employees.push( projectEmployee );
 
 
