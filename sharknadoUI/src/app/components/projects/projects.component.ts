@@ -445,8 +445,7 @@ export class ProjectsComponent implements OnInit {
         }
 
         //Update the Employee Allocation
-        //TODO Set a real amount of time
-        projectEmployee.allocatedHours = empProjModel.allocatedHrs;
+        projectEmployee.allocatedHours = empProjModel.allocatedHrs as number;
 
 
         projectTo.employees.push( projectEmployee );
@@ -454,10 +453,7 @@ export class ProjectsComponent implements OnInit {
 
         //Reset Allocation in employeeList;
         this.recalculateEmployeeListAllocations(masterEmployee);
-
-
-        console.log( "employees list: %s", projectTo.employees );
-        console.log("This is what we recieved %s", empProjModel.employee.First_Name);
+        
     }
     
     private recalculateEmployeeListAllocations(employee:Employee){

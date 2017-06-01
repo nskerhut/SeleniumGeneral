@@ -27,9 +27,10 @@ export class AllocatedHours {
 
     hoursArray: number[] = [4, 8, 12, 16, 20, 24, 28, 32, 36, 40];
 
+    @Input()
     currentProjects: Project[];
 
-    selectedHours: number = 0;
+    selectedHours: number = 4;
 
     //  public populateAllocatedHrs($event: any, project: Project)
     // {
@@ -46,10 +47,17 @@ export class AllocatedHours {
 
     ngOnChanges() {
     }
+    private IsOverAllocated(): boolean
+    {
+        if(this.currentEmployee == null)
+            return false;
+        
+        return this.selectedHours + this.currentEmployee.allocatedHours > 40
+    }
     private onModifyAllocatedHours() {
 
         let currentEmployeeProjectAssoc = new EmployeeProjectAssoc(this.currentEmployee, this.currentProject)
-        currentEmployeeProjectAssoc.allocatedHrs = this.selectedHours;
+        currentEmployeeProjectAssoc.allocatedHrs = this.selectedHours as number;
         this.modifyAllocatedHours.emit(currentEmployeeProjectAssoc);
         console.log("Sent out this model %s with these hours %s", currentEmployeeProjectAssoc.employee.First_Name, currentEmployeeProjectAssoc.allocatedHrs.toString());
     }

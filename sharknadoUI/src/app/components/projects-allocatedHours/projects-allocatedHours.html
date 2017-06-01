@@ -17,7 +17,7 @@
 					Hours to allocate to this employee: <select [(ngModel)]="selectedHours">
 															<option *ngFor="let hours of hoursArray">{{hours}}</option>
 														</select>
-				<div *ngIf="(+selectedHours + +currentEmployee?.allocatedHours) > 40 "><span class="text-warning">Employee is overallocated</span></div>
+				<div *ngIf="IsOverAllocated()" class="text-warning">Employee is overallocated</div>
 
 				</div>
 				<div class="modal-footer">
