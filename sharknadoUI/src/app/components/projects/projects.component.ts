@@ -117,53 +117,14 @@ export class ProjectsComponent implements OnInit {
         let projectEmployee: Employee = JSON.parse( JSON.stringify( masterEmployee ) ); //Deep Copy
 
         let projectTo: Project = project;
-        let projectFrom: Project = this.projectFrom;
 
-        if ( projectTo.employees.filter( x => x.Employee_Id == projectEmployee.Employee_Id ).length > 0 )
-            return;
-
-        console.log( "adding %s to %s", projectEmployee.First_Name, project.Project_Name );
         this.allocatedHours.show();
         this.allocatedHours.currentEmployee = masterEmployee;
-        if (projectTo == null) {
-            this.allocatedHours.currentProjects = this.projectList;
-        }
-        else {
-            this.allocatedHours.currentProject = projectTo;
-        }
-        /// Split into new function call from modal save event.
-
-        //Remove from previous project, employee list is not a project.
-        if ( this.projectFrom != null ) {
-            masterEmployee.allocatedHours = 0;
-            this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id !== projectEmployee.Employee_Id );
-            console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
-        }
-
-        //Update the Employee Allocation
-        //TODO Set a real amount of time
-        projectEmployee.allocatedHours = 4;
-
-
-        projectTo.employees.push( projectEmployee );
-
-
-        //Reset Allocation in employeeList;
-        let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == masterEmployee.Employee_Id );
-        listEmployee.allocatedHours = 0;
-        this.projectList
-            .filter( x => x.employees != null )
-            .forEach( x => {
-                x.employees.filter( y => y.Employee_Id == masterEmployee.Employee_Id )
-                    .forEach( y => listEmployee.allocatedHours += y.allocatedHours )
-            } );
-
-        //Sort the employee list
-        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
-
-        console.log( "employees list: %s", projectTo.employees );
-
+        this.allocatedHours.currentProject = projectTo;
     }
+     
+
+    
 
     public getAllEmployees() {
         console.log( "getting all employees." )
@@ -467,8 +428,50 @@ export class ProjectsComponent implements OnInit {
         return (currentHours + newHours) > 40;
     }
 
-    recieveAllocatedHours(event){
-        let empProjModel = event;
+    private recieveAllocatedHours($event: any){
+        
+        let empProjModel:EmployeeProjectAssoc = $event;
+        let projectTo = empProjModel.project;
+        
+        let masterEmployee: Employee = empProjModel.employee;
+        let projectEmployee: Employee = JSON.parse( JSON.stringify( masterEmployee ) ); //Deep Copy
+
+        let projectFrom: Project = this.projectFrom;
+
+        if ( projectTo.employees.filter( x => x.Employee_Id == projectEmployee.Employee_Id ).length > 0 )
+            return;
+
+        console.log( "adding %s to %s", projectEmployee.First_Name, projectTo.Project_Name );
+
+        //Remove from previous project, employee list is not a project.
+        if ( this.projectFrom != null ) {
+            masterEmployee.allocatedHours = 0;
+            this.projectFrom.employees = this.projectFrom.employees.filter( item => item.Employee_Id !== projectEmployee.Employee_Id );
+            console.log( `project From(%s) To(%s)`, this.projectFrom.projectId, projectTo.projectId );
+        }
+
+        //Update the Employee Allocation
+        //TODO Set a real amount of time
+        projectEmployee.allocatedHours = empProjModel.allocatedHrs;
+
+
+        projectTo.employees.push( projectEmployee );
+
+
+        //Reset Allocation in employeeList;
+        let listEmployee = this.unassignedEmployeeList.find( x => x.Employee_Id == masterEmployee.Employee_Id );
+        listEmployee.allocatedHours = 0;
+        this.projectList
+            .filter( x => x.employees != null )
+            .forEach( x => {
+                x.employees.filter( y => y.Employee_Id == masterEmployee.Employee_Id )
+                    .forEach( y => listEmployee.allocatedHours += y.allocatedHours )
+            } );
+
+        //Sort the employee list
+        this.unassignedEmployeeList = this.unassignedEmployeeList.sort( this.compareEmployee )
+
+        console.log( "employees list: %s", projectTo.employees );
         console.log("This is what we recieved %s", empProjModel.employee.First_Name);
     }
 
