@@ -92,18 +92,10 @@ export class ProjectsComponent implements OnInit {
         if (projectFrom != null) {
             projectFrom.employees.filter(x => x.Employee_Id == newEmployee.Employee_Id).forEach(y => y.allocatedHours = 0);
             projectFrom.employees = projectFrom.employees.filter(item => item.Employee_Id != newEmployee.Employee_Id);
-            listEmployee.allocatedHours = 0;
-            this.projectList
-                .filter(x => x.employees != null)
-                .forEach(x => {
-                    x.employees.filter(y => y.Employee_Id == newEmployee.Employee_Id)
-                        .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
-                });
             console.log(`project From(%s) employee list`, projectFrom.projectId);
         }
 
-        this.unassignedEmployeeList = this.unassignedEmployeeList.sort(this.compareEmployee)
-
+        this.recalculateEmployeeList(listEmployee);
 
     }
 
@@ -496,27 +488,30 @@ export class ProjectsComponent implements OnInit {
         }
 
         //Update the Employee Allocation
-        projectEmployee.allocatedHours = empProjModel.allocatedHrs;
+        projectEmployee.allocatedHours = empProjModel.allocatedHrs  as number;
         if (projectEmployee.allocatedHours > 0) {
             
             projectTo.employees.push(projectEmployee);
 
 
             //Reset Allocation in employeeList;
-            let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == masterEmployee.Employee_Id);
-            listEmployee.allocatedHours = 0;
-            this.projectList
-                .filter(x => x.employees != null)
-                .forEach(x => {
-                    x.employees.filter(y => y.Employee_Id == masterEmployee.Employee_Id)
-                        .forEach(y => listEmployee.allocatedHours += y.allocatedHours)
-                });
-
-            //Sort the employee list
-            this.unassignedEmployeeList = this.unassignedEmployeeList.sort(this.compareEmployee)
-
+            this.recalculateEmployeeList(masterEmployee);
         }
         console.log("employees list: %s", projectTo.employees);
+
+    }
+    private recalculateEmployeeList(employee:Employee){
+        let listEmployee = this.unassignedEmployeeList.find(x => x.Employee_Id == employee.Employee_Id);
+        listEmployee.allocatedHours = 0 as number;
+        this.projectList
+            .filter(x => x.employees != null)
+            .forEach(x => {
+                x.employees.filter(y => y.Employee_Id == employee.Employee_Id)
+                    .forEach(y => listEmployee.allocatedHours = <number>listEmployee.allocatedHours + <number>y.allocatedHours)
+            });
+
+        //Sort the employee list
+        this.unassignedEmployeeList = this.unassignedEmployeeList.sort(this.compareEmployee)
 
     }
     private removeEmployeeFromProjectMenu($event:any){

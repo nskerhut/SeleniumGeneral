@@ -48,12 +48,6 @@ export class AllocatedHours {
     ngOnChanges() {
     }
     
-    private isOverAllocated(): boolean{
-        if(this.selectedHours == null || this.currentEmployee == null)
-            return false;
-        return <number>this.selectedHours + <number>this.currentEmployee.allocatedHours > 40;
-    }
-    
     private onModifyAllocatedHours() {
 
         let currentEmployeeProjectAssoc = new EmployeeProjectAssoc(this.currentEmployee, this.currentProject)
@@ -64,7 +58,7 @@ export class AllocatedHours {
 	private isOverAllocated() :boolean {
 		if(this.currentEmployee == null)
 			return false;
-		return this.selectedHours + this.currentEmployee.allocatedHours > 40 
+		return <number>this.selectedHours + <number>this.currentEmployee.allocatedHours > 40 
 	}
 
 }
