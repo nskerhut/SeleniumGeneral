@@ -8,7 +8,8 @@
     "start": "ng serve --port 3000 & open http://localhost:3000/",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "jenkins-test":"ng test --watch false --single-run true"
   },
   "private": true,
   "dependencies": {
