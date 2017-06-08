@@ -146,4 +146,11 @@ export class ProjectService {
             .map(( ress: Response ) => <Array<EmployeeProjectAssoc>>ress.json() )
             .catch( this.handleError );
     }
+
+    // public getAllProjectDates(): Observable<Array<ProjectDates>> {
+    //     console.log( "Retrieving list of project dates." )
+    //     return this.http.get( this.baseURL + 'get/project/dates' )
+    //         .map(( ress: Response ) => <Array<ProjectDates>>ress.json() )
+    //         .catch( this.handleError );
+    // }
 }

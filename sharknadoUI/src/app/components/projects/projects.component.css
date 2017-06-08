@@ -231,3 +231,23 @@ padding: 8px 12px !important;
     height: 300px;
     width: 300px;
 }
+
+.projectTimeIcons {
+    float: right;
+    padding-right: 5px;
+}
+
+#less-than-30 {
+    color: red;
+    font-size: 100%;
+}
+
+#less-than-60 {
+    color: orange;
+    font-size: 100%;
+}
+
+#less-than-90 {
+    color: yellow;
+    font-size: 120%;
+}

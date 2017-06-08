@@ -35,6 +35,8 @@ export class ProjectsComponent implements OnInit {
     employee: Employee = new Employee;
     assignedEmployees: Array<Employee> = [];
 
+    projectTimeRemaining: number;
+
     @ViewChild('projectEdit') public projectEdit: ModalDirective;
     @ViewChild('allocatedHours') public allocatedHours: AllocatedHours;
 
@@ -202,6 +204,7 @@ export class ProjectsComponent implements OnInit {
             this.getAllocatedEmployees();
             this.projectList = ress;
             this.projectList.forEach(x => { if (x.employees == null) x.employees = new Array<Employee>() });
+            console.log("complete projects list: ", this.projectList);
 
         });
     }
@@ -238,6 +241,31 @@ export class ProjectsComponent implements OnInit {
             this.projectList[index].employees = this.assignedEmployees;
             console.log("project list updated", this.projectList);
         });
+    }
+
+
+    public timeRemaining(startDate: string, endDate: string) {
+
+        // gets current date in string format
+        var date = new Date();
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth() + 1).toString();
+        var dd = date.getDate().toString();
+
+        // fixes single digit months/days to fit yyyymmdd format
+        if (mm.length < 2) {
+            mm = "0" + mm;
+        }
+        if (dd.length < 2) {
+            dd = "0" + dd;
+        }
+
+        // combine into single variable with hyphens / yyyy-mm-day format
+        var todaysDate = yyyy + "-" + mm + "-" + dd;
+
+        this.projectTimeRemaining =  Math.floor(( Date.parse(endDate) - Date.parse(todaysDate) ) / 86400000);
+
+        return 1;
     }
 
     constructor(

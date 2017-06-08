@@ -28,7 +28,21 @@
 					<div class="col-sm-2">
 						<div class="panel-info">
 							<div class="panel-heading" (click)="showProjectModal(project.projectId); getAllChargeCode(project.projectId); getContacts(project.projectId); projectEdit.show(); normalizeProjectForm();">
-								{{project.Project_Name}}
+								<!--determines what glyphicon should be used-->
+								<span *ngIf="timeRemaining(project.Project_Start, project.Project_End) == 1">
+									<span *ngIf="this.projectTimeRemaining <= 30">
+										<span id="less-than-30" class="glyphicon glyphicon-remove-sign projectTimeIcons"></span><!--circle with x-->
+									</span>
+									<span *ngIf="this.projectTimeRemaining > 30 && this.projectTimeRemaining <= 60">
+										<span id="less-than-60" class="glyphicon glyphicon-exclamation-sign projectTimeIcons"></span><!--exclamation point-->
+									</span>
+									<span *ngIf="this.projectTimeRemaining > 60 && this.projectTimeRemaining <= 90">
+										<span id="less-than-90" class="glyphicon glyphicon-triangle-top projectTimeIcons"></span>
+									</span>
+									{{project.Project_Name}}
+								</span>
+								<!--end glyphicon placement-->
+								<!--{{project.Project_Name}}-->
 							</div>
 							<div id="Projpanel" class="body" dnd-droppable (onDropSuccess)="addEmployeeToProject($event, project);" [dropZones]="['employees-zone']">
 											<ul class="list-group">
