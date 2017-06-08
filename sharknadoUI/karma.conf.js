@@ -10,7 +10,8 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-remap-istanbul'),
       require('angular-cli/plugins/karma'),
-      require('karma-phantomjs-launcher')
+      require('karma-phantomjs-launcher'),
+      require('karma-junit-reporter')
     ],
     files: [
       { pattern: './src/test.ts', watched: false }
@@ -31,13 +32,13 @@ module.exports = function (config) {
       config: './angular-cli.json',
       environment: 'dev'
     },
-    //reporters: config.angularCli && config.angularCli.codeCoverage
-    //          ? ['progress', 'karma-remap-istanbul']
-     //         : ['progress'],
-    reporters: ['dots','jenkins'],
+    reporters: config.angularCli && config.angularCli.codeCoverage
+              ? ['progress', 'karma-remap-istanbul','junit']
+              : ['progress','junit'],
     
-    jenkinsReporter: {
-    	outputfile: 'test-results.xml'
+    junitReporter: {
+    	
+    	outputFile: 'test-results.xml'
     	
     },
     //port: 9876,

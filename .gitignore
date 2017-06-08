@@ -19,3 +19,7 @@ target/
 
 *.log
 *.orig
+
+### test Framework ###
+Chrome_*
+PhantomJS_*
