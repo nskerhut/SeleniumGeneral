@@ -11,6 +11,7 @@
     "e2e": "protractor",
     "jenkins-test":"ng test --watch false --single-run true"
   },
+
   "private": true,
   "dependencies": {
     "@angular/common": "^4.1.3",
@@ -27,7 +28,6 @@
     "auth0-lock": "^10.13.0",
     "core-js": "^2.4.1",
     "install": "^0.10.1",
-    "intl": "^1.2.5",
     "ng2-contextmenu": "^1.3.1",
     "ng2-dnd": "^4.0.2",
     "ng2-drag-drop": "^2.0.1",
@@ -53,7 +53,6 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.0.2",
-    "karma-junit-reporter": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-remap-istanbul": "^0.6.0",
     "protractor": "~5.1.2",
@@ -62,3 +61,4 @@
     "typescript": "~2.3.3"
   }
 }
+   

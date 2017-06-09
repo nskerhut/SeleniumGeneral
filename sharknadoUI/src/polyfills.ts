@@ -36,4 +36,4 @@ import 'intl';
 // NgClass on SVG elements
 // Needed for: IE10, IE11
 // import 'classlist.js';
-import "core-js/client/shim";
+//import "core-js/client/shim";
